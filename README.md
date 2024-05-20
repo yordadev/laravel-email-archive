@@ -12,7 +12,7 @@ Develop a web application for archiving and viewing email messages using the TAL
 - Docker
 
 ## Getting Started
-These instructions will get you a copy of the project up and running testing purposes.
+These instructions will get you a copy of the project up and running.
 
 ```shell
 docker-compose up -d --build
@@ -62,7 +62,7 @@ Example Response:
 }
 ```
 ------
-### Retrieve ALL emails
+### Find One Email
 ```shell
 curl --location --request GET 'http://localhost/api/email/find'
 ```
@@ -103,7 +103,7 @@ Example Response
 curl --location 'http://localhost/api/email/upload' \
 --header 'accept: application/json' \
 --header 'Content-Type: application/json' \
---form 'file=<@"/path/to/your/file"'
+--form 'file=/path/to/your/file'
 ```
 
 Additional Information:

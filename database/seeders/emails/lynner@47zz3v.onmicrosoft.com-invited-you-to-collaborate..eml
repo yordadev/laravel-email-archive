@@ -1,0 +1,231 @@
+Delivered-To: dannyfairbrother@gmail.com
+Received: by 2002:a17:906:f58d:b0:a58:d9bd:36e3 with SMTP id cm13csp34165ejd;
+        Tue, 7 May 2024 11:50:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGdG4lo5znach+p7+I/+Fc2BvrlEb43yCqGJvi96lE0XHm+kJOG8/pk3eDCaoK/yhQiQRUR
+X-Received: by 2002:a05:6214:2a4d:b0:6a0:cca2:6513 with SMTP id 6a1803df08f44-6a1514c2698mr7303646d6.46.1715107832223;
+        Tue, 07 May 2024 11:50:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1715107832; cv=none;
+        d=google.com; s=arc-20160816;
+        b=jyjc1AqypwfQquDFUC7Igre/o2JqW+FwkKkm1Sb4PCXwhgXJUzkexto7mQSgXcd0IH
+         mOdA+DCtKF3eZmfE0ccx5XxM73AEuJXCmPHmB3bhWd4Joq6fIvXakUXEtLB8OWQswkYI
+         EAmV2rRw4xVR2cwq+dzxaspOrN8BfoBDEBQbuFsoDWmTS+tFsV7o9XUlvqWGQjIwU3O3
+         p4og2lkBCgHBMSbyihJAJDc7mqRTqYvqJC4cMT0hmdHsoKkSoAgNP5+FZ8h9MbTMNve6
+         Ow9hOI6hXdpMLzHLQho8aEsSVnN6klWIdEvvtOEqajRhk+6ObUocGTQAJ2B1d8vajheE
+         jFUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:date:mime-version:c-message-id:message-id
+         :subject:to:from:dkim-signature;
+        bh=hdm+meeQd9n5KZjXI7bgAVvV1ARk0/Ha+w7WXutwptU=;
+        fh=b7M4zyGquRs6zhIBgEp5Ay54Q09t//jgj3EhP1U6OjE=;
+        b=lnSDA4cvPNRDkPDvXbCuZRH2RywLo/CY7h0RlEha1QaDplQUUBIFGiX/08vdUmqMeA
+         e+IdfENgrxHXVaKP8ltjNxz7a+hDQHSfOLVklcr3dUDoWpskgRubFdJXvmMKuBTBa+rV
+         DKgHHQF5ssqvx3Bj6XXI96Ba9O2/pMCcOb8nVnoV0EF2B+WzhVF37vpNdN+BExOCbpoW
+         a9Hr1aMjnzI8CmXbRBIN7Db3VliU9Yqk0kHDB/L4scCcpTCHOUI/zdjCKn0iYZF4Q8bH
+         oohfjre9wWLXEK0T4dNEuqqKvJuB/Etkx0cF2omMsqTHeoz6Ne32pRP/zrzTHgZdT17i
+         bk+A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@filesharingnow.com header.s=mail header.b=Vzp8ihgk;
+       spf=pass (google.com: domain of adobe@filesharingnow.com designates 18.205.140.116 as permitted sender) smtp.mailfrom=adobe@filesharingnow.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=filesharingnow.com
+Return-Path: <adobe@filesharingnow.com>
+Received: from mail.mycurricula.com (phish.mycurricula.com. [18.205.140.116])
+        by mx.google.com with ESMTPS id 9-20020a0562140d0900b006a0caef6dd4si11989273qvh.318.2024.05.07.11.50.32
+        for <dannyfairbrother@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 May 2024 11:50:32 -0700 (PDT)
+Received-SPF: pass (google.com: domain of adobe@filesharingnow.com designates 18.205.140.116 as permitted sender) client-ip=18.205.140.116;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@filesharingnow.com header.s=mail header.b=Vzp8ihgk;
+       spf=pass (google.com: domain of adobe@filesharingnow.com designates 18.205.140.116 as permitted sender) smtp.mailfrom=adobe@filesharingnow.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=filesharingnow.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=filesharingnow.com;
+	s=mail; t=1715107831;
+	bh=hdm+meeQd9n5KZjXI7bgAVvV1ARk0/Ha+w7WXutwptU=;
+	h=From:To:Subject:Date:From;
+	b=Vzp8ihgkNaTCKa+TpZ4V59wew6h2kQYQbJlndtWOQ9Q4IcKI1o/CfFQdy+vnbgCcm
+	 MXz+T5FyPlGhBdZTaH13eesPMo1uwLb4Jv5/vqaoh2PvfK5rRaKo4LTQlPS/yol47L
+	 1clmTXkKuYoS3JNi0TYhQuizxRdpkC+hoBi+Yb/U=
+Received: by mail.mycurricula.com (Postfix, from userid 1001)
+	id D2419BD2E3; Tue,  7 May 2024 18:50:31 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mail.mycurricula.com (Postfix) with SMTP id CFBCCBD244
+	for <dannyfairbrother@gmail.com>; Tue,  7 May 2024 18:50:31 +0000 (UTC)
+From: Adobe Creative Cloud <adobe@filesharingnow.com>
+To: "dannyfairbrother@gmail.com" <dannyfairbrother@gmail.com>
+Subject: lynner@47zz3v.onmicrosoft.com invited you to collaborate.
+Message-Id: <1187567-1715107831@filesharingnow.com>
+C-Message-Id: 1187567-1715107831
+X-PHISHTEST-Curricula: Phishing security test delivered by Curricula that
+ has been authorized by the receiving organization.
+MIME-Version: 1.0
+Date: Tue, 07 May 2024 18:50:31 +0000
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+
+<head>
+=09<meta content=3D"text/html; chars=
+et=3DUTF-8" http-equiv=3D"Content-Type" />
+=09<title></title>
+=09<style type=3D"text/css">
+=09.ReadMsgBody { width: 100%;}
+=09.ExternalClass {width: 100%;}
+=09@media only screen and (max-width: 480px){
+=09=09td[class=3D"web"], table[class=3D"web"] {
+=09=09=09display:none !important;
+=09=09}=09
+=09=09}=09=09</style>
+</head>
+
+<body bgcolor=3D"#ffffff" style=3D"bac=
+kground-color:#ffffff; margin:0; padding:0;" topmargin=3D"0">
+
+=09<div =
+style=3D"font-size: 1px; color:#ffffff; display:none; overflow:hidden; visi=
+bility:hidden;">
+=09lynner@47zz3v.onmicrosoft.com invited you to collaborate on the Library =
+'dfairbrother.com - Updates'</div>
+<table bgcolor=3D"#ffffff" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ style=3D"background-color:#ffffff;" width=3D"100%">
+=09<tbody>
+=09=09<tr>
+=09=09=09<td>
+=09=09=09=09&nbsp;</td>
+=09=09=09<td align=3D"right" class=3D"web"
+=09=09=09=09style=3D"color:#333333; font-family: Arial, Helvetica, sans-ser=
+if; font-size: 11px; line-height:13px;">
+=09=09=09=09&nbsp;</td>
+=09=09=09<td>
+=09=09=09=09&nbsp;</td>
+=09=09</tr>
+=09=09<tr>
+=09=09=09<td>
+=09=09=09=09&nbsp;</td>
+=09=09=09<td bgcolor=3D"#fafafa"
+=09=09=09=09style=3D"background-color:#fafafa; border-top:1px solid #e1e1e1=
+; border-left:1px solid #e1e1e1; border-right:1px solid #e1e1e1; border-bot=
+tom:1px solid #e1e1e1;"
+=09=09=09=09width=3D"90%">
+=09=09=09=09<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" width=3D"100%">
+=09=09=09=09=09<tbody>
+=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09<td width=3D"24">&nbsp;</td>
+=09=09=09=09=09=09=09<td style=3D"padding-top:16px;">
+=09=09=09=09=09=09=09=09<img alt=3D"Adobe Creative Cloud" height=3D"19"
+=09=09=09=09=09=09=09=09=09src=3D"https://s3.amazonaws.com/media.aws-cdn/ad=
+obe%2Fadobe.corp.email.ccm.transactional.transparent.344x38.png"
+=09=09=09=09=09=09=09=09=09style=3D"display:block; vertical-align:top;" wid=
+th=3D"172" data-indicator-id=3D"kP1m6Kw6ZaYG"/>
+=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09<td align=3D"right" style=3D"padding-top:10px;">
+=09=09=09=09=09=09=09=09<img alt=3D"Adobe" height=3D"44"
+=09=09=09=09=09=09=09=09=09src=3D"https://s3.amazonaws.com/media.aws-cdn/ad=
+obe%2Fadobe.corp.email.ccm.transactional.transparent.70x88.png"
+=09=09=09=09=09=09=09=09=09style=3D"display:block; vertical-align:top;" wid=
+th=3D"35" />
+=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09<td width=3D"24">&nbsp;</td>
+=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09<td width=3D"24">&nbsp;</td>
+=09=09=09=09=09=09=09<td colspan=3D"2"
+=09=09=09=09=09=09=09=09style=3D"color:#333333; font-family:Arial, Helvetic=
+a, sans-serif; font-size:24px; line-height:26px; padding-top:18px;" data-in=
+dicator-id=3D"kP1m6Kw6ZaYG">
+=09=09=09=09=09=09=09=09lynner@47zz3v.onmicrosoft.com invited you to collab=
+orate on the <span data-indicator-id=3D"wLnO8j5V9m13">Library</span> 'dfair=
+brother.com - Updates'</td>
+=09=09=09=09=09=09=09<td width=3D"24">&nbsp;</td>
+=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09<td width=3D"24">&nbsp;</td>
+=09=09=09=09=09=09=09<td colspan=3D"2"
+=09=09=09=09=09=09=09=09style=3D"color:#858585; font-family:Arial, Helvetic=
+a, sans-serif; font-size:14px; line-height:20px; padding-top:18px;">
+=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09<td width=3D"24">&nbsp;</td>
+=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09<td width=3D"24">&nbsp;</td>
+=09=09=09=09=09=09=09<td colspan=3D"2"
+=09=09=09=09=09=09=09=09style=3D"color:#858585; font-family:Arial, Helvetic=
+a, sans-serif; font-size:14px; line-height:20px; padding-top:18px;">
+=09=09=09=09=09=09=09=09Click the link below to view, edit, and collaborate=
+ on this <span data-indicator-id=3D"wLnO8j5V9m13">Library</span>. <span dat=
+a-indicator-id=3D"wLnO8j5V9m13">lynner@47zz3v.onmicrosoft.com</span><br>
+=09=09=09=09=09=09=09=09<span data-indicator-id=3D"XDdzVayVRLOa">Failure to=
+ accept the invitation within 3 working days will prevent you from collabor=
+ation with this user in the future.</span>
+=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09<td width=3D"24">&nbsp;</td>
+=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09<td width=3D"24">&nbsp;</td>
+=09=09=09=09=09=09=09<td colspan=3D"2"
+=09=09=09=09=09=09=09=09style=3D"color:#858585; font-family:Arial, Helvetic=
+a, sans-serif; font-size:14px; line-height:20px; padding-top:18px;">
+=09=09=09=09=09=09=09=09<span data-indicator-id=3D"Ny1083nVEvOx"><a href=3D=
+"https://filesharingnow.com/?u=3D35821-c0e482d205c75cc123436df1f0f747bab1da=
+35f202e87f90ae7ef57a0c179718" class=3D"35821-c0e482d205c75cc123436df1f0f747=
+bab1da35f202e87f90ae7ef57a0c179718" style=3D"color:#50b7f1; text-decoration=
+:none; font-weight:bold;">Accept the
+=09=09=09=09=09=09=09=09Invitation</a></span>
+=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09<td width=3D"24">&nbsp;</td>
+=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09<td style=3D"padding-top:18px; padding-bottom:32px; bo=
+rder-bottom:1px solid #e1e1e1;"
+=09=09=09=09=09=09=09=09width=3D"24">
+=09=09=09=09=09=09=09=09&nbsp;</td>
+=09=09=09=09=09=09=09<td colspan=3D"2"
+=09=09=09=09=09=09=09=09style=3D"color:#858585; font-family:Arial, Helvetic=
+a, sans-serif; font-size:14px; line-height:20px; padding-top:18px; padding-=
+bottom:32px; border-bottom:1px solid #e1e1e1;">
+=09=09=09=09=09=09=09=09Thank you,<br />
+=09=09=09=09=09=09=09=09The Creative Cloud team</td>
+=09=09=09=09=09=09=09<td style=3D"padding-top:18px; padding-bottom:32px; bo=
+rder-bottom:1px solid #e1e1e1;"
+=09=09=09=09=09=09=09=09width=3D"24">
+=09=09=09=09=09=09=09=09&nbsp;</td>
+=09=09=09=09=09=09</tr>
+=09=09=09=09=09</tbody>
+=09=09=09=09</table>
+=09=09=09</td>
+=09=09=09<td>
+=09=09=09=09&nbsp;</td>
+=09=09</tr>
+=09=09<tr>
+=09=09=09<td>
+=09=09=09=09&nbsp;</td>
+=09=09=09<td align=3D"left"
+=09=09=09=09style=3D"color:#a1a1a1; font-family:Arial, Helvetica, sans-seri=
+f; font-size:11px; line-height:14px; text-align:left; padding-top:20px; pad=
+ding-bottom:40px;">
+=09=09=09=09Adobe, the Adobe logo, Creative Cloud, and the Creative Cloud l=
+ogo are either registered trademarks or
+=09=09=09=09trademarks of Adobe Systems Incorporated in the United States a=
+nd/or other countries.<br />
+=09=09=09=09<br />
+=09=09=09=09&copy; 2024 Adobe Systems Incorporated. All rights reserved.
+=09=09=09</td>
+=09=09=09<td>
+=09=09=09=09&nbsp;</td>
+=09=09</tr>
+=09</tbody>
+</table>
+
+=09
+=09=09=09<img src=3D"https://mycurricula.com/p/track/op=
+en?u=3D35821-c0e482d205c75cc123436df1f0f747bab1da35f202e87f90ae7ef57a0c1797=
+18" width=3D"1" height=3D"1" border=3D"0" style=3D"height:1px !important;wi=
+dth:1px !important;border-width:0 !important;margin-top:0 !important;margin=
+-bottom:0 !important;margin-right:0 !important;margin-left:0 !important;pad=
+ding-top:0 !important;padding-bottom:0 !important;padding-right:0 !importan=
+t;padding-left:0 !important;"/>=09=09
+</body>
+</html>

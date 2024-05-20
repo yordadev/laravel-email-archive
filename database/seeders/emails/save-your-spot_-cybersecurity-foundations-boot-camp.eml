@@ -1,0 +1,361 @@
+Delivered-To: eric.reynolds@huntress.com
+Received: by 2002:adf:fb50:0:b0:34d:708c:a635 with SMTP id c16csp938624wrs;
+        Thu, 9 May 2024 08:38:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHXb1Uh3ci81qB9l2OoUprKiDQVNV8QGRSbyhs8froWGLHAgL/sKBcEvBC21dznKa2NPCYz
+X-Received: by 2002:aca:d13:0:b0:3c9:69f2:749c with SMTP id 5614622812f47-3c9852b6e6fmr6475397b6e.24.1715269092840;
+        Thu, 09 May 2024 08:38:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1715269092; cv=none;
+        d=google.com; s=arc-20160816;
+        b=dgPDkx37FtQ9qJnOVifq8fgWw8G3J6tSm8Z6g46BaHlW4pSWd0Ng47ZxKykfdfKArk
+         udmFZHN/fRmWzR5UFNOI3WIdlqlTlMPvwKOOJzSDZw060jBbRRzJmeBOi6BZyf+4W6Vz
+         8CXs5N/lkJIWMddufw6mrx19BHLueUsisDhD1LWxLAUAW+SvZFPzZTlPi7WQdWIteLD6
+         VioKJaZOQ4AV8j7KxbqDJLD21BSZHY7EBYzkpyzYNQfRVQTvh8S48zK5IibVFNPtUItu
+         agaAjXcAmCgzrlxCcp5RgLqQyda6jHrCs0hMSlKwRWgGAfyZMFSve/EJgr1w3vsSqfOC
+         EuKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:list-id:reply-to:mime-version:list-unsubscribe-post
+         :list-unsubscribe:date:subject:to:from:dkim-signature;
+        bh=nY5cy0kNMFiCsDU35mGsxNN174P3bxZPCqHg+MP8gMo=;
+        fh=KYnre3kBKk6AYE7xHHxwX0unvUmy56CFVbDXBI7wpto=;
+        b=aVKoupGzRWfHY4oaskioOe/sRUBMGgQRu1Yhbsn42MqbvGiecU8r4hPJtynmc5el5M
+         VQ+JlOQ/6t+0P8zSNLbCSGorTCa8DcwfuFqQqinMtx0pausCedqHnSOJt4IeBy64To9I
+         BaErxiyQ6e2fy6GbO5IA3pQB/cVVlrazRvicVQsztm2Y8r6IJnnC+M/bJvNgkOSts9wj
+         8KBs4iOnoBy8YPReYh6Alt3epCF6KNsTG9+C71NH8z9zlaiu8B/nptZg7AzvqXN1fbAF
+         hlnrAZwkaWLVwCIAo1ApShgArBTwlOq/5cnB3WQxXwCAWclSMXuA1ptqWTdeioQm4KkB
+         w1kw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@e.infosecinstitute.com header.s=10dkim1 header.b=jZoT6C5y;
+       spf=pass (google.com: domain of bounce-13641_html-459813803-1811857-100014473-30099@bounce.e.infosecinstitute.com designates 13.111.163.95 as permitted sender) smtp.mailfrom=bounce-13641_HTML-459813803-1811857-100014473-30099@bounce.e.infosecinstitute.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=e.infosecinstitute.com
+Return-Path: <bounce-13641_HTML-459813803-1811857-100014473-30099@bounce.e.infosecinstitute.com>
+Received: from mta.e.infosecinstitute.com (mta.e.infosecinstitute.com. [13.111.163.95])
+        by mx.google.com with ESMTPS id 5614622812f47-3c98fc86b82si643932b6e.43.2024.05.09.08.38.09
+        for <eric.reynolds@huntress.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 09 May 2024 08:38:12 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce-13641_html-459813803-1811857-100014473-30099@bounce.e.infosecinstitute.com designates 13.111.163.95 as permitted sender) client-ip=13.111.163.95;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@e.infosecinstitute.com header.s=10dkim1 header.b=jZoT6C5y;
+       spf=pass (google.com: domain of bounce-13641_html-459813803-1811857-100014473-30099@bounce.e.infosecinstitute.com designates 13.111.163.95 as permitted sender) smtp.mailfrom=bounce-13641_HTML-459813803-1811857-100014473-30099@bounce.e.infosecinstitute.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=e.infosecinstitute.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=10dkim1; d=e.infosecinstitute.com;
+ h=From:To:Subject:Date:List-Unsubscribe:List-Unsubscribe-Post:MIME-Version:
+ Reply-To:List-ID:Message-ID:Content-Type; i=training@e.infosecinstitute.com;
+ bh=nY5cy0kNMFiCsDU35mGsxNN174P3bxZPCqHg+MP8gMo=;
+ b=jZoT6C5yZFuigUXFf9y7LK3slzQ1P+2OKiByocTDQCF69s7mRIAftYI+NYKRuE1rP027EiADV6VY
+   0z4NpZHzJhSsExl6FMagqO4/FytBUWv0960ZMUyc56ds3C+p/xsfx0+2qvO5B+kLkcXACsq/XNwr
+   a5cPmDJRaXAkfs0SqBDPx8PYWvvQeTdOl41H3HuC4eALerls0gCdoZdXlEkcCz8Dsue+Fauv4s22
+   6fX7Vhg6T6reQ2jg7WPLgeA+tF4lzDV9dUdeI1Xi2a7HVm6k+0eV0iX+NNVw67381Mo1/6kJOrd7
+   mmWnIN1s5EC7XzoizhB2ugoLhv3flcp5UeKjmQ==
+Received: by mta.e.infosecinstitute.com id h7jmu82fmd4n for <eric.reynolds@huntress.com>; Thu, 9 May 2024 15:35:49 +0000 (envelope-from <bounce-13641_HTML-459813803-1811857-100014473-30099@bounce.e.infosecinstitute.com>)
+From: "The Infosec Team" <training@e.infosecinstitute.com>
+To: <eric.reynolds@huntress.com>
+Subject: Save Your Spot | Cybersecurity Foundations Boot Camp
+Date: Thu, 09 May 2024 09:35:49 -0600
+List-Unsubscribe: <https://click.e.infosecinstitute.com/subscription_center.aspx?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtaWQiOiIxMDAwMTQ0NzMiLCJzIjoiNDU5ODEzODAzIiwibGlkIjoiMTM2NDEiLCJqIjoiMTgxMTg1NyIsImpiIjoiMzAwOTkiLCJkIjoiMTAwMjEyIn0.HRP3W3S51bdiNA-R6p_dgprX383_BT6CXAaaXfP8iXI>, <mailto:leave-fcec1573736005122d502d29-fe2610757c6c057e7d1473-fe90157874650c7872-fe3b157075640579711373-fefa1770756d0d@leave.e.infosecinstitute.com>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+MIME-Version: 1.0
+Reply-To: "Infosec" <reply-fe90157874650c7872-13641_HTML-459813803-100014473-30099@e.infosecinstitute.com>
+List-ID: <100014473.xt.local>
+X-SFMC-Stack: 10
+x-job: 100014473_1811857
+Message-ID: <a2bbeadc-cf51-428d-a1b4-9150d99bcc2b@dfw1s10mta1040.xt.local>
+Content-Type: multipart/alternative;
+	boundary="Ja9AEmIWtQes=_?:"
+
+This is a multi-part message in MIME format.
+
+--Ja9AEmIWtQes=_?:
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+
+ 
+ 
+
+ May 9, 2024 
+
+https://view.e.infosecinstitute.com/?qs=a1a93ba031c100ab061a5e120d512781722eccded4888a0e739459a9df50aa4e5c5924f06796403d2f012031fc4f85ec18ef4861bb56ec3218e34a3ef505ecfa08b608fc108194515ab269bb0e4a63d36f4e72e27afc4ae3 
+View Email Online 
+
+
+
+https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31bcd1499b13c453e60ffb55a0a5d38422c7fd5d9b351a7555363817d3e2096ed887f2d320d9683e1cd7e5d4ffee4ddb3fbc8289fc24bcab54b 
+
+
+https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31bcd1499b13c453e60ffb55a0a5d38422c7fd5d9b351a7555363817d3e2096ed887f2d320d9683e1cd7e5d4ffee4ddb3fbc8289fc24bcab54b 
+
+Hello Eric,
+
+
+Join our Cybersecurity Foundations Immersive Boot Camp starting in July 2024 and take your career to new heights!
+
+No cybersecurity experience? No problem.
+
+
+This program is designed with beginners in mind. This six-month program offers students a chance to gain in-demand cybersecurity skills with a curriculum designed by industry experts. The program includes live online classes, hands-on cybersecurity labs and Skills validation badges. 
+
+https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b0dd5f8b67815ea3424e12bb97d562636ec116069fb22b09a543ee59d9985c0c677576cd82528d89df664edff3174654c8218d45bf11a52fd 
+GET STARTED 
+
+We're here to help you invest in yourself:
+	- Live, real-time support from industry experts
+	- Financing options available (6, 12 or 18-month increments)
+	- CompTIA Security+ exam voucher
+	- Career Coaching services
+	- Knowledge Retention AssuranceInterested in learning more? Register for our upcoming webinar to get a 20-min overview of our Cybersecurity Foundations Immersive Boot Camp.  
+
+https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31baeb92aa7bc04a2aee43263827dbdf960493da99c182e67bc493c950bdcaa79f6740ce5d2ed21408869bb184793006815acdd2ce05da748cb 
+LEARN MORE 
+
+
+https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b0905cc28e027c179820ff8b57fc1d1059f04b66fd7d93e7dc2caeddab8839e10ddc1491a73158c5997ae46a3173909884e0a5f10c0692788 
+
+
+https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b26eb5215dea17179294f9a712d36136c847e3ced7b49eec75171914d7136db80fc4b1fb8c43d77d31088edfde5396953b050c5e62ec6f9de 
+IT & Security Education  | 
+https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b559ecd774fbdc884540e3ff9b6db29229bb5186869ce0083b94e6ef6df096298602f5964b074c082682173ccd2cd291faf632b5267a0e350 
+Certifications  | 
+https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b3fcd6ea178babdde0be572c91751dc216b5328769b2e81f9b1b2977746445222515174ff823038250df2dbaa814627d59517fc0d4fe0da71 
+Awareness & Anti-Phishing 
+
+https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31be4adce7ab0f6310f61a847b0da3f255b15fd7090d04ac7ee6543e04bea263aa7aefa6f96a7fbe35c8b827787364128f565e72497497d4868 
+
+https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31bd93073abaacd798b1212d9eea038d4d81a82322b907fd31488d722db57e3160cd5482cbaaeda9bca1e4f7e7d947dc7380a284518e7c600ff 
+
+https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31baa4b7d2ccbaef58924e725889ef7cd75719535aa9855bf2434e98e7f4cd4b5fe67634db38808e600e940e2fa6bed65b91d5e234ae2eec858 
+
+https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b9060fd33ae78a396715a1750c58ad45757684d66af1499789bf6477966e82bf09c9dccb4b623e34542a848c1d7bb587f2c424dddf2766976 
+
+https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31baf0c9923a3f81f605cd0c11032899ba236a75e376db33808d63c89d99c2b6002e9cd5675d8a8ac853048827fe97cd6652fbc97a2c01de996 
+
+https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b5f9716421b653e7d70b0f3853020350927957d36cd2648ed2f3e146340562586c63c69b135c6884a831ebadd4d4d18378792c2ac947a5c02 
+
+https://view.e.infosecinstitute.com/ftaf.aspx?qs=a1a93ba031c100ab061a5e120d512781722eccded4888a0e739459a9df50aa4ee3bab78922c25bc81abef694cf5ca6201e6a95a253962e58 
+
+Infosec, Part of Cengage Group
+
+ 5191 Natorp Boulevard, Mason, OH, 45040, US
+
+
+ This email was sent to: 
+mailto:eric.reynolds@huntress.com?subject= 
+eric.reynolds@huntress.com 
+
+https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b1aceb6328360484d34bc698984bca24997a94dee1313ceb50098bde1e38611747645ca913345bac79f57a1cad24151eea89f90253239df53 
+Privacy Policy  | 
+https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b9d93b6697d46da812fc9681e3be103855b93254958d55d086aa0bd2a89ca4b4677a80b2cfebeb07eb23753a6fe6396f337c2020864f11591 
+Terms of Use  | 
+https://cloud.e.infosecinstitute.com/preference-center?qs=85571b14637cbe8bfcd3ac015c93c38ca0ba2bc4a9d8db06b4d1dbc769de46d3eafae07f3dca40cdf464f8b9ec011d92 
+Update Preferences  | 
+https://cloud.e.infosecinstitute.com/preference-center?qs=85571b14637cbe8bfcd3ac015c93c38ca0ba2bc4a9d8db06b4d1dbc769de46d3eafae07f3dca40cdf464f8b9ec011d92 
+Update My Profile  | 
+https://cloud.e.infosecinstitute.com/Unsubscribe-ThankYou?qs=85571b14637cbe8bfcd3ac015c93c38ca0ba2bc4a9d8db06b4d1dbc769de46d3eafae07f3dca40cdf464f8b9ec011d92 
+Unsubscribe 
+
+ (c) 2024 Infosec, Inc. 
+
+ 
+ 
+
+
+ 
+ 
+
+
+--Ja9AEmIWtQes=_?:
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+      ReadMsgBody{ width: 100%;}
+      .ExternalClass {width: 100%;}
+      .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;}
+      body {-webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;margin:0 !important;}
+      p { margin: 1em 0;}
+      table td { border-collapse: collapse;}
+      img {outline:0;}
+      a img {border:none;}
+      @-ms-viewport{ width: device-width;}
+    </style>
+    <style type="text/css">
+      @media only screen and (max-width: 480px) {
+        .container {width: 100% !important;}
+        .footer { width:auto !important; margin-left:0; }
+        .mobile-hidden { display:none !important; }
+        .logo { display:block !important; padding:0 !important; }
+        img { max-width:100% !important; height:auto !important; max-height:auto !important;}
+        .header img{max-width:100% !important;height:auto !important; max-height:auto !important;}
+        .photo img { width:100% !important; max-width:100% !important; height:auto !important;}
+        .drop { display:block !important; width: 100% !important; float:left; clear:both;}
+        .footerlogo { display:block !important; width: 100% !important; padding-top:15px; float:left; clear:both;}
+        .nav4, .nav5, .nav6 { display: none !important; }
+        .tableBlock {width:100% !important;}
+        .responsive-td {width:100% !important; display:block !important; padding:0 !important; }
+        .fluid, .fluid-centered {
+          width: 100% !important;
+          max-width: 100% !important;
+          height: auto !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+        .fluid-centered {
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+        /* MOBILE GLOBAL STYLES - DO NOT CHANGE */
+        body { padding: 0px !important; font-size: 16px !important; line-height: 150% !important;}
+        h1 { font-size: 22px !important; line-height: normal !important;}
+        h2 { font-size: 20px !important; line-height: normal !important;}
+        h3 { font-size: 18px !important; line-height: normal !important;}
+        .buttonstyles {
+          font-family:arial,helvetica,sans-serif !important;
+          font-size: 16px !important;
+          color: #FFFFFF !important;
+          padding: 10px !important;
+        }
+        /* END OF MOBILE GLOBAL STYLES - DO NOT CHANGE */
+      }
+      @media only screen and (max-width: 640px) {
+        .container { width:100% !important; }
+        .mobile-hidden { display:none !important; }
+        .logo { display:block !important; padding:0 !important; }
+        .photo img { width:100% !important; height:auto !important;}
+        .nav5, .nav6 { display: none !important;}
+        .fluid, .fluid-centered {
+          width: 100% !important;
+          max-width: 100% !important;
+          height: auto !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+        .fluid-centered {
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+      }
+    </style>
+    <!--[if mso]>       <style type="text/css">           /* Begin Outlook Font Fix */           body, table, td {               font-family: Arial, Helvetica, sans-serif ;               font-size:16px;               color:#000000;               line-height:1;           }           /* End Outlook Font Fix */       </style>     <![endif]-->
+  </head>
+  <body bgcolor="#ffffff" text="#000000" style="background-color: #ffffff; color: #000000; padding: 0px; -webkit-text-size-adjust:none; font-size: 16px; font-family:arial,helvetica,sans-serif;"><style type="text/css">
+div.preheader 
+{ display: none !important; } 
+</style>
+<div class="preheader" style="font-size: 1px; display: none !important;">Register now to take your career to the next level.</div>
+    <div style="font-size:0; line-height:0;"><img src="https://click.e.infosecinstitute.com/open.aspx?ffcb10-fe90157874650c7872-fe3317767664037b771471-fe3b157075640579711373-ff001573736005-fe2610757c6c057e7d1473-fefa1770756d0d&d=100212&bmt=0" width="1" height="1" alt=""></div>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+      <tr>
+        <td align="center" valign="top">
+          
+        </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <table cellspacing="0" cellpadding="0" border="0" width="600" class="container" align="center">
+            <tr>
+              <td>
+                <table class="tb_properties border_style" style="background-color:#FFFFFF;" cellspacing="0" cellpadding="0" bgcolor="#ffffff" width="100%">
+                  <tr>
+                    <td align="center" valign="top">
+                      <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <!-- added padding here -->
+                          <td class="content_padding" style="">
+                            <!-- end of comment -->
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                              <tr> <!-- top slot -->
+                                <td align="center" class="header" valign="top">
+                                  <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                          <td align="left" valign="top">
+                                            <table cellspacing="0" cellpadding="0" style="width:100%">
+                                              <tbody>
+                                              <tr>
+                                                <td class="responsive-td" valign="top" style="width: 100%;">
+                                                  <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: transparent; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 10px; " class="stylingblock-content-wrapper camarker-inner"><table cellspacing="0" cellpadding="0" role="presentation" style="width: 100%;"><tr><td><table cellspacing="0" cellpadding="0" role="presentation" style="width: 100%;"><tr><td valign="top" style="width: 33%; padding-right: 4px;"><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><div style="text-align: left;">
+ <span style="font-family:'Open Sans',Arial,Helvetica,sans-serif; font-size:12px; color:#005A7C;">May 9, 2024 </span></div></td></tr></table></td><td valign="top" style="width: 33%; padding-left: 2px; padding-right: 2px;"><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><div style="text-align: center;">
+ <span style="font-family:'Open Sans',Arial,Helvetica,sans-serif; font-size:12px; color:#005A7C;"></span></div></td></tr></table></td><td valign="top" style="width: 33%; padding-left: 4px;"><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><div style="text-align: right;">
+ <span style="font-family:'Open Sans',Arial,Helvetica,sans-serif; font-size:12px; color:#005A7C;"><a   data-linkto="other" href="https://view.e.infosecinstitute.com/?qs=a1a93ba031c100ab061a5e120d512781722eccded4888a0e739459a9df50aa4e5c5924f06796403d2f012031fc4f85ec18ef4861bb56ec3218e34a3ef505ecfa08b608fc108194517bb3b33db8717e09cb16d87a5683f41f" style="color:#005A7C;text-decoration:none;" title="View Email Online">View Email Online</a> </span></div></td></tr></table></td></tr></table></td></tr></table></td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table width="100%" cellspacing="0" cellpadding="0" role="presentation"><tr><td align="center">
+<a target="_blank" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b8ad62295dd4a0de03b106949e93890110ceae38a737392d5127b2ae98717ee1d58526c831680528c681ca9c342edcaabb2ab4c0d8ffd0223" title="IMAGE"   data-linkto="https://"><img data-assetid="635231" src="https://image.e.infosecinstitute.com/lib/fe3b157075640579711373/m/1/2660656f-e189-48c0-8fb4-703f8032043f.png" alt="" height="120" width="400" style="display: block; padding: 0px; text-align: center; height: 120px; width: 400px; border: 0px;"></a></td></tr></table></td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: transparent; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 0px 0px 30px; " class="stylingblock-content-wrapper camarker-inner"><table width="100%" cellspacing="0" cellpadding="0" role="presentation"><tr><td align="center">
+<a target="_blank" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b3705240d861de5f79c768654c974a4d62bf2d0debfce241ccb1c2a2c21d3bf072a16e41a1e1dc63df77f425ff068df8b6d59abebaaf6ec00" title="IMAGE"   data-linkto="https://"><img data-assetid="635149" src="https://image.e.infosecinstitute.com/lib/fe3b157075640579711373/m/1/24b3c5f1-4ef9-4a49-9ef5-4ba5febff60a.png" alt="IMAGE" height="150" width="600" style="display: block; padding: 0px; text-align: center; height: 150px; width: 600px; border: 0px;"></a></td></tr></table></td></tr>
+</table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: transparent; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 0px 30px 20px; " class="stylingblock-content-wrapper camarker-inner"><div>
+	<span style="font-size:16px;"><span style="color: rgb(8, 31, 44); font-family: &quot;Open Sans&quot;, Arial, Helvetica, sans-serif; font-style: normal; font-weight: normal; line-height: 1.15;">Hello Eric,<br>
+	<br>
+	Join our Cybersecurity Foundations Immersive Boot Camp starting in July 2024 and take your career to new heights!<br>
+	<br>
+	<b>No cybersecurity experience? No problem.</b><br>
+	<br>
+	This program is designed with beginners in mind. This six-month program offers students a chance to gain in-demand cybersecurity skills with a curriculum designed by industry experts. The program includes live online classes, hands-on cybersecurity labs and Skills validation badges. </span></span></div></td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: transparent; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 0px; " class="stylingblock-content-wrapper camarker-inner"><table width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation"><tr><td align="center"><table border="0" cellspacing="0" cellpadding="0" role="presentation"><tr><td class="innertd buttonblock" bgcolor="#A23F97" style=" border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; color: #FFFFFF; background-color: #A23F97;">
+<a target="_blank" class="buttonstyles" style=" font-size: 16px; font-family: &quot;Open Sans&quot;, Arial, Helvetica, sans-serif; font-weight: bold; color: #FFFFFF; text-align: center; text-decoration: none; display: block; line-height: 100%; background-color: #A23F97; border: 4px solid #A23F97; padding: 14px; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b3cf43123b9316f7cb15f5a8898840314b25295ece19a96b053b4811a640be92bec5774f6e540a35de5297fd93c7a6799a6cb2fc51294c580" title="GET STARTED"   data-linkto="https://">GET STARTED</a></td></tr></table></td></tr></table></td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: transparent; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 20px 30px; " class="stylingblock-content-wrapper camarker-inner"><span style="font-size:16px;">
+<span style="font-size:16px;"><span style="color: rgb(8, 31, 44); font-family: &quot;Open Sans&quot;, Arial, Helvetica, sans-serif; font-style: normal; font-weight: normal; line-height: 1.15;"><b>We're here to help you invest in yourself:</b></span></span></span><ul>
+	<li>
+		<span style="font-size:16px;"><span style="font-size:16px;"><span style="color: rgb(8, 31, 44); font-family: &quot;Open Sans&quot;, Arial, Helvetica, sans-serif; font-style: normal; font-weight: normal; line-height: 1.15;">Live, real-time support from industry experts</span></span></span></li><li>
+		<span style="font-size:16px;"><span style="font-size:16px;"><span style="color: rgb(8, 31, 44); font-family: &quot;Open Sans&quot;, Arial, Helvetica, sans-serif; font-style: normal; font-weight: normal; line-height: 1.15;">Financing options available (6, 12 or 18-month increments)</span></span></span></li><li>
+		<span style="font-size:16px;"><span style="font-size:16px;"><span style="color: rgb(8, 31, 44); font-family: &quot;Open Sans&quot;, Arial, Helvetica, sans-serif; font-style: normal; font-weight: normal; line-height: 1.15;">CompTIA Security+ exam voucher</span></span></span></li><li>
+		<span style="font-size:16px;"><span style="font-size:16px;"><span style="color: rgb(8, 31, 44); font-family: &quot;Open Sans&quot;, Arial, Helvetica, sans-serif; font-style: normal; font-weight: normal; line-height: 1.15;">Career Coaching services</span></span></span></li><li>
+		<span style="font-size:16px;"><span style="font-size:16px;"><span style="color: rgb(8, 31, 44); font-family: &quot;Open Sans&quot;, Arial, Helvetica, sans-serif; font-style: normal; font-weight: normal; line-height: 1.15;">Knowledge Retention Assurance</span></span></span></li></ul><span style="font-size:16px;"><span style="font-size:16px;"><span style="color: rgb(8, 31, 44); font-family: &quot;Open Sans&quot;, Arial, Helvetica, sans-serif; font-style: normal; font-weight: normal; line-height: 1.15;"><b>Interested in learning more?</b> Register for our upcoming webinar to get a 20-min overview of our Cybersecurity Foundations Immersive Boot Camp. </span></span></span>&nbsp;</td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: transparent; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 0px; " class="stylingblock-content-wrapper camarker-inner">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation"><tr><td align="center"><table border="0" cellspacing="0" cellpadding="0" role="presentation"><tr><td class="innertd buttonblock" bgcolor="#A23F97" style=" border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; color: #FFFFFF; background-color: #A23F97;">
+<a target="_blank" class="buttonstyles" style=" font-size: 16px; font-family: &quot;Open Sans&quot;, Arial, Helvetica, sans-serif; font-weight: bold; color: #FFFFFF; text-align: center; text-decoration: none; display: block; line-height: 100%; background-color: #A23F97; border: 4px solid #A23F97; padding: 14px; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b4437b96f5eb9e57d184c6dbd6d05ac0a1747b7a1301daea9e4d9a472b56d57a57fdb367b8f1af82decd575a443d1339350d59501ee27d298" title="LEARN MORE"   data-linkto="https://">LEARN MORE</a></td></tr></table></td></tr></table></td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: transparent; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 30px 0px 0px; " class="stylingblock-content-wrapper camarker-inner">
+<table width="100%" cellspacing="0" cellpadding="0" role="presentation"><tr><td align="center"><a target="_blank" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b1418b70f919699fad7f54e1299fce6688fcbc984987db98c9f88210b7ff108a0178c467c08e6d2148293727bb3e1a6cd9603deaca24e8c5d" title="InfosecLogoFooter"   data-linkto="https://"><img data-assetid="224688" src="https://image.e.infosecinstitute.com/lib/fe3b157075640579711373/m/1/02bbee42-ba9e-499a-a98d-837b323acf57.png" alt="InfosecLogoFooter" height="24" width="126" style="display: block; padding: 0px; text-align: center; height: 24px; width: 126px; border: 0px;"></a></td></tr>
+</table></td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: transparent; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 10px; " class="stylingblock-content-wrapper camarker-inner"><div style="text-align: center; line-height:115%">
+	<span style="font-family:'Open Sans',Arial,Helvetica,sans-serif; font-size:14px; color:#005A7C; font-weight:bold;"><a   data-linkto="https://" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31bc698d462c5f001f0aa9771cae9293bdcd5d9d4d22bc369cfed4668f36cfd25228fbbc253a1a51dfe511a64cf53ced72e8bfaa179338ba23f" style="color:#005A7C;text-decoration:none;" target="_blank" title="IT &amp; Security Education">IT &amp; Security Education</a> | <a   data-linkto="https://" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b4db67c4bb2e3003e895abb0fc94b83e87b7ef76ddcc0d96242d0532d233effab0d17f32f8a6a7c2f93be0c0ec75bc4640014904fa277dfca" style="color:#005A7C;text-decoration:none;" target="_blank" title="Certifications">Certifications</a> | 
+<a   data-linkto="https://" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b4ece0a639042bdf31af6ae403b7353b8fe5d49b00252e22732b855f76195d392ccf6bdf51174528a542c43432f5601174bb347b129faf0f7" style="color:#005A7C;text-decoration:none;" target="_blank" title="Awareness &amp; Anti-Phishing">Awareness &amp; Anti-Phishing</a></span></div></td></tr>
+</table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table cellpadding="0" cellspacing="0" class="socialshare-wrapper" width="100%"><tr><td align="center"><table cellpadding="0" cellspacing="0" align="center"><tr><td align="center"><!--[if mso]><table border="0" cellspacing="0" cellpadding="0"><tr><td style="padding-right:10px;"><![endif]--><table class="socialshare-innertable" style="display: inline-block"><tr><td style="padding: 8px 10px">
+<a target="_blank" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b6ba4e03381fde3b57d071d73523af72f8f63f5bf6d89e5f174c2c1685b27fb5e5524fae343e9a3078cd061ff67f7bda9af41e0ffe5635c84" ><img src="https://image.e.infosecinstitute.com/lib/fe3b157075640579711373/m/1/938b640a-45c0-47c4-a9a0-b53a3a6bd34a.png" alt="LinkedIn" width="24" height="24" style="display: block; width: 24px !important; height: 24px !important"></a></td></tr></table><!--[if mso]></td><td style="padding-right:10px;"><![endif]--><table class="socialshare-innertable" style="display: inline-block"><tr><td style="padding:5px 10px"><a target="_blank" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b67059d19e4f4bb3df541e606793d5985b62ea458e6ac5fbabd521029745ba55d477c69e1e045e945ea2819a93884c92cdc39708a8702987e" >
+<img src="https://image.e.infosecinstitute.com/lib/fe3b157075640579711373/m/1/7b47bb57-e575-4c7c-b282-42be7579fbdd.png" alt="YouTube" width="24" height="24" style="display: block;; width: 24px !important; height: 24px !important"></a></td></tr></table><!--[if mso]></td><td style="padding-right:10px;"><![endif]--><table class="socialshare-innertable" style="display: inline-block"><tr><td style="padding:5px 10px"><a target="_blank" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b6ba36589967ddde5666ce6ad1dec29924394f3baa474ae6a90c7f1050e1b5cd990f71988fc8b8c561553dcab6b0b6bed0dcd803ef8a2c627" ><img src="https://image.e.infosecinstitute.com/lib/fe3b157075640579711373/m/1/28a3b5a7-21bb-427e-97dc-2d6c1550ac3f.png" alt="Twitter" width="24" height="24" style="display: block;; width: 24px !important; height: 24px !important"></a></td></tr></table><!--[if mso]></td><td style="padding-right:10px;">
+<![endif]--><table class="socialshare-innertable" style="display: inline-block"><tr><td style="padding:5px 10px"><a target="_blank" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b7ddf6a0c24ad1146c8f1a070456288b83a3ab6c93485e3aa082a94853338d7256532f94b1e99d475e0aaf6d2927ff027faa99511e26b0269" ><img src="https://image.e.infosecinstitute.com/lib/fe3b157075640579711373/m/1/753f1941-c39b-4049-bf5c-ef63e5d2fd21.png" alt="Facebook" width="24" height="24" style="display: block;; width: 24px !important; height: 24px !important"></a></td></tr></table><!--[if mso]></td><td><![endif]--><table class="socialshare-innertable" style="display: inline-block"><tr><td style="padding:5px 10px"><a target="_blank" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b20f5123cee8e15c4d08f9cf15f9e1b9a729624f4cd3e4608ad97214013ae899d95e0db8e62bb1f474a81bf1e2cda91b0e550db5dd40e97e4" >
+<img src="https://image.e.infosecinstitute.com/lib/fe3b157075640579711373/m/1/dc68f95d-38c1-408e-9d68-426a971103aa.png" alt="Instagram" width="24" height="24" style="display: block;; width: 24px !important; height: 24px !important"></a></td></tr></table><!--[if mso]></td></tr></table><![endif]--><!--[if mso]></td><td><![endif]--><table class="socialshare-innertable" style="display: inline-block"><tr><td style="padding:5px 10px"><a target="_blank" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31bc616c42691382882e7cbc7c276ccd0132a06616218038e151daa73a439d3347a851a7028a9f5c1bddab48f3e0f0c2af8171b235b454d5a4d" ><img src="https://image.e.infosecinstitute.com/lib/fe3b157075640579711373/m/1/9287f5ff-f77e-41fe-9ff8-2f30e0a922a0.png" alt="Infosec Community" width="24" height="24" style="display: block;; width: 24px !important; height: 24px !important"></a></td></tr></table><!--[if mso]></td></tr>
+</table><![endif]--><!--[if mso]></td><td><![endif]--><table class="socialshare-innertable" style="display: inline-block"><tr><td style="padding:5px 10px"><a target="_blank" href="https://view.e.infosecinstitute.com/ftaf.aspx?qs=a1a93ba031c100ab061a5e120d512781722eccded4888a0e739459a9df50aa4ee3bab78922c25bc81abef694cf5ca6201e6a95a253962e58" ><img src="https://image.e.infosecinstitute.com/lib/fe3b157075640579711373/m/1/02187ac9-5bff-4a18-a31e-bf38c5a1b6c5.png" alt="Forward" width="24" height="24" style="display: block;; width: 24px !important; height: 24px !important"></a></td></tr></table><!--[if mso]></td></tr></table><![endif]--></td></tr></table></td></tr></table></td></tr></table></td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: transparent; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 10px; " class="stylingblock-content-wrapper camarker-inner">
+<div style="text-align: center; line-height:115%">
+ <span style="font-family:'Open Sans',Arial,Helvetica,sans-serif; font-size:12px; color:#005A7C;">Infosec, Part of Cengage Group<br>
+ 5191 Natorp Boulevard, Mason, OH, 45040, US<br>
+ <br>
+ This email was sent to:&nbsp;<a alias="EmailAddress" conversion="false" data-linkto="mailto:" href="mailto:eric.reynolds@huntress.com?subject=" style="color:#005A7C;text-decoration:none;" title="EmailAddress">eric.reynolds@huntress.com</a><br>
+ <br>
+ <a   data-linkto="https://" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31bbd9d5e3d6978d39b7af54779e8778bf9b5d058ee84074961db41e25a04f14b5cbd2fb2770288dee99c797c60dc7729419e5e26a02fc8ecf1" style="color:#005A7C;text-decoration:none;" target="_blank" title="Privacy Policy">Privacy Policy</a> | <a   data-linkto="https://" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b421fd9a2b869ed9a12e2a718e57088ecc075d14f342cfe8c8f998ac425b9eb96f4997a0d960e2a0eff64695e2db782e260b5a42e18f818d2" style="color:#005A7C;text-decoration:none;" target="_blank" title="Terms of Use">Terms of Use</a> | <a   data-linkto="other" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31bbbb3e37695f179fe58bb4ce2006994b2c041be83f05c30268d9757859351bd0c7bf548221bbfa1c42d3976ac1da0b2f2a6d37e41e23d4169" style="color:#005A7C;text-decoration:none;" target="_blank" title="Update Preferences">Update Preferences</a> | 
+<a   data-linkto="other" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b7c4ed2dc1e7f01947f067e96b4aeef95088d40e4a3005cfc66f71f9edcc759e0670488b4b85ff6877f7ef0f89c5e68dfdaec62c42c1c15dd" style="color:#005A7C;text-decoration:none;" target="_blank" title="Update My Profile">Update My Profile</a> | 
+<a   data-linkto="other" href="https://click.e.infosecinstitute.com/?qs=12773b4a0a10c31b7d37dfb8337a4ccc93805e0ee4ec237b1c234fb9920b9539828d4b0edcb72fdd2912531ee303fee25fe92469109ea69d6a93c5a9a5f5f79a" style="color:#005A7C;text-decoration:none;" target="_blank" title="Unsubscribe">Unsubscribe</a><br>
+ &copy; 2024 Infosec, Inc. </span></div></td></tr></table>
+												  
+                                                </td>
+                                              </tr>
+                                              </tbody>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+
+--Ja9AEmIWtQes=_?:--
+

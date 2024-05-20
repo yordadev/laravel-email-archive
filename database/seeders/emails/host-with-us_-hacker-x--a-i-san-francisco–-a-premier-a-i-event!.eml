@@ -1,0 +1,471 @@
+Delivered-To: eric.reynolds@huntress.com
+Received: by 2002:adf:f147:0:b0:34d:708c:a635 with SMTP id y7csp456267wro;
+        Wed, 1 May 2024 13:32:21 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGho6H2/YrraD/YlY1GbO2dIayV5VxMNDsqD5f6KKQwMve+x/4BNd9YZyyD9cOG/p4yDpp5
+X-Received: by 2002:a05:6e02:20cf:b0:36c:51c0:5564 with SMTP id 15-20020a056e0220cf00b0036c51c05564mr4304266ilq.22.1714595541698;
+        Wed, 01 May 2024 13:32:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1714595541; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ESXJM3OGQQpmQdi2fFaTAXCmXyDNeaGbofF09IYvJmwERo5xXxv+f1mbsPNmRY+cIt
+         4kiI00qxEk8vCwYuaD6QOsl6qIYlIFPXgBOWsMps7aOiSZ8K8uaongI/4tYvUFe0Z5Wu
+         5Dj9ZqHkqyPXdCbHTkFd590KlWZUbqELnlXinENMRSetDcI5fBbwOW8+fg0UCpNRRHRC
+         yEcCqggUHB5apa60mlWVTCFGARa0dvdlWwRsMfYLYx+CFJ7UkjIIrDjatvddkh3YIKIg
+         RPrtqrkWeaHvUk4dR3qr+hhBmILcO9FWpxJrWG2auCFqj4xKrBW5t/2sDmmCG6r/kgHD
+         nBkg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-id:list-unsubscribe-post:list-unsubscribe:subject:from
+         :reply-to:mime-version:date:message-id:to:dkim-signature;
+        bh=w8/BgzM+UmNSniLK2TwyWK+rRAjAalxUkzeRJKjXRXw=;
+        fh=iMC/qV2h/9eIUwW0n8hD3wnQ1IEu2gvCbuDvb1YnU0g=;
+        b=tgiHcouKx6gv8VH8MuGl2Deiq6KH7kCEALu74xbOfiaLeSFhhoGuMycXs/4uBiLkwg
+         4Y4NDqWOPg6zmxbKwzPy9z+pFtkmYLReJeZrdt5GZITEpfoUNefwrBqqqs4wxz4pvS0K
+         UVo3RXsgWWWakM4GQEtd5Wg/SWUk5Z5uqbtXqGE849FrpO3hO68jC8BIDm9/cVwcy7tj
+         9B6UN5QBburxeLTFd1GUeKXwMMTpSQYVUb0AYL5+KuwPCy6dqjCXZQFkS04C4bbw3LiI
+         aLbg6cqrRxpujIfe8Ij4TLMumx7L4MfYhqlStueDnNUG63C1UG7RJ5bXSsH6pF/oIHC3
+         zSRQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@campaign.eventbrite.com header.s=scph0420 header.b=Krwn+5X4;
+       spf=pass (google.com: domain of msprvs1=19851ijhmb6hk=bounces-274689-4@bounce.eventbrite.com designates 156.70.3.101 as permitted sender) smtp.mailfrom="msprvs1=19851iJhmB6hk=bounces-274689-4@bounce.eventbrite.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=eventbrite.com
+Return-Path: <msprvs1=19851iJhmB6hk=bounces-274689-4@bounce.eventbrite.com>
+Received: from mta-70-3-101.eventbrite.com.sparkpostmail.com (mta-70-3-101.eventbrite.com.sparkpostmail.com. [156.70.3.101])
+        by mx.google.com with ESMTPS id r136-20020a632b8e000000b005f773040384si23980286pgr.426.2024.05.01.13.32.21
+        for <eric.reynolds@huntress.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 01 May 2024 13:32:21 -0700 (PDT)
+Received-SPF: pass (google.com: domain of msprvs1=19851ijhmb6hk=bounces-274689-4@bounce.eventbrite.com designates 156.70.3.101 as permitted sender) client-ip=156.70.3.101;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@campaign.eventbrite.com header.s=scph0420 header.b=Krwn+5X4;
+       spf=pass (google.com: domain of msprvs1=19851ijhmb6hk=bounces-274689-4@bounce.eventbrite.com designates 156.70.3.101 as permitted sender) smtp.mailfrom="msprvs1=19851iJhmB6hk=bounces-274689-4@bounce.eventbrite.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=eventbrite.com
+X-MSFBL: y/PQBQMbO/akJLQMlGm5HnqSRXEQ9IL/prET8CTpMPE=|eyJzdWJhY2NvdW50X2l
+	kIjoiNCIsImN1c3RvbWVyX2lkIjoiMjc0Njg5IiwidGVuYW50X2lkIjoic3BjIiw
+	iciI6ImVyaWMucmV5bm9sZHNAaHVudHJlc3MuY29tIiwibWVzc2FnZV9pZCI6IjY
+	2MjdkMmE2MzI2NmYwYzg2MzNjIn0=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=campaign.eventbrite.com; s=scph0420; t=1714595538;
+	i=@campaign.eventbrite.com;
+	bh=w8/BgzM+UmNSniLK2TwyWK+rRAjAalxUkzeRJKjXRXw=;
+	h=To:Message-ID:Date:Content-Type:From:Subject:List-Unsubscribe:
+	 List-Unsubscribe-Post:From:To:Cc:Subject;
+	b=Krwn+5X4PB8i/g+uaPz2IjEMYFiGU+L79jX1GBaNNti3dUBm15+DGtzRGrgsrcaPx
+	 wILtiO6VibsnAAXejYlo8ZNz65hOwAAINOc98Av5BhmqjFdLBSHcIt+Idk4Gp13Kzq
+	 i3UnF3dRxxF8mnBR1q/FjGY5RuBFaOPLtTrBI6pA=
+To: eric.reynolds@huntress.com
+Message-ID: <C3.3E.22958.2D6A2366@ia.mta1vrest.cc.prd.sparkpost>
+Date: Wed, 01 May 2024 20:32:17 +0000
+Content-Type: multipart/alternative; boundary="_----y9jS2Bsxk3rFYAuKHMuebw===_06/DD-22958-0D6A2366"
+MIME-Version: 1.0
+Reply-To: dom@hackerx.org
+From: "HackerX Events" <noreply@campaign.eventbrite.com>
+Subject: =?utf-8?B?SG9zdCBXaXRoIFVzOiBIYWNrZXJYLUFJIFNhbiBGcmFuY2lzY28g?=
+	=?utf-8?B?4oCTIEEgUHJlbWllciBBSSBFdmVudCE=?=
+X-EventbriteMailer: missive_service
+x-campaignid: consumer-lifecycle:campaign:invite
+X-MSYS-API: {"campaign_id": "consumer-lifecycle:campaign:invite", "metadata": {"campaign_type": "invite", "email_class": "campaign", "item_id": 27837489, "organization_id": 84283668488, "service": "missive"}, "options": {"open_tracking": true, "click_tracking": false, "transactional": false, "ip_pool": "campaign"}}
+X-Eventbrite: missive_service:84283668488:27837489
+X-VirtualServerGroup: mail17
+List-Unsubscribe: <mailto:unsubscribe@unsub.spmta.com?subject=unsubscribe:j36WYWTFh3nPXh0rV16QyhpmpKYXfHC52shl5jN49uA~|eyAicmNwdF90byI6ICJlcmljLnJleW5vbGRzQGh1bnRyZXNzLmNvbSIsICJ0ZW5hbnRfaWQiOiAic3BjIiwgImN1c3RvbWVyX2lkIjogIjI3NDY4OSIsICJzdWJhY2NvdW50X2lkIjogIjQiLCAibWVzc2FnZV9pZCI6ICI2NjI3ZDJhNjMyNjZmMGM4NjMzYyIgfQ~~>,<https://unsubscribe.spmta.com/u/qSnFD1SrMIk64fcG1TqPhw~~/AAQxAQA~/RgRoFSvRPFcDc3BjQgpmJ9KmMmbwyGM8UhplcmljLnJleW5vbGRzQGh1bnRyZXNzLmNvbVgEAAAABA~~>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Id: <spc.274689.4.sparkpostmail.com>
+
+--_----y9jS2Bsxk3rFYAuKHMuebw===_06/DD-22958-0D6A2366
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+
+Host HackerX-AI: Lead in AI InnovationJoin us as a host at HackerX-AI, a premier networking event for AI enthusiasts, on June 26, 2024, at 6:00 PM in San Francisco.Why Host?Showcase Your Leadership: Elevate your brand by leading the AI conversation.Connect with Experts: Engage with top AI professionals and peers.Discover Innovations: Be at the forefront of AI technology and trends.Interested in Hosting?Contact Dom at dom@hackerx.org to secure your host spot. Space is limited!We hope to partner with you for this unique event.Best,The HackerX Team
+
+
+
+Featured Events:
+
+HackerX - AI (San Francisco) Employer Ticket - 06/26 (Onsite) | San Francisco | 2024-06-27T01:00:00Z
+https://www.eventbrite.com
+
+
+
+
+
+
+Unsubscribe: https://www.eventbrite.com/organizations/missive/activity/unsubscribe/?p=ABIdvVtN8Cyhw3X21eIXfqYygzGMLFKl5Wyt44-lRQ2-NoBTnd33b1z-CD_B8pKdlVs9jmrzV5vmICnbMYt9-ruJbdRjELLk7SbyqLx8FkaLr906IiqoLOY3L_8eokjeHOzR_XNxI6CxSWgj6djkDJgxTAejxAJG0LNaRdfsIm11fxbMlzWPYb4YD4pDc_9kYdVfZpLL3Nbmw5QyUe-WtobErsK5_ok68XLXx475JiyE2DSF0frNfIi36zn2RUecOb5mUQBO2vqcUNbB_YTtWYqn8gsEVOBXhg&c=27837489&co=3227116149
+--_----y9jS2Bsxk3rFYAuKHMuebw===_06/DD-22958-0D6A2366
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="UTF-8"
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns=3D"http://www.w3.=
+org/1999/xhtml" xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:sc=
+hemas-microsoft-com:office:office"><head><title>VARS: subject (REPLACE W SU=
+BJECT)</title> <!--[if !mso]><!-- --><meta http-equiv=3D"X-UA-Compatible" c=
+ontent=3D"IE=3Dedge"> <!--<![endif]--><meta http-equiv=3D"Content-Type" con=
+tent=3D"text/html; charset=3DUTF-8"><meta name=3D"viewport" content=3D"widt=
+h=3Ddevice-width, initial-scale=3D1"><style type=3D"text/css">/*<![CDATA[*/=
+#outlook a{padding:0}.ReadMsgBody{width:100%}.ExternalClass{width:100%}.Ext=
+ernalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .Ex=
+ternalClass td, .ExternalClass div{line-height:100%}body,table,td,p,a,li,bl=
+ockquote{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}table,td{m=
+so-table-lspace:0pt;mso-table-rspace:0pt}img{-ms-interpolation-mode:bicubic=
+}body{margin:0;padding:0}img{border:0;height:auto;line-height:100%;outline:=
+none;text-decoration:none}table,td{border-collapse:collapse !important}body=
+,#bodyTable,#bodyCell{height:100% !important;margin:0;padding:0;width:100% =
+!important}p{display:block}body,#bodyTable,#bodyCell{font-family:'Neue Plak=
+',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Helvetica,Tahoma=
+,Arial,sans-serif}#templateContainer{width:90%}#bodyCell{padding:56px 0}#te=
+mplateContainer{border-radius:2px;background-color:#FFFFFF}#templateBody{ba=
+ckground-color:#FFFFFF;border-radius:2px}#templateBodyContent{padding:0}#bo=
+dyContent{padding:0}.bodyContent{color:#444444;font-size:15px;line-height:1=
+.4}.bodyContent a:link, .bodyContent a:visited, .bodyContent a .yshortcuts=
+{color:#3659e3;font-weight:normal;text-decoration:none}.bodyContent img{dis=
+play:inline;max-width:560px}.img-hide-download-icon img+div{display:none}#b=
+ody-message a, #body-message a:visited, #body-message a:enabled{color:#3659=
+e3!important}#body-message ol, #body-message ul{list-style-position:inside}=
+#organizer_address a, #organizer_address a:visited, #organizer_address a:en=
+abled{text-decoration:none !important;color:#444444!important}h1{font-size:=
+35px;letter-spacing:0.36px;line-height:47px;text-align:center}.events--defa=
+ult-row{display:flex}@media only screen and (max-width: 600px){body,table,t=
+d,p,a,li,blockquote{-webkit-text-size-adjust:none !important}body{width:100=
+% !important;min-width:100% !important}#bodyCell{padding:0 !important}#temp=
+lateBodyContent{padding:0 !important}#templateContainer{max-width:600px !im=
+portant;width:100% !important}h1{font-size:24px !important;line-height:100%=
+ !important}h2{font-size:20px !important;line-height:100% !important}h3{fon=
+t-size:18px !important;line-height:100% !important}h4{font-size:16px !impor=
+tant;line-height:100% !important}.bodyContent{font-size:18px !important;lin=
+e-height:125% !important}.event--default-wrapper{width:560px}.events--defau=
+lt-column{display:flex;width:100%}.events--default-row{display:block}.featu=
+red-events-mobile{text-align:left !important;margin:0 !important}.rsvp-butt=
+on-featured{display:table-cell;text-align:end;float:right}.event-name-featu=
+red{display:table-cell;padding-right:0.5em}}@media only screen and (min-wid=
+th: 792px){.events--default-column{display:flex;width:100%;max-width:260px}=
+}@media only screen and (min-width: 601px){.body{padding:20px 0}#bodyConten=
+t{background-color:#FFF;}.event--default-wrapper{max-width:50%}.events--def=
+ault-column{width:100%}.events--default-column.event--left{margin-right:20p=
+x}.events--default-column.event--right{margin-left:20px}.featured-events-mo=
+bile{text-align:left !important;margin:0 !important}.rsvp-button-featured{d=
+isplay:table-cell;float:right}.event-name-featured{display:table-cell;paddi=
+ng-right:0.5em}}@media only screen and (min-width:481px){.mj-column-per-100=
+{width:100% !important}.mj-column-per-33{width:33% !important}.mj-column-pe=
+r-62{width:62% !important}.mj-column-per-30{width:30% !important}.mj-column=
+-px-30{width:30px !important}.mj-column-per-43{width:43% !important}.mj-col=
+umn-per-57{width:57% !important;margin-top:0 !important}.featured-events-mo=
+bile{text-align:left !important;margin:0 !important}.name-button-featured{w=
+idth:100%;display:inline-table}.event-name-featured{float:left;width:70%;pa=
+dding-right:0.5em}}@media all and (min-width:0px) and (max-width:480px){.mj=
+-image-px-164{width:auto !important;height:auto !important}.featured-events=
+-mobile{text-align:center !important;margin:0 auto !important}.featured-eve=
+nts-image{padding:0 !important;width:100% !important}.name-button-featured{=
+display:inline-block;text-align:start}.rsvp-button-featured{margin-bottom:1=
+2px;margin-top:12px;display:block;float:left}}/*]]>*/</style> <!--[if mso]>=
+<style type=3D"text/css">@media only screen and (max-width:480px){@-ms-view=
+port{width:320px}@viewport{width:320px}}</style><![endif]--> <!--[if gte ms=
+o 9]><xml> <o:OfficeDocumentSettings> <o:AllowPNG/> <o:PixelsPerInch>96</o:=
+PixelsPerInch> </o:OfficeDocumentSettings> </xml><![endif]--><!--[if lte ms=
+o 11]><style type=3D"text/css">.outlook-group-fix{width:100% !important}</s=
+tyle><![endif]--></head><body leftmargin=3D"0" marginwidth=3D"0" topmargin=
+=3D"0" marginheight=3D"0" offset=3D"0" style=3D"background-color: #FFFFFF;"=
+>=0D=0A<div style=3D"color:transparent;visibility:hidden;opacity:0;font-siz=
+e:0px;border:0;max-height:1px;width:1px;margin:0px;padding:0px;border-width=
+:0px!important;display:none!important;line-height:0px!important;"><img bord=
+er=3D"0" width=3D"1" height=3D"1" src=3D"https://clicks.eventbrite.com/q/UZ=
+uXmI4mGLRobGU5trdFaw~~/AAQxAQA~/RgRoFSvRPVcDc3BjQgpmJ9KmMmbwyGM8UhplcmljLnJ=
+leW5vbGRzQGh1bnRyZXNzLmNvbVgEAAAABA~~" alt=3D""/></div>=0D=0A<div style=3D"=
+display: none; max-height: 0px; overflow: hidden;"> Host HackerX-AI: Lead i=
+n AI InnovationJoin us as a host at HackerX-AI, a premier networking event =
+for AI enthusiasts, on June 26, 2024, at 6:00 PM in San Francisco.Why Host=
+=3FShowcase Your Leadership: Elevate your brand by leading the AI conversat=
+ion.Connect with Experts: Engage with top AI professionals and peers.Discov=
+er Innovations: Be at the forefront of AI technology and trends.Interested =
+in Hosting=3FContact Dom at dom@hackerx.org to secure your host spot. Space=
+ is limited!We hope to partner with you for this unique event.Best,The Hack=
+erX Team</div><div style=3D"display: none; max-height: 0px; overflow: hidde=
+n;"> &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;</div><center><table align=3D"center" border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" height=3D"100%" width=3D"100%" id=3D"bodyTable=
+" style=3D"font-family:'Neue Plak',-apple-system,BlinkMacSystemFont,Roboto,=
+'Helvetica Neue',Helvetica,Tahoma,Arial,sans-serif;"><tr><td align=3D"cente=
+r" valign=3D"top" id=3D"bodyCell" style=3D"width:560px;"><table border=3D"0=
+" cellpadding=3D"0" cellspacing=3D"0" id=3D"templateContainer" width=3D"100=
+%" style=3D"background-color:#FFFFFF;max-width:800px;"> <tr><td align=3D"ce=
+nter" valign=3D"top" style=3D"width:560px;"><table id=3D"templateBody" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" max-width=3D"56=
+0px" style=3D"margin:0 auto; max-width:560px;"><tr><td valign=3D"top" class=
+=3D"bodyContent" id=3D"bodyContent" style=3D"max-width:560px;" width=3D"100=
+%" max-width=3D"560px" margin-left=3D"auto"><div class=3D"body" style=3D"ba=
+ckground-color:#FFFFFF;" id=3D"templateBodyContent"><!-- [if mso | IE]><tab=
+le align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"max-width:560px;;margin:0 auto;" width=3D"100%" max-width=3D"560px"><tr=
+><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactly;ma=
+x-width:560px;" width=3D"100%" max-width=3D"560px"><![endif]--><div style=
+=3D"background:#FFFFFF;background-color:#FFFFFF;display:block; margin:0px a=
+uto; max-width:600px;"><table align=3D"center" border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"0" role=3D"presentation" style=3D"background:#FFFFFF;back=
+ground-color:#FFFFFF; margin:0 auto;" max-width=3D"560px" margin-left=3D"au=
+to"><tbody><tr><td style=3D"direction:ltr;font-size:14px;padding:36px 18px;=
+text-align:center;vertical-align:top;max-width:560px;" align=3D"center" wid=
+th=3D"100%" max-width=3D"560px" margin-left=3D"auto"> <!-- [if mso | IE]><t=
+able role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ width=3D"100%" style=3D"margin:0 auto"> <![endif]--> <!-- [if mso | IE]><t=
+r><td class=3D"body-message-outlook" width=3D"600px"><table align=3D"center=
+" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"body-message-ou=
+tlook" style=3D"width:600px;margin:0 auto;" width=3D"600px"><tr><td style=
+=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-=
+-><div class=3D"body-message" style=3D"margin:0px auto;max-width:600px;"><t=
+able align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" style=3D"margin: 0 auto; width: 100%;" width=3D"100%"><tb=
+ody style=3D"margin: 0;"><tr style=3D"margin: 0;"><td style=3D"margin: 0; d=
+irection: ltr; font-size: 0px; padding: 0; text-align: center; vertical-ali=
+gn: top;max-width:560px;" align=3D"center" valign=3D"top" max-width=3D"560p=
+x" margin-left=3D"auto"> <!-- [if mso | IE]><table role=3D"presentation" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"margin:0 auto"><tr>=
+<td style=3D"vertical-align:top;width:560px;"><![endif]--><div class=3D"mj-=
+column-per-100 outlook-group-fix" style=3D"margin: 0; font-size: 13px; dire=
+ction: ltr; display: inline-block; vertical-align: top; width: 100%;"><tabl=
+e border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" wi=
+dth=3D"100%" style=3D"margin: 0 auto;"><tbody style=3D"margin: 0;"><tr styl=
+e=3D"margin: 0;"><td style=3D"margin: 0; vertical-align: top; padding: 0;wi=
+dth:560px;" valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" role=3D"presentation" width=3D"100%" style=3D"margin: 0 auto;"><tr =
+style=3D"margin: 0;"><td class=3D"body-message-text" style=3D"margin: 0; fo=
+nt-size: 0px; padding: 0x; word-break: break-word;width:560px;"><div id=3D"=
+body-message" style=3D"margin: 0; font-size: 15px; line-height: 1.4; color:=
+ #444444;"><p><div style=3D"text-align:center"><h3>Host HackerX-AI: Lead in=
+ AI Innovation</h3></div><div style=3D"text-align:left"><p>Join us as a hos=
+t at <strong>HackerX-AI,</strong> a premier networking event for AI enthusi=
+asts, on <strong>June 26, 2024, at 6:00 PM </strong>in San Francisco.</p></=
+div><div style=3D"text-align:left"><p><strong>Why Host=3F</strong></p><ul><=
+li><strong>Showcase Your Leadership: </strong>Elevate your brand by leading=
+ the AI conversation.</li><li><strong>Connect with Experts</strong>: Engage=
+ with top AI professionals and peers.</li><li><strong>Discover Innovations<=
+/strong>: Be at the forefront of AI technology and trends.</li></ul><p><str=
+ong>Interested in Hosting=3F</strong></p><p>Contact Dom at dom@hackerx.org =
+to secure your host spot. Space is limited!</p><p>We hope to partner with y=
+ou for this unique event.</p><p>Best,</p><p>The HackerX Team</p></div></p><=
+/div></td></tr></table></td></tr></tbody></table></div> <!-- [if mso | IE]>=
+</td></tr></table><![endif]--></td></tr></tbody></table></div> <!-- [if mso=
+ | IE]></td></tr></table></td></tr><![endif]--><div class=3D"component spac=
+er" style=3D"Margin: 0px auto; max-width: 560px;"><table align=3D"center" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=
+=3D"width:100%; margin:0 auto;" width=3D"100%"><td align=3D"left" valign=3D=
+"top" width=3D"100%" height=3D"40" style=3D"border-collapse:collapse; mso-t=
+able-lspace: 0pt; mso-table-rspace: 0pt; mso-line-height-rule: exactly; lin=
+e-height: 40px;"><!--[if gte mso 15]>&nbsp;<![endif]--></td></table></div> =
+<div class=3D"events--featured" style=3D"margin: 0 auto;max-width: 560px;">=
+ <div style=3D"margin-bottom: 40px;"><div class=3D"event--featured" style=
+=3D"background: #ffffff;;max-width: 560px;box-shadow: 0 16px 64px -16px rgb=
+a(46,55,77,0.1); border: solid 1px #EEEDF2;;"> <a href=3D"https://www.event=
+brite.com/organizations/missive/activity/redirect/=3Fp=3DABIdvVvQXDWDoFfTdm=
+tMuF7wK3DOhQh3LjAF7LKT8GnEfAStxPSgMxHom4HMTC28JuZfNNpq3JCWcmalL9jWNbLNX531O=
+4EJVwlG-faj1Lbng3HJ6OaxIeQumPFhnLWM3t64FiICIKn_ZsNKBSSubYkBifDXY-leMN-EZ7NE=
+1RO1SoPSBq7Fs0TKkc-MkV0WXQppTBqmrbqOv4-i0MwLr4ODHKdq1aPvLyuDuQSj56tECtzErud=
+BVV_iDQJiAoI9XNRX9foZAyF5Reffj9h8qCAu-K35hlLUNqZ7LV2c1380-DjJ-OZDCMILLqRN1O=
+V5nCzSmr25GSicgn7FHsGWVdyENvayDizC7wV-hVvjzz5covmL0ySkRurTLL0BcnRuT3QoMTfec=
+58hrZYQ00e1VtMDBg3S4wc850Gzmgo3Mg1IEJmkHeEO-dyxnC8JNzpQTbHhggc9CHwvivacIRZf=
+iq-7Bea8oimX5crSzxagYmRhtL5mc6WZOtR4AsP-_vm6-XbdRBBF85nlyDntWdb6N3dg-giVdR6=
+PvvpJ6wC2KXo2bt73dqzYA3g0tVemMqpJUDo1ole4DDJBPDkOnuPW5wrV_qhkyAre3w&eid=3D8=
+90479005677&c=3D27837489&co=3D3227116149&t=3De" style=3D"text-decoration:no=
+ne;" target=3D"_blank" rel=3D"noreferrer noopener"><table cellpadding=3D"0"=
+ cellspacing=3D"0" border=3D"0" margin-left=3D"auto" max-width=3D"560px" st=
+yle=3D"height:200px; margin:0 auto;"><tr><td bgcolor=3D"#F8F8F8" margin-lef=
+t=3D"auto" width=3D"100%" valign=3D"top" style=3D"max-width:560px;"> <img s=
+rc=3D"https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F39631692=
+9%2F303115743781%2F1%2Foriginal.20211017-193106=3Fw=3D512&amp;auto=3Dformat=
+%2Ccompress&amp;q=3D75&amp;sharp=3D10&amp;rect=3D0%2C0%2C2160%2C1080&amp;s=
+=3D2cb6641a32aae20308a88e9121f67075" alt=3D"Event Logo" width=3D"100%" max-=
+width=3D"560px" style=3D"max-width: 560px;height: auto;" /></td></tr></tabl=
+e> </a> <!--[if mso]><table role=3D"presentation" cellspacing=3D"0" cellpad=
+ding=3D"0" border=3D"0" width=3D"100%" max-width=3D"560px" style=3D"max-wid=
+th: 560px"><tr><td width=3D"100%" padding-top=3D"24px" max-width=3D"560px" =
+margin-left=3D"auto" style=3D"max-width: 560px; padding:24px 16px"> <![endi=
+f]--><div class=3D"event-body" style=3D"padding:24px 16px;text-align:left; =
+overflow:hidden"> <div class=3D"event-start-date" style=3D"font-size:.875re=
+m;line-height:1.25rem;margin-bottom:4px;font-weight:600;word-break:break-wo=
+rd;color:#cfb100;"><span>Wednesday, June 26, 2024 6:00=E2=80=AFPM</span></d=
+iv> <div class=3D"name-button-featured"><h2 class=3D"event-name event-name-=
+featured" style=3D"font-size:17px;line-height:24px;margin:0;color:#3A3551;"=
+>HackerX - AI (San Francisco) Employer Ticket - 06/26 (Onsite)</h2><div cla=
+ss=3D"rsvp-button-featured" style=3D"font-size:0px;white-space:nowrap;"><di=
+v border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" st=
+yle=3D"margin:0 auto;border-collapse:separate;"><div bgcolor=3D"#F6682F" ro=
+le=3D"presentation" style=3D"border:none;color:#FFFFFF;cursor:auto;padding:=
+10px 0px;" valign=3D"middle"> <a href=3D"https://www.eventbrite.com/organiz=
+ations/missive/activity/redirect/=3Fp=3DABIdvVsI8uLhgPYRrpo2H7n0f3qHSdnPwVi=
+wcn6Smtj1kHlSUcr2Tn3eZwdSc5TslEzE5V3ddBxoDmNd4ZekQA0Rex2imtZ3qBNvyNHQ6YSdjO=
+GYm0L8JYrwukPTsvFMqoaiGJSBtxy1r6g8Je38y3Csy-iuff-OKwakQEN54RXTJOUwA5UUn7qFc=
+7Ss1SQL1mvdqwlPzB4QgiYVBCrujiDb0w53ixt1RMBUoQod4FjEGO4yzygdrFWSLt_5ScFwH5Zd=
+2h7iZST-vHsDXRN3LWTMAHTB_buem_mityoB6nTu58Ysx4nLzFhmIAbfxiOr3uWM00xoFyTFAbX=
+oUREVoTIJTBfpCPfRNy5aU7APf5PcVHLMHnO-vrb54rERrK1wfN7MPO6VrRDqeNHkxReE5PHIox=
+3aKns8FJGvwfxyuZ_3el5l4iJ36T63f9yKMtLJz_jIXYit78d6X6SqyXqsoQ0SkmrtqX6LLCF_l=
+c0GsA6ctRfEWU4-3YjTj_eaRdwjTh1zFjBFcUUP1Pgx_YXeMM53IG0jqwZNf52C-Gm4mXL1QZ2F=
+Kh5xHGMynrQHmuaoXPHwJZ0Fd5VL&eid=3D890479005677&c=3D27837489&co=3D322711614=
+9&t=3De" style=3D"background:#F6682F;color:#FFFFFF;font-family:'Benton Sans=
+',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Helvetica,Tahoma=
+,Arial,sans-serif;font-size:17px;font-weight:600;line-height:120%;Margin:0;=
+text-decoration:none;text-transform:none;padding:12px;border-radius:4px;" t=
+arget=3D"_blank" rel=3D"noreferrer noopener">  Register  </a></div></div></=
+div></div> <div class=3D"event-venue-name" style=3D"font-size:.875rem;margi=
+n-top:4px;line-height:1.25rem;color:#6f7287;font-weight:400;">San Francisco=
+</div> </div> <!--[if mso]></td></tr></table> <![endif]--></div></div> </di=
+v>  <!-- [if mso | IE]><tr><td class=3D"component-outlook spacer-outlook" w=
+idth=3D"5600px" style=3D"width:560px;"><table align=3D"center" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" class=3D"component-outlook spacer-outl=
+ook" style=3D"width:560px; margin:0 auto;" width=3D"560px"><tr><td style=3D=
+"line-height:0px;font-size:0px;mso-line-height-rule:exactly;width:560px;"><=
+![endif]--><div class=3D"component spacer" style=3D"Margin: 0px auto; max-w=
+idth: 560px;"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" role=3D"presentation" style=3D"width:100%; margin: 0 auto;"><tb=
+ody><tr><td style=3D"direction:ltr;font-size:14px;padding:0;text-align:cent=
+er;vertical-align:top;width:560px;"> <!-- [if mso | IE]><table role=3D"pres=
+entation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"margin:=
+0 auto"><tr><td style=3D"vertical-align:top;width:560px;"><![endif]--><div =
+class=3D"mj-column-per-100 outlook-group-fix" style=3D"font-size:13px;text-=
+align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%=
+;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presenta=
+tion" width=3D"100%" style=3D"margin:0 auto"><tbody><tr><td style=3D"vertic=
+al-align:top;padding:0;width:560px;"><table border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" role=3D"presentation" width=3D"100%" style=3D"margin:0 au=
+to"><tr><td style=3D"font-size:0px;padding:0;word-break:break-word;width:56=
+0px;"> <!-- [if mso | IE]><table role=3D"presentation" border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0"><tr><td height=3D"20" style=3D"vertical-align:=
+top;height:20px;margin: 0 auto;width:560px;"><![endif]--><div style=3D"heig=
+ht:20px;"> &nbsp;</div> <!-- [if mso | IE]></td></tr></table><![endif]--></=
+td></tr></table></td></tr></tbody></table></div> <!-- [if mso | IE]></td></=
+tr></table><![endif]--></td></tr></tbody></table></div> <!-- [if mso | IE]>=
+</td></tr></table></td></tr><![endif]--> <!-- [if mso | IE]><tr><td class=
+=3D"component-outlook button-outlook" width=3D"600px"><table align=3D"cente=
+r" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"component-outl=
+ook button-outlook" style=3D"width:560px; margin: 0 auto;" width=3D"560px">=
+<tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactly=
+;"><![endif]--><div class=3D"component button" style=3D"Margin: 0px auto; m=
+ax-width: 560px;"><table align=3D"center" border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation" style=3D"width:100%; margin: 0 auto;"=
+><tbody><tr><td style=3D"direction:ltr;font-size:14px;padding:0;text-align:=
+center;vertical-align:top;"> <!-- [if mso | IE]><table role=3D"presentation=
+" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"margin:0 auto">=
+<tr><td style=3D"vertical-align:top;width:560px;"><![endif]--><div class=3D=
+"mj-column-per-100 outlook-group-fix" style=3D"font-size:13px;text-align:le=
+ft;direction:ltr;display:inline-block;vertical-align:top;width:100%;"><tabl=
+e border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" wi=
+dth=3D"100%" style=3D"margin:0 auto"><tbody><tr><td style=3D"vertical-align=
+:top;padding:0;width:560px;"><table border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" role=3D"presentation" width=3D"100%" style=3D"margin:0 auto"><tr>=
+<td align=3D"center" vertical-align=3D"middle" style=3D"font-size:0px;paddi=
+ng:0;word-break:break-word;width:560px;"><table align=3D"center" border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"borde=
+r-collapse:separate;line-height:100%;margin: 0 auto;"><tr><td align=3D"cent=
+er" bgcolor=3D"#222222" role=3D"presentation" style=3D"border:none;border-l=
+eft:4px solid #cfb100;border-radius:0;color:#FFFFFF;cursor:auto;padding:10p=
+x 25px;width:560px;" valign=3D"middle"> <a href=3D"http://www.hackerx.org/e=
+vents" style=3D"background:#222222;color:#FFFFFF;font-size:16px;font-weight=
+:normal;line-height:120%;Margin:0;text-decoration:none;text-transform:none;=
+" target=3D"_blank" rel=3D"noreferrer noopener"> Discover More Events </a><=
+/td></tr></table></td></tr></table></td></tr></tbody></table></div> <!-- [i=
+f mso | IE]></td></tr></table><![endif]--></td></tr></tbody></table></div> =
+<!-- [if mso | IE]></td></tr></table></td></tr><![endif]--> <!-- [if mso | =
+IE]><tr><td class=3D"component-outlook spacer-outlook" width=3D"560px"><tab=
+le align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"component-outlook spacer-outlook" style=3D"width:560px;margin: 0 auto" =
+width=3D"560px"><tr><td style=3D"line-height:0px;font-size:0px;mso-line-hei=
+ght-rule:exactly;width:560px;"><![endif]--><div class=3D"component spacer" =
+style=3D"Margin: 0px auto; max-width: 560px;"><table align=3D"center" borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"=
+width:100%;margin: 0 auto"><tbody><tr><td style=3D"direction:ltr;font-size:=
+14px;padding:0;text-align:center;vertical-align:top;width:560px;"> <!-- [if=
+ mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" width=3D"100%" style=3D"margin:0 auto"><tr><td style=3D"verti=
+cal-align:top;width:560px;"><![endif]--><div class=3D"mj-column-per-100 out=
+look-group-fix" style=3D"font-size:13px;text-align:left;direction:ltr;displ=
+ay:inline-block;vertical-align:top;width:100%;"><table border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%" style=3D"=
+margin:0 auto"><tbody><tr><td style=3D"vertical-align:top;padding:0;width:5=
+60px;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"pres=
+entation" width=3D"100%" style=3D"margin:0 auto"><tr><td style=3D"font-size=
+:0px;padding:0;word-break:break-word;width:560px;"> <!-- [if mso | IE]><tab=
+le role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" w=
+idth=3D"100%" style=3D"margin:0 auto"><tr><td height=3D"40" style=3D"vertic=
+al-align:top;height:40px;width:560px;"><![endif]--><div style=3D"height:40p=
+x;"> &nbsp;</div> <!-- [if mso | IE]></td></tr></table><![endif]--></td></t=
+r></table></td></tr></tbody></table></div> <!-- [if mso | IE]></td></tr></t=
+able><![endif]--></td></tr></tbody></table></div> <!-- [if mso | IE]></td><=
+/tr></table></td></tr><![endif]--><!-- [if mso | IE]></table><![endif]--></=
+td></tr></tbody></table></div> <!-- [if mso | IE]></td></tr></table><![endi=
+f]--></div></td></tr></table><!-- - - - - - - - - -->=0A<!-- BEGIN FOOTER /=
+/ -->=0A<!-- - - - - - - - - -->=0A<!-- - - - - - - - - -->=0A=0A<div class=
+=3D"footer" style=3D"margin: 0px auto; width: 100%;">=0A<table align=3D"cen=
+ter" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"=
+ style=3D"width:100%;">=0A    =0A    <tr>=0A        <td align=3D"center" cl=
+ass=3D"row_section" style=3D"padding-top: 18px;margin-left: auto;margin-rig=
+ht: auto; background-color: #F8F8FA;">=0A            <img src=3D"https://im=
+g.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F113203951%2F303111069287=
+%2F1%2Foriginal.20200930-212201=3Fw=3D1200&amp;auto=3Dformat%2Ccompress&amp=
+;q=3D75&amp;sharp=3D10&amp;s=3Dd513d6f06fa8956556cb023f43f8c1cb" width=3D"6=
+8" />=0A        </td>=0A    </tr>=0A    =0A    =0A=0A    <!-- COMPANY METAD=
+ATA -->=0A    <tr>=0A        <td class=3D"row_section" style=3D"padding: 0;=
+margin-left: auto;margin-right: auto;">=0A            <table style=3D"paddi=
+ng: 0;background-color: #F8F8FA;border:0;border-collapse:collapse;border-sp=
+acing:0;padding:0;width:100%;color:#222!important;" class=3D"footer-content=
+ bottom-section" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" bgcolor=
+=3D"#F8F8FA">=0A            <tr class=3D"footer__info align-center">=0A    =
+            <td class=3D"grid__col" style=3D"padding: 0;font-family:Benton =
+Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahom=
+a,Arial,sans-serif;text-align: center;font-size: 12px;font-weight: 200;line=
+-height: 18px;padding: 12px 32px 8px;" align=3D"center">=0A                =
+<!--[if (mso)|(ie)]>=0A                <table align=3D"center" border=3D"0"=
+ cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"text-align:cen=
+ter; width:100%;">=0A                <![endif]-->=0A                =0A    =
+            <!--[if (mso)|(ie)]>=0A                    <tr>=0A             =
+           <td style=3D"text-align:center; padding:16px 6px; border:0px;fon=
+t-size: 12px;line-height: 18px;font-weight: 200;">=0A                <![end=
+if]-->=0A                <div class=3D"footer-row__text" style=3D"font-fami=
+ly:Benton Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helve=
+tica,Tahoma,Arial,sans-serif;padding:0;padding-bottom: 8px; font-size: 11px=
+">=0A                    <span>HackerX</span>=0A                </div>=0A  =
+              <!--[if (mso)|(ie)]>=0A                        </td>=0A      =
+              </tr>=0A                <![endif]-->=0A                =0A   =
+             =0A                <!--[if (mso)|(ie)]>=0A                    =
+<tr>=0A                        <td style=3D"text-align:center; padding-bott=
+om:6px; border: 0px;font-size: 12px;line-height: 18px;font-weight: 200;">=
+=0A                <![endif]-->=0A                <div class=3D"footer-row_=
+_text" style=3D"font-family:Benton Sans,-apple-system,BlinkMacSystemFont,Ro=
+boto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;padding:0;padding-bot=
+tom: 8px;">=0A                    237 Kearny St  #245, San Francisco, CA 94=
+108 US=0A                </div>=0A                <!--[if (mso)|(ie)]>=0A  =
+                      </td>=0A                    </tr>=0A                <=
+![endif]-->=0A                =0A                <!--[if (mso)|(ie)]>=0A   =
+                 <tr>=0A                        <td style=3D"text-align:cen=
+ter; padding-bottom:6px; border:0px;font-size: 12px;line-height:18px;font-w=
+eight: 200;">=0A                <![endif]-->=0A                <div class=
+=3D"footer-row__text" style=3D"font-family:Benton Sans,-apple-system,BlinkM=
+acSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif;font-s=
+ize:11px;padding:0;padding-bottom: 18px;">=0A                    <span><a c=
+lass=3D"footer-unsubscribe-link" href=3D"https://www.eventbrite.com/organiz=
+ations/missive/activity/unsubscribe/=3Fp=3DABIdvVtN8Cyhw3X21eIXfqYygzGMLFKl=
+5Wyt44-lRQ2-NoBTnd33b1z-CD_B8pKdlVs9jmrzV5vmICnbMYt9-ruJbdRjELLk7SbyqLx8Fka=
+Lr906IiqoLOY3L_8eokjeHOzR_XNxI6CxSWgj6djkDJgxTAejxAJG0LNaRdfsIm11fxbMlzWPYb=
+4YD4pDc_9kYdVfZpLL3Nbmw5QyUe-WtobErsK5_ok68XLXx475JiyE2DSF0frNfIi36zn2RUecO=
+b5mUQBO2vqcUNbB_YTtWYqn8gsEVOBXhg&c=3D27837489&co=3D3227116149" style=3D"co=
+lor: #222222;text-decoration:none !important;" target=3D"_blank" rel=3D"nor=
+eferrer noopener">Unsubscribe</a></span>=0A                    &nbsp;|&nbsp=
+;=0A                    <span><a class=3D"footer-privacy-link" href=3D"http=
+s://www.eventbrite.com/privacypolicy=3Flocale=3Den_US" style=3D"color: #222=
+222;text-decoration:none !important;" target=3D"_blank" rel=3D"noreferrer n=
+oopener">Privacy Policy</a></span>=0A                </div>=0A             =
+   <!--[if (mso)|(ie)]>=0A                        </td>=0A                 =
+   </tr>=0A                </table>=0A                <![endif]-->=0A      =
+          </td>=0A            </tr>=0A        </table>=0A        </td>=0A  =
+  </tr>=0A</table>=0A</div>=0A<!-- - - - - - - - - -->=0A<!-- - - - - - - -=
+ - -->=0A<!-- // END FOOTER -->=0A<!-- - - - - - - - - -->=0A<!-- - - - - -=
+ - - - -->=0A</td></tr><tr><td align=3D"center" valign=3D"top" style=3D"wid=
+th:560px; padding:0px; margin:0px;"> <img src=3D"https://www.eventbrite.com=
+/organizations/missive/activity/pixel.gif=3Fp=3DABIdvVsUtaiDcspX6Y78yucIiIM=
+GSeYyuS1IunmQY_l_ooEvijB3TEU5WDh2b9tKIrBZQ9HMLylC7vzM6Z_yAS-YeJp194Yt10d9AD=
+kP738m16qPZkmq5MXehEIgqEEIxgkqvwT3L4xHD-7tEDvafF6cC3fdJk18ergvFg53kFlV8zl61=
+2wMyTY&c=3D27837489&co=3D3227116149" alt=3D"" width=3D"1" height=3D"1" bord=
+er=3D"0" style=3D"border: 0;"></td></tr> </table> <script type=3D"text/plai=
+n">darkThemeSupport=3Dtrue backgroundImageSupport=3Dtrue headerImageLinkSup=
+port=3Dtrue</script> </td></tr></table></center>=0D=0A<img border=3D"0" wid=
+th=3D"1" height=3D"1" alt=3D"" src=3D"https://clicks.eventbrite.com/q/MpbBk=
+9XmjrO1o9dhWFyH-A~~/AAQxAQA~/RgRoFSvRPlcDc3BjQgpmJ9KmMmbwyGM8UhplcmljLnJleW=
+5vbGRzQGh1bnRyZXNzLmNvbVgEAAAABA~~">=0D=0A</body></html>
+--_----y9jS2Bsxk3rFYAuKHMuebw===_06/DD-22958-0D6A2366--
+

@@ -1,0 +1,61 @@
+{
+    "name": "yordadev/laravel-email-archive",
+    "type": "project",
+    "description": "Develop a web application for archiving and viewing emails using the TALL stack.",
+    "keywords": ["laravel", "framework"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.3",
+        "ext-mailparse": "*",
+        "laravel-frontend-presets/tall": "^8.0",
+        "laravel/framework": "^11.0",
+        "laravel/tinker": "^2.9",
+        "livewire/livewire": "^3.4",
+        "masmerise/livewire-toaster": "^2.2",
+        "php-mime-mail-parser/php-mime-mail-parser": "^8.0",
+        "wire-elements/modal": "^2.0"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.23",
+        "laravel/pint": "^1.13",
+        "laravel/sail": "^1.26",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.0",
+        "phpunit/phpunit": "^11.0.1",
+        "spatie/laravel-ignition": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "initSetup": "@composer install && php artisan key:generate && php artisan migrate:install && php artisan migrate --seed && vendor/bin/phpunit --testdox --stop-on-failure && npm run build",
+        "lint": "vendor/bin/pint",
+        "test": "vendor/bin/phpunit",
+        "build": "npm run build"
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

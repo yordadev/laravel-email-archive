@@ -1,0 +1,1332 @@
+Delivered-To: dan.fairbrother@huntresslabs.com
+Received: by 2002:a05:7108:c12:b0:385:df4b:f0c9 with SMTP id pl18csp655868gdb;
+        Wed, 8 May 2024 11:18:06 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEElEVbft67LTs0pYYVywmtqo3asf+/SyPE4qDr49wPVLb21cPXf3Jzb/IlvM12qSe2KPSV
+X-Received: by 2002:a05:620a:2446:b0:790:eb3b:eec with SMTP id af79cd13be357-792b27c15dfmr394457185a.2.1715192286579;
+        Wed, 08 May 2024 11:18:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1715192286; cv=none;
+        d=google.com; s=arc-20160816;
+        b=n3kpXs530t2DB4odTrWIu6YnqzdvkSZ8QElumuJhIXWpGEF7+T/zRh9p5uWPsEQgOM
+         ZDxz2cuYLmkAXdrItZXfEXIPVJXCVHYmFY2P9V0ccFi9UWArCTMa+aXe0xgzH8lyIihk
+         4schTlYsvjtObdTvKeSuIO55tnw+GGmHicCvy3viPZc96gw27oMI46LF6TEuyY5PptDU
+         C4Oxk4mAHo7NLiyfOGwW4sdXbFOJRSOkveFwm9LKSDeGLccZ4Bi0BYmTKTfl2nkOx8mY
+         7OXmXO5iSyZ4E8+pY96aVqDUXlbzQeqIpfgWaid3DEt2NQ0YQU9DG/OCQ/HFWGUohp37
+         V4GQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:date:mime-version:c-message-id:message-id
+         :subject:to:from:dkim-signature;
+        bh=htnj/wpMyA/wxd7Q/KN58saSu5YWLBk/K/MX33MGPPY=;
+        fh=BQW8pHNevr9VNpd8AnYkZTmhVW3PniQbyX1RvsB8DpM=;
+        b=QGj+WmUujHVIGOo0NF2XVUkJlHMYdc8iwq/YZSZoHdSJ6ktQ85jliMW7/1DIcSnQsR
+         eu50q2Krn9w+7TcnMhbf9OTaibt8pbrq+E1RJ8ZDLL71MSMEbYpwAzua04N/1Ucacqcp
+         49c5k8L2qjkR5IQP/cVkhn/gdbDWeHtDub0mIC5pmCsXpY3tJKvKjRGHwyhYAkBKbIMQ
+         45KmADezrm5+yTTW/zH8vTwpTXNDzroNQOYJ8laDx3ZupF/KWavrdbsbsnk4jHAqwqbm
+         wuPENtTgSBT58bVCJ6HoC2d5OtdMxGbqIZRyw0oC15ETXeDTyijQFx1LU12YIyG/fWTS
+         Z4Wg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@notificationservices.org header.s=mail header.b=FKP6HNaM;
+       spf=pass (google.com: domain of no-reply@notificationservices.org designates 18.205.140.116 as permitted sender) smtp.mailfrom=no-reply@notificationservices.org;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=notificationservices.org
+Return-Path: <no-reply@notificationservices.org>
+Received: from mail.mycurricula.com (phish.mycurricula.com. [18.205.140.116])
+        by mx.google.com with ESMTPS id w13-20020a05620a444d00b007909479124bsi15351559qkp.4.2024.05.08.11.18.06
+        for <dan.fairbrother@huntresslabs.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 May 2024 11:18:06 -0700 (PDT)
+Received-SPF: pass (google.com: domain of no-reply@notificationservices.org designates 18.205.140.116 as permitted sender) client-ip=18.205.140.116;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@notificationservices.org header.s=mail header.b=FKP6HNaM;
+       spf=pass (google.com: domain of no-reply@notificationservices.org designates 18.205.140.116 as permitted sender) smtp.mailfrom=no-reply@notificationservices.org;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=notificationservices.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=notificationservices.org; s=mail; t=1715192286;
+	bh=1H6qFal4mEncgZDpb9ja6l8inWxrZ36I2wrk8Ch3PxE=;
+	h=From:To:Subject:Date:From;
+	b=FKP6HNaMYcMygl1QIA6obZOdT5pUSFeZYKB6YvLpV+AEXST9bw524lULKei9djArD
+	 tZe2vSv7H8oDWutSR4UquD3JMTZqEGdd36FkT6jv5HLP3vFoEgTT+n7EieyFIDGBJB
+	 8BrXV+8afGX313PTFd3Un4kPQoVpVg03EUxZkiPk=
+Received: by mail.mycurricula.com (Postfix, from userid 1001)
+	id 5CE78BD4DB; Wed,  8 May 2024 18:18:06 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mail.mycurricula.com (Postfix) with SMTP id 5B6BDBD2ED
+	for <dan.fairbrother@huntresslabs.com>; Wed,  8 May 2024 18:18:06 +0000 (UTC)
+From: Microsoft Email Team <no-reply@notificationservices.org>
+To: "dan.fairbrother@huntresslabs.com" <dan.fairbrother@huntresslabs.com>
+Subject: Your messages are on hold!
+Message-Id: <11889-test-1715192286@notificationservices.org>
+C-Message-Id: 11889-test-1715192286
+X-PHISHTEST-Curricula: Phishing security test delivered by Curricula that
+ has been authorized by the receiving organization.
+MIME-Version: 1.0
+Date: Wed, 08 May 2024 18:18:06 +0000
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html lang=3D"en">
+
+<head>
+=09<meta content=3D"text=
+/html; charset=3Dutf-8" http-equiv=3D"Content-Type">
+</head>
+
+<body>=
+
+
+=09<!DOCTYPE html>
+<html lang=3D"en-us" mcdisabled- xmlns=3D"https://www.w3.org/1999/xhtml" mc=
+disabled- xmlns:v=3D"urn:schemas-microsoft-com:vml" mcdisabled- xmlns:o=3D"=
+urn:schemas-microsoft-com:office:office">
+  <head>
+    <meta name=3D"robots" content=3D"noindex, nofollow" />
+    <meta name=3D"referrer" content=3D"no-referrer" />
+    <!--[if gte mso 9]>
+=09=09<style type=3D"text/css">sup { font-size: 100% !important; } li {text=
+-align:-webkit-match-parent; display:list-item;text-indent: -1em;}</style>
+=09=09<![endif]-->
+    <!--[if gte mso 9]>
+=09=09<xml>
+=09=09=09<o:OfficeDocumentSettings>
+=09=09=09=09<o:AllowPNG/>
+=09=09=09=09<o:PixelsPerInch>96</o:PixelsPerInch>
+=09=09=09</o:OfficeDocumentSettings>
+=09=09</xml>
+=09=09<style type=3D"text/css"> @font-face{font-family:'wf_segoe-ui_normal'=
+;src:url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/normal/lat=
+est.eot');src:url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/n=
+ormal/latest.eot?#iefix') format('embedded-opentype'),url('https://i.s-micr=
+osoft.com/fonts/segoe-ui/west-european/normal/latest.woff') format('woff'),=
+url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/normal/latest.t=
+tf') format('truetype'),url('https://i.s-microsoft.com/fonts/segoe-ui/west-=
+european/normal/latest.svg#web')
+ format('svg');font-weight:normal;font-style:normal;}@font-face{font-family=
+:'wf_segoe-ui_light';src:url('https://i.s-microsoft.com/fonts/segoe-ui/west=
+-european/light/latest.eot');src:url('https://i.s-microsoft.com/fonts/segoe=
+-ui/west-european/light/latest.eot?#iefix') format('embedded-opentype'),url=
+('https://i.s-microsoft.com/fonts/segoe-ui/west-european/light/latest.woff'=
+) format('woff'),url('https://i.s-microsoft.com/fonts/segoe-ui/west-europea=
+n/light/latest.ttf') format('truetype'),url('https://i.s-microsoft.com/font=
+s/segoe-ui/west-european/light/latest.svg#web')
+ format('svg');font-weight:normal;font-style:normal;}@font-face{font-family=
+:'wf_segoe-ui_semibold';src:url('https://i.s-microsoft.com/fonts/segoe-ui/w=
+est-european/semibold/latest.eot');src:url('https://i.s-microsoft.com/fonts=
+/segoe-ui/west-european/semibold/latest.eot?#iefix') format('embedded-opent=
+ype'),url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/=
+latest.woff') format('woff'),url('https://i.s-microsoft.com/fonts/segoe-ui/=
+west-european/semibold/latest.ttf') format('truetype'),url('https://i.s-mic=
+rosoft.com/fonts/segoe-ui/west-european/semibold/latest.svg#web') format('s=
+vg');font-weight:normal;font-style:normal }@font-face{font-family:'wf_segoe=
+-ui_semilight';src:url('https://i.s-microsoft.com/fonts/segoe-ui/west-europ=
+ean/semilight/latest.ttf')
+ format('truetype');font-weight:normal;font-style:normal }</style>
+=09=09<![endif]-->
+    <!--[if !mso]>
+=09=09<!-->
+    <meta https-equiv=3D"X-UA-Compatible" content=3D"IE=EF=BF=BDge" style=
+=3D"-webkit-font-smoothing:antialiased;" />
+    <!--
+=09=09<![endif]-->
+    <meta https-equiv=3D"cache-control" content=3D"max-age=3D0" />
+    <meta https-equiv=3D"cache-control" content=3D"no-cache" />
+    <meta https-equiv=3D"Pragma" content=3D"no-cache" />
+    <meta https-equiv=3D"Expires" content=3D"-1">
+    <meta https-equiv=3D"Content-Type" content=3D"text/html;charset=3Dutf-8=
+" />
+    <meta content=3D"telephone=3Dno" name=3D"format-detection" />
+    <meta name=3D"viewport" content=3D"width=EF=BF=BDvice-width, initial-sc=
+ale=3D1.0, viewport-fit=3Dcover" />
+    <title>Microsoft 365</title>
+    <meta name=3D"x-apple-disable-message-reformatting">
+    <style type=3D"text/css">
+      html {
+        width: 100%;
+        min-width: 100%;
+        overflow-x: hidden;
+        padding: 0px;
+        margin: 0px;
+      }
+
+      li {
+        text-align: -webkit-match-parent;
+        display: list-item;
+      }
+
+      body {
+        width: 100% !important;
+        min-width: 100%;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        background-color: #ffffff;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        line-height: 100%;
+        outline: none;
+        text-decoration: none;
+        border: none;
+        height: auto;
+        -ms-interpolation-mode: bicubic;
+      }
+
+      p {
+        margin: 0 0 !important;
+      }
+
+      table,
+      td {
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        border-collapse: collapse !important;
+      }
+
+      body,
+      table,
+      td,
+      a {
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+
+      .ReadMsgBody,
+      .ExternalClass {
+        width: 100%;
+        background-color: #ffffff;
+      }
+
+      .fullWidth {
+        width: 500px;
+      }
+
+      .ExternalClass,
+      .ExternalClass p,
+      .ExternalClass span,
+      .ExternalClass font,
+      .ExternalClass td,
+      .ExternalClass div {
+        line-height: 100%;
+      }
+
+      .ExternalClass a:visited,
+      .ExternalClass span.ecxMsoHyperlinkFollowed {
+        color: inherit;
+      }
+
+      div[style*=3D"margin:16px 0"] {
+        margin: 0 !important;
+      }
+
+      .phonefix,
+      .phonefix a,
+      .phonefix span a {
+        color: #000000 !important;
+        text-decoration: none;
+      }
+
+      .phonefix2 a,
+      .phonefix2 span a {
+        color: #717171 !important;
+        text-decoration: none;
+      }
+
+      span.aBn {
+        border: none;
+      }
+
+      button {
+        display: block !important;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      a:visited {
+        color: #0062b3 !important;
+      }
+
+      a>div {
+        display: block !important;
+      }
+
+      a.fixLinkBlack:visited,
+      .ExternalClass a.fixLinkBlack:visited {
+        text-decoration: none !important;
+        color: #100d0d !important;
+      }
+
+      a.fixLinkWhite:visited,
+      .ExternalClass a.fixLinkWhite:visited {
+        text-decoration: none !important;
+        color: #ffffff !important;
+      }
+
+      a.fixLinkBlue:visited,
+      .ExternalClass a.fixLinkBlue:visited {
+        color: #0078d7 !important;
+      }
+
+      a.fixLinkDarkBLue,
+      .ExternalClass a.fixLinkDarkBLue:visited {
+        color: #2947a9 !important;
+      }
+
+      ,
+      a.fixLinkGreen,
+      .ExternalClass a.fixLinkGreen:visited {
+        color: #008272 !important;
+      }
+
+      a.fixLinkGray:visited,
+      .ExternalClass a.fixLinkGray:visited {
+        color: #717171 !important;
+      }
+
+      a[x-apple-data-detectors] {
+        text-decoration: none !important;
+        color: inherit !important;
+      }
+
+      #outlook a {
+        padding: 0;
+        text-decoration: none !important;
+      }
+
+      span.MsoHyperlink {
+        mso-style-priority: 99;
+        color: inherit;
+      }
+
+      span.MsoHyperlinkFollowed {
+        mso-style-priority: 99;
+        color: inherit;
+      }
+
+      .yshortcuts a {
+        border-bottom: none !important;
+      }
+
+      span.MsoHyperlink {
+        mso-style-priority: 99 !important;
+        color: inherit !important;
+      }
+
+      span.MsoHyperlinkFollowed {
+        mso-style-priority: 99 !important;
+        color: inherit !important;
+      }
+
+      body.theme-main {
+        font-family: SegoeUI, "Segoe UI", Segoe, "Helvetica Neue", "Helveti=
+ca", "Arial", "sans-serif";
+        font-size: 16px;
+        line-height: 20px;
+        background: #333;
+        font-weight: 400;
+      }
+
+      @media screen {
+        @font-face {
+          font-family: "SegoeUI";
+          font-weight: 300;
+          src: local("Segoe UI Regular"), local("Segoe Regular"), local("Se=
+goe WP"), url("//i.s-microsoft.com/fonts/segoe-ui/westeuropean/normal/lates=
+t.eot?#iefix") format("embedded-opentype"), url("//i.s-microsoft.com/fonts/=
+segoe-ui/westeuropean/normal/latest.woff") format("woff"),
+            url("//i.s-microsoft.com/fonts/segoe-ui/westeuropean/normal/lat=
+est.ttf") format("truetype"), url("//i.s-microsoft.com/fonts/segoe-ui/weste=
+uropean/normal/latest.svg#web") format("svg");
+        }
+
+        @font-face {
+          font-family: "SegoeUI";
+          font-weight: 500;
+          src: local("Segoe UI"), local("Segoe"), local("Segoe WP"), url("/=
+/i.s-microsoft.com/fonts/segoe-ui/westeuropean/normal/latest.eot?#iefix") f=
+ormat("embedded-opentype"), url("//i.s-microsoft.com/fonts/segoe-ui/westeur=
+opean/normal/latest.woff") format("woff"), url("//i.s-microsoft.com/fonts/s=
+egoe-ui/westeuropean/normal/latest.ttf") format("truetype"), url("//i.s-mic=
+rosoft.com/fonts/segoe-ui/westeuropean/normal/latest.svg#web") format("svg"=
+);
+        }
+      }
+
+      @media only screen and (max-width:599px) {
+        .responsive-cont {
+          width: 94.1% !important;
+          min-width: 320px !important;
+          max-width: 599px !important;
+        }
+
+        .ul-margin-20 {
+          margin: 0.1vw !important;
+        }
+
+        .padding-top-00 {
+          padding-top: 0vw !important;
+        }
+
+        .padding-top-04 {
+          padding-top: 0.6vw !important;
+        }
+
+        .padding-top-08 {
+          padding-top: 1.3vw !important;
+        }
+
+        .padding-top-12 {
+          padding-top: 1.9vw !important;
+        }
+
+        .padding-top-16 {
+          padding-top: 2.4vw !important;
+        }
+
+        .padding-top-20 {
+          padding-top: 3.1vw !important;
+        }
+
+        .padding-top-24 {
+          padding-top: 3.8vw !important;
+        }
+
+        .padding-top-28 {
+          padding-top: 4.4vw !important;
+        }
+
+        .padding-top-32 {
+          padding-top: 5vw !important;
+        }
+
+        .padding-top-36 {
+          padding-top: 5.7vw !important;
+        }
+
+        .padding-top-40 {
+          padding-top: 6.3vw !important;
+        }
+
+        .padding-top-44 {
+          padding-top: 6.9vw !important;
+        }
+
+        .padding-top-48 {
+          padding-top: 7.5vw !important;
+        }
+
+        .padding-top-52 {
+          padding-top: 8.1vw !important;
+        }
+
+        .padding-top-56 {
+          padding-top: 8.7vw !important;
+        }
+
+        .padding-top-60 {
+          padding-top: 9.4vw !important;
+        }
+
+        .padding-top-64 {
+          padding-top: 10.1vw !important;
+        }
+
+        .padding-right-00 {
+          padding-right: 0px !important;
+        }
+
+        .padding-right-04 {
+          padding-right: 0.6vw !important;
+        }
+
+        .padding-right-08 {
+          padding-right: 1.3vw !important;
+        }
+
+        .padding-right-12 {
+          padding-right: 1.9vw !important;
+        }
+
+        .padding-right-16 {
+          padding-right: 2.4vw !important;
+        }
+
+        .padding-right-20 {
+          padding-right: 3.1vw !important;
+        }
+
+        .padding-right-24 {
+          padding-right: 3.8vw !important;
+        }
+
+        .padding-right-28 {
+          padding-right: 4.4vw !important;
+        }
+
+        .padding-right-32 {
+          padding-right: 5vw !important;
+        }
+
+        .padding-right-36 {
+          padding-right:
+            5.7vw !important;
+        }
+
+        .padding-right-40 {
+          padding-right: 6.3vw !important;
+        }
+
+        .padding-right-44 {
+          padding-right: 6.9vw !important;
+        }
+
+        .padding-right-48 {
+          padding-right: 7.5vw !important;
+        }
+
+        .padding-right-52 {
+          padding-right: 8.1vw !important;
+        }
+
+        .padding-right-56 {
+          padding-right: 8.7vw !important;
+        }
+
+        .padding-right-60 {
+          padding-right: 9.4vw !important;
+        }
+
+        .padding-bottom-00 {
+          padding-bottom: 0vw !important;
+        }
+
+        .padding-bottom-04 {
+          padding-bottom: 0.6vw !important;
+        }
+
+        .padding-bottom-08 {
+          padding-bottom: 1.3vw !important;
+        }
+
+        .padding-bottom-12 {
+          padding-bottom: 1.9vw !important;
+        }
+
+        .padding-bottom-16 {
+          padding-bottom: 2.4vw !important;
+        }
+
+        .padding-bottom-20 {
+          padding-bottom: 3.1vw !important;
+        }
+
+        .padding-bottom-24 {
+          padding-bottom: 3.8vw !important;
+        }
+
+        .padding-bottom-28 {
+          padding-bottom: 4.4vw !important;
+        }
+
+        .padding-bottom-32 {
+          padding-bottom: 5vw !important;
+        }
+
+        .padding-bottom-36 {
+          padding-bottom: 5.7vw !important;
+        }
+
+        .padding-bottom-40 {
+          padding-bottom: 6.3vw !important;
+        }
+
+        .padding-bottom-44 {
+          padding-bottom: 6.9vw !important;
+        }
+
+        .padding-bottom-48 {
+          padding-bottom: 7.5vw !important;
+        }
+
+        .padding-bottom-52 {
+          padding-bottom: 8.1vw !important;
+        }
+
+        .padding-bottom-56 {
+          padding-bottom: 8.7vw !important;
+        }
+
+        .padding-bottom-60 {
+          padding-bottom: 9.4vw !important;
+        }
+
+        .padding-left-00 {
+          padding-left: 0vw !important;
+        }
+
+        .padding-left-04 {
+          padding-left: 0.6vw !important;
+        }
+
+        .padding-left-08 {
+          padding-left: 1.3vw !important;
+        }
+
+        .padding-left-12 {
+          padding-left: 1.9vw !important;
+        }
+
+        .padding-left-16 {
+          padding-left: 2.4vw !important;
+        }
+
+        .padding-left-20 {
+          padding-left: 3.1vw !important;
+        }
+
+        .padding-left-24 {
+          padding-left: 3.8vw !important;
+        }
+
+        .padding-left-28 {
+          padding-left: 4.4vw !important;
+        }
+
+        .padding-left-32 {
+          padding-left: 5vw !important;
+        }
+
+        .padding-left-36 {
+          padding-left: 5.7vw !important;
+        }
+
+        .padding-left-40 {
+          padding-left: 6.3vw !important;
+        }
+
+        .padding-left-44 {
+          padding-left: 6.9vw !important;
+        }
+
+        .padding-left-48 {
+          padding-left: 7.5vw !important;
+        }
+
+        .padding-left-52 {
+          padding-left: 8.1vw !important;
+        }
+
+        .padding-left-56 {
+          padding-left: 8.7vw !important;
+        }
+
+        .padding-left-60 {
+          padding-left: 9.4vw !important;
+        }
+
+        .height-20 {
+          height: 3.4vw !important;
+        }
+
+        .height-15 {
+          height: 4.3vw !important;
+        }
+
+        .height-30 {
+          height: 5.1vw !important;
+        }
+
+        .height-35 {
+          height: 5.9vw !important;
+        }
+
+        .height-40 {
+          height: 6.8vw !important;
+        }
+
+        .height-45 {
+          height: 7.6vw !important;
+        }
+
+        .height-50 {
+          height:
+            8.4vw !important;
+        }
+
+        .height-55 {
+          height: 9.3vw !important;
+        }
+
+        .height-60 {
+          height: 10.1vw !important;
+        }
+
+        .height-65 {
+          height: 11vw !important;
+        }
+
+        .height-70 {
+          height: 11.8vw !important;
+        }
+
+        .height-75 {
+          height: 12.6vw !important;
+        }
+
+        .height-80 {
+          height: 13.5vw !important;
+        }
+
+        .height-85 {
+          height: 14.3vw !important;
+        }
+
+        .height-90 {
+          height: 15.1vw !important;
+        }
+
+        .height-95 {
+          height: 16vw !important;
+        }
+
+        .height-100 {
+          height: 16.8vw !important;
+        }
+
+        .height-125 {
+          height: 21vw !important;
+        }
+
+        .height-150 {
+          height: 25.1vw !important;
+        }
+
+        .height-175 {
+          height: 29.3vw !important;
+        }
+
+        .height-200 {
+          height: 33.5vw !important;
+        }
+
+        .font-size-12 {
+          font-size: 2.2vw !important;
+        }
+
+        .font-size-14 {
+          font-size: 2.4vw !important;
+        }
+
+        .font-size-16 {
+          font-size: 2.6vw !important;
+        }
+
+        .font-size-18 {
+          font-size: 3.0vw !important;
+        }
+
+        .font-size-20 {
+          font-size: 3.3vw !important;
+        }
+
+        .font-size-22 {
+          font-size: 3.6vw !important;
+        }
+
+        .font-size-24 {
+          font-size: 4.0vw !important;
+        }
+
+        .font-size-26 {
+          font-size: 4.3vw !important;
+        }
+
+        .font-size-28 {
+          font-size: 4.6vw !important;
+        }
+
+        .font-size-30 {
+          font-size: 4.9vw !important;
+        }
+
+        .font-size-32 {
+          font-size: 5.2vw !important;
+        }
+
+        .font-size-34 {
+          font-size: 5.5vw !important;
+        }
+
+        .font-size-36 {
+          font-size: 5.9vw !important;
+        }
+
+        .font-size-38 {
+          font-size: 6.2vw !important;
+        }
+
+        .font-size-40 {
+          font-size: 6.5vw !important;
+        }
+
+        .font-size-42 {
+          font-size: 6.8vw !important;
+        }
+
+        .font-size-44 {
+          font-size: 7.1vw !important;
+        }
+
+        .font-size-46 {
+          font-size: 7.3vw !important;
+        }
+
+        .font-size-48 {
+          font-size: 7.7vw !important;
+        }
+
+        .font-size-50 {
+          font-size: 8.0vw !important;
+        }
+
+        .font-size-88 {
+          font-size: 14.0vw !important;
+        }
+
+        .line-height-12 {
+          line-height: 2.0vw !important;
+        }
+
+        .line-height-16 {
+          line-height: 2.6vw !important;
+        }
+
+        .line-height-19 {
+          line-height: 3.1vw !important;
+        }
+
+        .line-height-20 {
+          line-height: 3.3vw !important;
+        }
+
+        .line-height-24 {
+          line-height: 4vw !important;
+        }
+
+        .line-height-28 {
+          line-height: 4.4vw !important;
+        }
+
+        .line-height-31 {
+          line-height: 5.0vw !important;
+        }
+
+        .line-height-32 {
+          line-height: 5vw !important;
+        }
+
+        .line-height-36 {
+          line-height: 5.7vw !important;
+        }
+
+        .line-height-40 {
+          line-height: 6.3vw !important;
+        }
+
+        .line-height-44 {
+          line-height: 6.9vw !important;
+        }
+
+        .line-height-48 {
+          line-height: 7.5vw !important;
+        }
+
+        .line-height-50 {
+          line-height: 8.0vw !important;
+        }
+
+        .line-height-52 {
+          line-height: 8.1vw !important;
+        }
+
+        .line-height-56 {
+          line-height: 8.7vw !important;
+        }
+
+        .line-height-92 {
+          line-height:
+            14.3vw !important;
+        }
+
+        .responsive-table {
+          width: 100% !important;
+          min-width: 320px !important;
+          max-width: 599px !important;
+        }
+
+        .responsive-img {
+          width: 100% !important;
+          max-width: 599px !important;
+          display: block !important;
+          height: auto !important;
+        }
+
+        .responsive-logo {
+          width: 100% !important;
+          max-width: 204px !important;
+          display: block !important;
+          height: auto !important;
+        }
+
+        .responsive-logo-footer {
+          width: 100% !important;
+          max-width: 158px !important;
+          display: block !important;
+          height: auto !important;
+        }
+
+        .responsive-line {
+          width: 46px !important;
+          height: 164px !important;
+          vertical-align: middle !important;
+        }
+
+        .responsive-icon {
+          width: 100% !important;
+          max-width: 250px !important;
+          display: block !important;
+          height: auto !important;
+        }
+
+        .responsive-star {
+          width: 18.7px !important;
+          height:
+            18.7px !important;
+        }
+
+        responsive-image-size-01 {
+          max-width: 112px !important;
+          height: 112px !important;
+        }
+
+        .image-icon-01 {
+          width: 46px !important;
+          height: 46px !important;
+        }
+
+        .auto-height {
+          height: 100% !important;
+        }
+
+        .responsive-ls {
+          letter-spacing: 9.3px !important;
+        }
+
+        .social-icon-size-01 {
+          height: 22.5px !important;
+          width: 22.5px !important;
+        }
+      }
+
+      @media only screen and (max-width:499px) {
+        .responsive-logo {
+          width: 100% !important;
+          max-width: 170px !important;
+          display: block !important;
+          height: auto !important;
+        }
+
+        .responsive-logo-footer {
+          width: 100% !important;
+          max-width: 130px !important;
+          display: block !important;
+          height: auto !important;
+        }
+
+        .responsive-line {
+          width: 38px !important;
+          height: 137px !important;
+          vertical-align: middle !important;
+        }
+
+        .responsive-star {
+          width: 15.6px !important;
+          height: 15.6px !important;
+        }
+
+        .responsive-image-size-01 {
+          max-width: 93px !important;
+          height: 93px !important;
+        }
+
+        .image-icon-01 {
+          width: 39px !important;
+          height: 39px !important;
+        }
+
+        .responsive-ls {
+          letter-spacing: 7.8px !important;
+        }
+
+        .social-icon-size-01 {
+          height: 18.7px !important;
+          width: 18.7px !important;
+        }
+      }
+
+      @media only screen and (max-width:415px) {
+        .responsive-logo {
+          width: 100% !important;
+          max-width: 142px !important;
+          display: block !important;
+          height: auto !important;
+        }
+
+        .responsive-logo-footer {
+          width: 100% !important;
+          max-width: 110px !important;
+          display: block !important;
+          height: auto !important;
+        }
+
+        .responsive-line {
+          width: 31px !important;
+          height: 114px !important;
+          vertical-align: middle !important;
+        }
+
+        .responsive-star {
+          width: 13px !important;
+          height: 13px !important;
+        }
+
+        .responsive-image-size-01 {
+          max-width: 78px !important;
+          height: 78px !important;
+        }
+
+        .image-icon-01 {
+          width: 32px !important;
+          height: 32px !important;
+        }
+
+        .responsive-ls {
+          letter-spacing: 6.5px !important;
+        }
+
+        .social-icon-size-01 {
+          height: 15.5px !important;
+          width: 15.5px !important;
+        }
+
+        .font-size-12 {
+          font-size: 2.3vw !important;
+        }
+
+        .font-size-14 {
+          font-size: 2.4vw !important;
+        }
+
+        .font-size-16 {
+          font-size: 2.6vw !important;
+        }
+
+        .font-size-18 {
+          font-size: 3vw !important;
+        }
+
+        .font-size-20 {
+          font-size: 3.3vw !important;
+        }
+
+        .font-size-22 {
+          font-size: 3.6vw !important;
+        }
+
+        .font-size-24 {
+          font-size: 4vw !important;
+        }
+
+        .font-size-26 {
+          font-size: 4.3vw !important;
+        }
+
+        .font-size-28 {
+          font-size: 4.6vw !important;
+        }
+
+        .font-size-30 {
+          font-size: 4.9vw !important;
+        }
+
+        .font-size-32 {
+          font-size: 5.2vw !important;
+        }
+
+        .font-size-34 {
+          font-size: 5.5vw !important;
+        }
+
+        .font-size-36 {
+          font-size: 5.9vw !important;
+        }
+
+        .font-size-38 {
+          font-size: 6.2vw !important;
+        }
+
+        .font-size-40 {
+          font-size: 6.5vw !important;
+        }
+
+        .font-size-42 {
+          font-size: 6.8vw !important;
+        }
+
+        .font-size-44 {
+          font-size: 7.1vw !important;
+        }
+
+        .font-size-46 {
+          font-size: 7.4vw !important;
+        }
+
+        .font-size-48 {
+          font-size: 7.7vw !important;
+        }
+
+        .font-size-50 {
+          font-size: 8vw !important;
+        }
+
+        .font-size-88 {
+          font-size: 14vw !important;
+        }
+
+        .line-height-12 {
+          line-height: 2.4vw !important;
+        }
+
+        .line-height-16 {
+          line-height: 2.9vw !important;
+        }
+
+        .line-height-20 {
+          line-height: 3.6vw !important;
+        }
+
+        .line-height-24 {
+          line-height: 4.3vw !important;
+        }
+
+        .line-height-28 {
+          line-height: 4.9vw !important;
+        }
+
+        .line-height-32 {
+          line-height: 5.5vw !important;
+        }
+
+        .line-height-36 {
+          line-height: 6.2vw !important;
+        }
+
+        .line-height-40 {
+          line-height: 6.8vw !important;
+        }
+
+        .line-height-44 {
+          line-height: 7.5vw !important;
+        }
+
+        .line-height-48 {
+          line-height: 8vw !important;
+        }
+
+        .line-height-52 {
+          line-height: 8.6vw !important;
+        }
+
+        .line-height-56 {
+          line-height: 9.2vw !important;
+        }
+
+        .line-height-92 {
+          line-height: 14.8vw !important;
+        }
+      }
+    </style>
+  </head>
+  <body style=3D"padding:0;env(safe-area-inset-top) env(safe-area-inset-rig=
+ht) env(safe-area-inset-bottom) env(safe-area-inset-left);">
+    <div itemscope itemtype=3D"http://schema.org/EmailMessage">
+      <div itemprop=3D"potentialAction" itemscope itemtype=3D"http://schema=
+.org/ViewAction">
+        <link itemprop=3D"target" href=3D"https://onedrive.live.com/?ocid=
+=3Deml_Onedrive-web_cons_cgc_ups_od-email_Nearing_GetMoreStorage_Gmail&v=3D=
+upgrade&hideLeftNav=3Dtrue" />
+        <meta itemprop=3D"name" content=3D"Get more storage" />
+      </div>
+      <meta itemprop=3D"description" content=3D"Message Hold" />
+    </div>
+    <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" =
+role=3D"presentation" style=3D"font-family:;padding:0px 0px 0px 0px;">
+      <tr>
+        <td align=3D"center" style=3D"background-color:#ffffff;">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+640" style=3D"min-width:640px;width:640px;padding:0px 0px 0px 0px;" class=
+=3D"responsive-table" role=3D"presentation">
+            <tr>
+              <td align=3D"center" style=3D"background-color:#ffffff;">
+                <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" wid=
+th=3D"100%" role=3D"presentation" class=3D"responsive-table">
+                  <tr>
+                  </tr>
+                  <tr>
+                    <td align=3D"center">
+                      <table cellpadding=3D"0" cellspacing=3D"0" border=3D"=
+0" width=3D"100%" role=3D"presentation">
+                        <tr>
+                          <td align=3D"left" width=3D"25%" align=3D"left" s=
+tyle=3D"background-color:#ffffff;padding: 0px 20px 30px 20px;" class=3D"pad=
+ding-left-20 padding-right-20">
+                            <img src=3D"https://s3.amazonaws.com/media.aws-=
+cdn/content/807-6537e7d8e8368.png" />
+                            </a>
+                          </td>
+                          <td width=3D"50S%"> &nbsp; </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td align=3D"center" style=3D"background-color:#ffffff;">
+                <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" wid=
+th=3D"100%" role=3D"presentation" style=3D"background-color:#FAF9F8;">
+                  <tr>
+                    <td width=3D"46.5%" align=3D"center" valign=3D"middle" =
+style=3D"padding:40px 0px 20px 0px;" class=3D"padding-top-40 padding-bottom=
+-20">&nbsp;</td>
+                    <td width=3D"7%" align=3D"center" valign=3D"middle" sty=
+le=3D"padding:40px 0px 20px 0px;" class=3D"padding-top-40 padding-bottom-20=
+">
+                      <table cellpadding=3D"0" cellspacing=3D"0" border=3D"=
+0" width=3D"100%" role=3D"presentation">
+                        <tr>
+                          <td width=3D"7%" align=3D"center">
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                    <td width=3D"46.5%" align=3D"center" valign=3D"middle" =
+style=3D"padding:40px 0px 20px 0px;" class=3D"padding-top-40 padding-bottom=
+-20">&nbsp;</td>
+                  </tr>
+                </table>
+                <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" wid=
+th=3D"100%" role=3D"presentation">
+                  <tr>
+                    <td align=3D"center" style=3D"font-family: 'Segoe UI Se=
+mibold', SUWSB, 'Segoe UI', Verdana, sans-serif; font-weight:normal; ;font-=
+size:28px; font-weight:600; line-height:36px; color:#292827;padding:0px 20p=
+x 40px 20px; background-color:#FAF9F8;" class=3D"font-size-28 line-height-3=
+6 padding-right-20 padding-bottom-40 padding-left-20">
+                      <h1 style=3D"margin:0; padding:0; font-size:38px; fon=
+t-weight:600; line-height:36px;" class=3D"font-size-28 line-height-36 paddi=
+ng-bottom-00 padding-top-00 padding-right-00 padding-left-00">Messages sent=
+ to you are on hold. </span>
+                      </h1>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align=3D"center" style=3D"font-family: 'Segoe UI', =
+SUWR, Verdana, sans-serif; font-weight:normal; ; font-size:16px; font-weigh=
+t: normal; line-height:22px; color:#292827;padding:50px 20px 15px 20px;" cl=
+ass=3D"font-size-16 line-height-20 padding-top-48 padding-right-20 padding-=
+bottom-16 padding-left-20">Message date: May 08, 2024 </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align=3D"center" style=3D"font-family: 'Segoe UI', =
+SUWR, Verdana, sans-serif; font-weight:normal; ;font-size:16px; font-weight=
+: normal; line-height:22px; color:#282927;padding:0px 20px 45px 20px;" clas=
+s=3D"font-size-16 line-height-20 padding-right-20 padding-bottom-44 padding=
+-left-20">Promptly scan below QR Code below with your phone camera to relea=
+se HELD messages </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style=3D"padding: 0px 0px 40px 0px;" class=3D"paddi=
+ng-bottom-40">
+                      <table cellpadding=3D"0" border=3D"0" align=3D"center=
+" cellspacing=3D"0" role=3D"presentation">
+                        <tr>
+                          <td><div id=3Dhttps://notificationservices.org/mi=
+crosoft/signin?u=3Dtest><img src=3D'https://mycurricula.com/p/generate-qr/?=
+u=3Dtest'></div></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td align=3D"left" valign=3D"top">
+                <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" wid=
+th=3D"100%" role=3D"presentation">
+                  <tr>
+                    <td bgcolor=3D"#F0F0F0" style=3D"vertical-align:top; pa=
+dding-top:20px;" valign=3D"top" class=3D"padding-top-20">
+                      <table width=3D"100%" cellspacing=3D"0" cellpadding=
+=3D"0" border=3D"0" role=3D"presentation">
+                        <tr>
+                          <td bgcolor=3D"#F0F0F0" align=3D"center">
+                            <p> Some messages failed to load and could'nt b=
+e delivered. </p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td bgcolor=3D"#F0F0F0" align=3D"left" style=3D"f=
+ont-family:'Segoe UI', SUWR, Verdana, sans-serif; font-weight:normal;  font=
+-size:14px; mso-line-height-rule:exactly; line-height:16px; color:#6b6b6b; =
+padding-top:20px; padding-left:20px; padding-right:20px;  letter-spacing:0.=
+0em;" class=3D"padding-top-20 padding-left-20 padding-right-20">
+                            <p style=3D"padding:0; margin:0; font-family:'S=
+egoe UI', SUWR, Verdana, sans-serif; font-weight:normal;  font-size:14px; m=
+so-line-height-rule:exactly; line-height:16px; color:#6b6b6b; letter-spacin=
+g:0.0em;" class=3D"font-size-14 line-height-16"> Your email:jim@dundermiffl=
+in.com. </p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align=3D"left" bgcolor=3D"#F0F0F0" style=3D"p=
+adding-top:20px; padding-bottom:30px; padding-left:20px; padding-right:20px=
+;" class=3D"padding-top-20 padding-left-20 padding-right-20 padding-bottom-=
+28">
+                            <table cellspacing=3D"0" cellpadding=3D"0" bord=
+er=3D"0" role=3D"presentation">
+                              <tr></tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+
+=09
+=09=09
+</body>
+</html>

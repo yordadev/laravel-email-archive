@@ -1,0 +1,754 @@
+Delivered-To: eric.reynolds@huntress.com
+Received: by 2002:adf:fb50:0:b0:34d:708c:a635 with SMTP id c16csp894916wrs;
+        Thu, 9 May 2024 07:04:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHaN8lBGQm7WLOeZxNrSEH6aWjSKbxuhDlUR104Jwf8eLYNDGD9gFNs8LVXX68/MC3ayknm
+X-Received: by 2002:a05:6102:4c49:b0:47e:2f4:d7db with SMTP id ada2fe7eead31-47f3c2f5747mr5757338137.15.1715263477140;
+        Thu, 09 May 2024 07:04:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1715263477; cv=none;
+        d=google.com; s=arc-20160816;
+        b=bvE5lHFpYwEYwpfP8k6V3tnCMr8Pom5vOjO8PW6a3+MoI1bsvCII3MZQynwvBinAIp
+         Uv7zvB/+Tv1ZOBXLeamnjROb7/RJvRLt6ZUbKLN339o3Fs7zAty2V2slDJm5ukEyp6Kd
+         Wrg3IqWkmtheO3ABBGkQU8pZqBznvfWRD4lTgUc3ZUbS/y1/LGhcLAyXnt4yta+Wq/F9
+         pgz48Mj78m7QyYoW7BURwIS/Rscd+fCRe26S0SaSIt+2WRpqq6kH1VkEpngqYmBH3z3C
+         qSlT3ZNbgGsuGluR9C7UjkrALeGqIlR04fFyVk/V4FerG0VW+V5H5VxMDgAhIk2V2psL
+         fFWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe-post:precedence:mime-version:subject:message-id:to
+         :reply-to:from:date:list-unsubscribe:dkim-signature:dkim-signature;
+        bh=L3S5lVfs364pKT3N3UpWV4PspSvRaASTKCQiWcvAmqA=;
+        fh=iMC/qV2h/9eIUwW0n8hD3wnQ1IEu2gvCbuDvb1YnU0g=;
+        b=sUgJzQnxtRRPK8KoNe8QIRy+3+fcrZgtYTSKDX1LiN78ELQc1SDuEDculs2BtbcLVR
+         MMrio3JdziJbyXhABJZxBB8AURbO+jON6bOw41uQSMnIE5tu0TPj/rHV5xq467s1brkV
+         aPvS28hT5nf9t+MUa1jf4GH7Ua7WloG5bjzD4zZj4m8DVp09lvkFH4K6KwQA01/IQfLk
+         5N1OCnJA37bICppdpwfyk6I9Tvs9iwAo33AoHIQQjkkOQFzZy/aqyGU+8hlZEd56Fv4E
+         Bj00xNjvDC2BMCViuxAFMwLOYnA+FyFvJstU3wy6TlK6eCx3KvJu2uHPjN36WQFnvVaZ
+         MwzQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@bf03.hubspotemail.net header.s=hs1 header.b=wNLIHFKo;
+       dkim=pass header.i=@merge.dev header.s=hs1-20608300 header.b=pbzis8q5;
+       spf=pass (google.com: domain of 1axb05catogu3jpngw727ya56or0trdk8bu7wp@bf03.hubspotemail.net designates 143.244.89.245 as permitted sender) smtp.mailfrom=1axb05catogu3jpngw727ya56or0trdk8bu7wp@bf03.hubspotemail.net;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=merge.dev
+Return-Path: <1axb05catogu3jpngw727ya56or0trdk8bu7wp@bf03.hubspotemail.net>
+Received: from bd77gcn.bf03.hubspotemail.net (bd77gcn.bf03.hubspotemail.net. [143.244.89.245])
+        by mx.google.com with ESMTPS id ada2fe7eead31-4806cbab55bsi176582137.203.2024.05.09.07.04.36
+        for <eric.reynolds@huntress.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 09 May 2024 07:04:37 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 1axb05catogu3jpngw727ya56or0trdk8bu7wp@bf03.hubspotemail.net designates 143.244.89.245 as permitted sender) client-ip=143.244.89.245;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@bf03.hubspotemail.net header.s=hs1 header.b=wNLIHFKo;
+       dkim=pass header.i=@merge.dev header.s=hs1-20608300 header.b=pbzis8q5;
+       spf=pass (google.com: domain of 1axb05catogu3jpngw727ya56or0trdk8bu7wp@bf03.hubspotemail.net designates 143.244.89.245 as permitted sender) smtp.mailfrom=1axb05catogu3jpngw727ya56or0trdk8bu7wp@bf03.hubspotemail.net;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=merge.dev
+Received: by 172.16.28.112 with SMTP id a0b9znrox27ui2v4wjjvj7lc0opzrqo7asf7dawtt4q;
+        Thu, 9 May 2024 14:04:32 GMT
+DKIM-Signature: v=1; s=hs1; d=bf03.hubspotemail.net; 
+        i=@bf03.hubspotemail.net; 
+        h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id:list-unsubscribe-post; 
+        a=rsa-sha256; c=relaxed/relaxed; 
+        bh=L3S5lVfs364pKT3N3UpWV4PspSvRaASTKCQiWcvAmqA=; 
+        b=wNLIHFKol+zaKBLcxSMbOtT5wDuSqfYohroqcHrnGR3ktLv8fXbXK4B9bKQKtY
+         5CUw6GljIVBfpXY/H5VBWC5/6+5ovTOBhvfMdPNIMLADQQ/IZcs9L4zobEHCtDH
+         jnVyDxyMTOmQOgvZJkNfA+8q2gONopxTE3enBI9K7eSsXM0Z8JXR3Hf36SlE1Dz
+         bSELkIvabGuehV2nolZznHYckQf9w0yGh43I1pNU3YmHza1X9FaeuP4TCPCwFHE
+         zdn6/ov6ayzovXegjewDrbnY5/f3VaqPRKcF49RWyM2Jp9B7yChcFcauJ1rAhPz
+         aAUxW4H/we7KN1dErx7Gl5DC+hWw==; q=dns/txt; t=1715263415; 
+        x=1715526215;
+DKIM-Signature: v=1; s=hs1-20608300; d=merge.dev; i=@merge.dev; 
+        h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id:list-unsubscribe-post; 
+        a=rsa-sha256; c=relaxed/relaxed; 
+        bh=L3S5lVfs364pKT3N3UpWV4PspSvRaASTKCQiWcvAmqA=; 
+        b=pbzis8q5ts0d8lLrF75FdDGypfcpSdZEb6oIZGLBy/VrbMC4QloynPfUfawcox
+         g9itvGOANf/j9Q8r4tbW6lB8x7aVTM7TIImrA6BbuxgRuObPw7m8MjdlRBsT7ah
+         3yzND1uO46MdnCpIgWIpRvVuK+yWX9IpJGy0fOnKoRyOvVGre1WpVrosIsHLZUs
+         f4KIZolHTyu2G9C8rkUlDK41QwA3ZTcRGDNX+kw7ShPO2zAKn5lHcAE8DLFWsVE
+         fZkLjrfoyxCZ6RS1dvUQba7HQSENKs/HkZOL+IgiFZKl8vhtkxhLEJA7nQcTP6y
+         6IpeaFLDzCIO6IP96FsbZgEQdClg==; q=dns/txt; t=1715263415; 
+        x=1715526215;
+Return-Path: <1axb05catogu3jpngw727ya56or0trdk8bu7wp@bf03.hubspotemail.net>
+X-HS-Cid: 1axe7vfrn35t8fyel1fupzgiqdhkkpt4nw89d1
+List-Unsubscribe: <mailto:1axcxfgcfwpzcwpmoryese2plmpvld7b8diaw5@bf03.hubspotemail.net?subject=unsubscribe>, <https://hs-20608300.s.hubspotemail.net/subscription-preferences/v2/unsubscribe-all?data=W2nXS-N30h-G7W4fcrlW4pDtNzW30GyNk4m8NP1W2-rLCK3K5qfGW4mGKMZ3XvCmKW251JT349gg2KW41Wryf2sTY6nW1XsQ9f1Vp_yxW3Z_P33385dGQW3DZwCC3ZJdNHW2p0nSq1Lk4nmW1QcfVR1NCDzfW3P6frn2KXDMLW24WDJG3DZ7H3W3W0bWC21kTmjW2qV-k52Wg4HpW41Y50V2vzVwbW45pphN4kt7vTW32n0mg2zGv_rW2KBR-J1LGpW4W2RCpdh2C-lBVW4p8Zxg1YYGXMW3ZNPY-2xGLh-W1_kdth2WQdl2W43Hc4k3P26mjW23mnlv2HT4pBW3ZTMDS2qSyBYW1S8srM3NLY1BW1VdXHN45Fdt_W2KD4vz30kdlsW1Z7XCZ3W4QT-W3D-NRb3H6qwkW1StY5P4mBGmgW4knB953SPn2wW2TMZ572CxFY0W2PzBW24csTTtW1S5dgT47zkDhW2FHQ1F3Fb0hdW1X1Xf547L2DBW2RJrhm3Fd3dyW1SqD5M3z7zfHW43yvYX4fjlR_W3zk6Mq23kDJLW43QFzB38kJXNW41Ldjx1_5-VpW4czpQW43s86pW2RRY153K8nWf0>
+Date: Thu, 9 May 2024 10:04:32 -0400
+From: Team Merge <teammerge@merge.dev>
+Reply-To: teammerge@merge.dev
+To: eric.reynolds@huntress.com
+Message-ID: <1715263244124.177a240d-7612-4f3b-afa2-2984d7921fc1@bf03.hubspotemail.net>
+Subject: =?utf-8?Q?How_to_use_product_integratio?=
+ =?utf-8?Q?n_data_to_build_AI_features_=E2=9C=A8?=
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2768495_351399472.1715263392094"
+Precedence: bulk
+X-Report-Abuse-To: abuse@hubspot.com (see
+ https://policy.hubspot.com/abuse-complaints)
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+
+------=_Part_2768495_351399472.1715263392094
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+We=E2=80=99ll cover all of your options for collecting product integration =
+data
+
+AI eBook (https://d2qVkb04.na1.hubspotlinks.com/Ctc/UB+113/d2qVkb04/MVxVK-v=
+zf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ7j31zrPW8wLKSR6lZ3pyW3ZRCBG2nFKX8W3VFcW9=
+3RZ8W0VWqFCY7Stz-1W9dd6bD6S3tkHW40P6pB6RV2RBW2jkVnh6WTR1bW8GPFdY6rzQRrW9jx4=
+9N77S8V4W3VXdR04SHxDQW7t38Y44LD-lWW2tXkxJ2QjR8ZN1w-Mx6wXt_qVFrckm6k2GjMW8TL=
+j0f7bwDRxV8YCWw7Jl-Z-MF0bTBPDgvMW8HPZNY5-lK5bW2WGZb15jnzjLW8QJ7-z2wfZkQW7mc=
+S9L8x7RbxW5WzVCt6bTpwxW8_KSGx4TwdPLW3l353M7Pnl18W6q-tpB4LzkCPW1_bd9P5G4BqCW=
+7n36s24zLX-rW25H3026QHXhjW5hYKz83sG2BRd7Fl6n04 )
+
+Hi Eric,
+
+Product integration data can help companies build a wide range of cutting-e=
+dge AI features. This can be anything from providing personalized recommend=
+ations on leads to powering an intranet solution=E2=80=99s search functiona=
+lity.
+
+But how, exactly, can you collect product integration data? And what are th=
+e benefits and drawbacks of each option?
+
+Our latest eBook (https://d2qVkb04.na1.hubspotlinks.com/Ctc/UB+113/d2qVkb04=
+/MVxVK-vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ7j31zrPW8wLKSR6lZ3pyW3ZRCBG2nFKX=
+8W3VFcW93RZ8W0VWqFCY7Stz-1W9dd6bD6S3tkHW40P6pB6RV2RBW2jkVnh6WTR1bW8GPFdY6rz=
+QRrW9jx49N77S8V4W3VXdR04SHxDQW7t38Y44LD-lWW2tXkxJ2QjR8ZN1w-Mx6wXt_qVFrckm6k=
+2GjMW8TLj0f7bwDRxV8YCWw7Jl-Z-MF0bTBPDgvMW8HPZNY5-lK5bW2WGZb15jnzjLW8QJ7-z2w=
+fZkQW7mcS9L8x7RbxW5WzVCt6bTpwxW8_KSGx4TwdPLW3l353M7Pnl18W6q-tpB4LzkCPW1_bd9=
+P5G4BqCW7n36s24zLX-rW25H3026QHXhjW5hYKz83sG2BRd7Fl6n04 ) answers these ques=
+tions and much more! You=E2=80=99ll learn:
+
+- Why product integration data is a uniquely valuable source of data for yo=
+ur large language models and, by extension, the AI features they power
+
+- Real-world examples of how companies use product integration data to fuel=
+ their AI features
+
+- The pros and cons of using native integrations, embedded iPaaS solutions,=
+ and unified API platforms to feed product integration data to your large l=
+anguage models
+
+Get our eBook
+(https://d2qVkb04.na1.hubspotlinks.com/Ctc/UB+113/d2qVkb04/MVxVK-vzf8wW29Nk=
+_V4T5SkyW72Qs8N5dV5VDN3mxJ7j31zrPW8wLKSR6lZ3pyW3ZRCBG2nFKX8W3VFcW93RZ8W0VWq=
+FCY7Stz-1W9dd6bD6S3tkHW40P6pB6RV2RBW2jkVnh6WTR1bW8GPFdY6rzQRrW9jx49N77S8V4W=
+3VXdR04SHxDQW7t38Y44LD-lWW2tXkxJ2QjR8ZN1w-Mx6wXt_qVFrckm6k2GjMW8TLj0f7bwDRx=
+V8YCWw7Jl-Z-MF0bTBPDgvMW8HPZNY5-lK5bW2WGZb15jnzjLW8QJ7-z2wfZkQW7mcS9L8x7Rbx=
+W5WzVCt6bTpwxW8_KSGx4TwdPLW3l353M7Pnl18W6q-tpB4LzkCPW1_bd9P5G4BqCW7n36s24zL=
+X-rW25H3026QHXhjW5hYKz83sG2BRd7Fl6n04 )
+
+Discover how Merge can transform your product=E2=80=99s AI features by sche=
+duling time with one of our integration experts (https://d2qVkb04.na1.hubsp=
+otlinks.com/Ctc/UB+113/d2qVkb04/MVxVK-vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ6=
+K3pyd0W7lCdLW6lZ3m2W2_NCbb5ghsqtW8lycKG2w5XzNW3nKpyB1mkb_mW42tNS067H0-GW5jY=
+-XR1kDVsqW4yNrpr1mtGqmW2zXsMn7tSGnWW8_zNhy5BxS5pW34wY2_8tHhJHW4gBRw_2sFK0bW=
+9fKHRN7-XlVGW3cVhcC69CP6ZW14dZTx2-g1pRN2C00mQZHjDjW8-X49S46Q31-N3SNnHSHPzJH=
+W64JjXJ2MXl94W80XJXp5ylvFdW1bXx_378w0fNW2823vX8lsqN0W2bHt3N5SS64HW42VlD87TF=
+173W7YJHm-6ssbSHVLmpjd6y7GYDf314wwY04 ) .
+
+Sincerely,
+
+The Merge Team
+
+Merge Logo (https://d2qVkb04.na1.hubspotlinks.com/Ctc/UB+113/d2qVkb04/MVxVK=
+-vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ6K3pyd0W7lCdLW6lZ3p0W2BN16T7RX7WvN1qnK=
+yZcwCzZVmLg1l2-z-fdW6nf70w27MPYQW7zPL3s4Y8qjqW41Lv5127ht63W7y58SW8DbZRlW33b=
+Np083KZqRVZqk9j2CWNh-VNSCX15N9VCCW51yTrM586ZjHW4WMYgy8xQMVyW93SjCf3JJrGmW5Y=
+X3n71h2h6xW8trVzQ1L6hHrW20bsmP1MJXY4W6mQtrb25PbqHW5fr-hR6RXYnlW8c5bh69hv55_=
+W5DWf926gNtMCW9d3PDb8CvYwdW4LX8M-390jyHW4fFnvd5Wq2phW5Ym55R2gpVJcf94K37P04 =
+)
+
+Medium Logo (https://d2qVkb04.na1.hubspotlinks.com/Ctc/UB+113/d2qVkb04/MVxV=
+K-vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ6K3pyd0W7lCdLW6lZ3n5W2LBBGW5KDzW_W56s=
+9sT8BfkDPW7BJhrT97bX4MW17X6r428rxC7N7LcrlKlDNF-W1gNB4s6Z14wzW4hwkwb4sdRz-W6=
+XSKYr4Mq1MVN66vtMfWWGqlW3V_pfK5Tqt7cW36j1sW4hTqPWN4qpX1kqZF8QW8dnyTH98KD5vN=
+8XxfDTm55HLW4qtzjr8Rkw0qN36Y2XZm_CvnN4SQryvSVc7tW5sX9C98kkhwsW6n53ch5RwY6mW=
+1gWNbC4SfVjGW2F71S_3Fg5x8W1Ctzk-23sX37W1MpqfT9gQNgWW1cWcXG94hMFsf58bHBq04 )
+Twitter Logo (https://d2qVkb04.na1.hubspotlinks.com/Ctc/UB+113/d2qVkb04/MVx=
+VK-vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ6K3pyd0W7lCdLW6lZ3p-W1mYWsT4sqK3mW8T=
+6-vC49M0f2W5c_Kq94ljdxvW2Ww10v5RLPfnW5tGv-c3KVr4dW6y1QhF71NFFNW4Zr9qR3DmBH4=
+N44TvgghMkmNW17BvMh9dzZTQVVJwS863tBSqW8svWNc87YHK_N8qC73bLC4hfN7_wnZ6VgJd2W=
+6SlYCr3yd623W2pD0dc6-XScQW22FlYR1KyzN_W8Ly5kB2dwFt1W85GW0s3XVryLW6pvFqJ6bnP=
+8wV66RZf5krxH4N5QmQgX6Vhl0W5BBQVk6j9mj7W3zv2Dt7DwdJ2W3lgp2z7xgKMXf5JR1_z04 =
+)
+Instagram Logo (https://d2qVkb04.na1.hubspotlinks.com/Ctc/UB+113/d2qVkb04/M=
+VxVK-vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ703pyd0W7Y8-PT6lZ3lBW2X_JsQ2jRkvSW=
+5CJpFD2d5_xcW8x7Wmq1Tp_HsW70R2731S82m5N8w2dhC6LLPnVltp2v812wV3W7ldR8g8dThzv=
+W9jR3Tl55W8KXW2dXgZ03W81PJVL8Gdt255CWqN8gV22mSwnyjN2bFWBjXYD3qW2pZPFD4BYmfv=
+W2RjH2P3trR03W2f2dWL7pPGDsW3RjQFJ3L69xXN64XpJcDmZlJW8LP1WB32SxLxW1ZK1mC3xBC=
+QzW1ZDrBR3DJSpzVpRxSg7B98_VN3lc4lfVdMkTW8BNJ5L3hlJZSW5Lvs9t9bszXCW6MhtG43Zk=
+SkNW9m4l0S5PvW5rf7VsKFR04 )
+LinkedIn Logo (https://d2qVkb04.na1.hubspotlinks.com/Ctc/UB+113/d2qVkb04/MV=
+xVK-vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ703pyd0W7Y8-PT6lZ3mxW1sg6F026SHhRW2=
+C3T1p7-cTfNW6LzswZ1MrKqVW3XMMlP7Vss0HW5TVWbY38z-vlW7QPQmK4RLTbSW8gp_Bh2VVhR=
+cW1p4-YB3bnCr0W72YfF86y4s3zW66z2S89dYsQzW2wDrW-6Js8WgW3vGCf21Dyjc9W3tgrmC6f=
+zQ7JW5W5qwT3jLdjKVt0k2y6CCC7YW1XbxJn8KrSRSN76N_BPdfxSyW4w1x688kYBPpW1t4Jpx1=
+DRSGpW3-p8x98cXwc_W36cN--4Pf5_xW2rrG9X7XW0W-N61hRphvCDN8W7DdSFY14jr61W3kQ0r=
+C1TfCFHMSpXknDVs5Cf2m8tGP04 )
+
+Merge API, 353 Sacramento St., San Francisco, CA, 94111
+
+Unsubscribe  (https://hs-20608300.s.hubspotemail.net/hs/preferences-center/=
+en/direct?data=3DW2nXS-N30h-BsW3y_d8P1Lw3qxW4kkFZr41TNzqW4ck2Jh2HKG53W4rjd-=
+x1V1BC5W1XcSnR1BwVbJW3j7F5k2RljfQW3X_zRX1X7js1W3BMyQG1_bZZ8W1NmPQ13BYqfBW1Z=
+gCKm45mlkmW47nKYY3b49TnW4fskmv2WDGZXW4pnd0n3_ZB9dW346nkB2nHCnTW3_WGHx4kcq5T=
+W32qpCl2-n020W1Ly8ww4ftDvSW2xKb6V3QSWkgW3JL2v53SRTLSW4fGBkR36lgf3W2-KjHj3j0=
+Hm-W3NT6s62HpFF7W1V3hTt3bd1PNW2xHyL9238z8SW1Xrscv2vLDvdW4fh9Wn3bkW13W3H5fRD=
+3647MGW1Vv7NG3QPxBnW1SrthC3NXT05W4pjQQ33LW1PLW49yK8y1LBC5DW36m41_3VNNjGW3BX=
+cLz24QdSVW47KgLr4fGyzmW4mFBhJ2WKGX5W4psPCm2-LTpMW3_Rx8w3c-6s-W4rlm1Q1NDw8ZW=
+2nSfTZ4tl-6pW2FKqhw1Scr-_W43lLN747SH_5W3VzVQt38vT-WW3LHMYx3NMkX7W21bld12KCB=
+ywW4tCbh93N_bdmW30K2Ps23qkdpf38b7x904&_hsenc=3Dp2ANqtz-8NxQF6tqgT3ZewgGikyw=
+G4Lv5Hz7QGDIUNtD34WojoqrKUkQ9PCL2NSRScFL3_Pjr8WnMToPHWKoYEE7Jo1pw50bUFSqtct=
+yXeT2Gooa0cuj_5d6o&_hsmi=3D305437431 ) =E2=80=A2 Manage Preferences  (https=
+://hs-20608300.s.hubspotemail.net/hs/preferences-center/en/page?data=3DW2nX=
+S-N30h-BsW3y_d8P1Lw3qxW4kkFZr41TNzqW4ck2Jh2HKG53W4rjd-x1V1BC5W1XcSnR1BwVbJW=
+3j7F5k2RljfQW3X_zRX1X7js1W3BMyQG1_bZZ8W1NmPQ13BYqfBW1ZgCKm45mlkmW47nKYY3b49=
+TnW4fskmv2WDGZXW4pnd0n3_ZB9dW346nkB2nHCnTW3_WGHx4kcq5TW32qpCl2-n020W1Ly8ww4=
+ftDvSW2xKb6V3QSWkgW3JL2v53SRTLSW4fGBkR36lgf3W2-KjHj3j0Hm-W3NT6s62HpFF7W1V3h=
+Tt3bd1PNW2xHyL9238z8SW1Xrscv2vLDvdW4fh9Wn3bkW13W3H5fRD3647MGW1Vv7NG3QPxBnW1=
+SrthC3NXT05W4pjQQ33LW1PLW49yK8y1LBC5DW36m41_3VNNjGW3BXcLz24QdSVW47KgLr4fGyz=
+mW4mFBhJ2WKGX5W4psPCm2-LTpMW3_Rx8w3c-6s-W4rlm1Q1NDw8ZW2nSfTZ4tl-6pW2FKqhw1S=
+cr-_W43lLN747SH_5W3VzVQt38vT-WW3LHMYx3NMkX7W21bld12KCBywW4tCbh93N_bdmW30K2P=
+s23qkdpf38b7x904&_hsenc=3Dp2ANqtz-8NxQF6tqgT3ZewgGikywG4Lv5Hz7QGDIUNtD34Woj=
+oqrKUkQ9PCL2NSRScFL3_Pjr8WnMToPHWKoYEE7Jo1pw50bUFSqtctyXeT2Gooa0cuj_5d6o&_h=
+smi=3D305437431 ) Privacy Policy (https://d2qVkb04.na1.hubspotlinks.com/Ctc=
+/UB+113/d2qVkb04/MVxVK-vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ703pyd0W7Y8-PT6l=
+Z3pJW5v05Qs2xTkLkW8R1MZ73dl0NNN426fzFqZpX_W63xD6R7NrZtKW4XwLH66DgWvkW5cfY_K=
+3b-JkYN7H7jR9GbBq4W5jSfGP9lXJfJW8NSNb967ByFnN19McdqqvSj8W4FWZfD62pN5tW1q6MZ=
+g5grJCZW1nmGtz3bXXfwW3DwJnd3WVMnHVNYkNl4TlkF8W4fMtRX6YG9WJW5vvfsw5kck1ZMFt4=
+-0FXKC7W8hV5sQ2pr2pwW6btG6F7wkWfZW1DfR388pfgYsW3pC5j-1nwpyZVKX6967RTt7nW20f=
+v9J1L_Yp-W92ZGDM8BRmSMN8jh3blhf5Fmf46gy7204 )
+------=_Part_2768495_351399472.1715263392094
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www=
+.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns=3D"http://www.w3=
+.org/1999/xhtml" xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:=
+v=3D"urn:schemas-microsoft-com:vml" lang=3D"en"><head>
+    <title>How to use product integration data to build AI features =E2=9C=
+=A8</title>
+    <meta property=3D"og:title" content=3D"How to use product integration d=
+ata to build AI features =E2=9C=A8">
+    <meta name=3D"twitter:title" content=3D"How to use product integration =
+data to build AI features =E2=9C=A8">
+   =20
+   =20
+   =20
+<meta name=3D"x-apple-disable-message-reformatting">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0">
+    <!--[if gte mso 9]>
+  <xml>
+      <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+  </xml>
+ =20
+  <style>
+    ul > li {
+      text-indent: -1em;
+    }
+  </style>
+<![endif]-->
+<!--[if mso]>
+<style type=3D"text/css">
+ body, td {font-family: Arial, Helvetica, sans-serif;}
+ .hse-body-wrapper-table {background-color: #EAF0F6;}
+</style>
+<![endif]-->
+   =20
+     =20
+   =20
+  <meta name=3D"generator" content=3D"HubSpot"><meta property=3D"og:url" co=
+ntent=3D"http://merge-20608300.hs-sites.com/-temporary-slug-07141814-7ab9-4=
+1f7-aa1c-8a0263c6b580"><meta name=3D"robots" content=3D"noindex,follow"><!-=
+-[if !((mso)|(IE))]><!-- --><style type=3D"text/css">.moz-text-html .hse-co=
+lumn-container{max-width:600px !important;width:600px !important}
+.moz-text-html .hse-column{display:table-cell;vertical-align:top}.moz-text-=
+html .hse-section .hse-size-12{max-width:600px !important;width:600px !impo=
+rtant}
+@media only screen and (min-width:640px){.hse-column-container{max-width:60=
+0px !important;width:600px !important}
+.hse-column{display:table-cell;vertical-align:top}.hse-section .hse-size-12=
+{max-width:600px !important;width:600px !important}
+}@media only screen and (max-width:639px){img.stretch-on-mobile,.hs_rss_ema=
+il_entries_table img,.hs-stretch-cta .hs-cta-img{height:auto !important;wid=
+th:100% !important}
+.display_block_on_small_screens{display:block}.hs_padded{padding-left:20px =
+!important;padding-right:20px !important}
+.hs-hm,table.hs-hm{display:none}.hs-hd{display:block !important}table.hs-hd=
+{display:table !important}
+ul,blockquote{margin:0;padding:1em 40px} }</style><!--<![endif]--><style ty=
+pe=3D"text/css">#hs_body #hs_cos_wrapper_main a[x-apple-data-detectors]{col=
+or:inherit !important;text-decoration:none !important;font-size:inherit !im=
+portant;font-family:inherit !important;font-weight:inherit !important;line-=
+height:inherit !important}
+a{text-decoration:underline}p{margin:0}body{-ms-text-size-adjust:100%;-webk=
+it-text-size-adjust:100%;-webkit-font-smoothing:antialiased;moz-osx-font-sm=
+oothing:grayscale}</style></head>
+  <body id=3D"hs_body" bgcolor=3D"#EAF0F6" style=3D"margin:0 !important; pa=
+dding:0 !important; font-family:Arial, sans-serif; font-size:15px; color:#0=
+00000; word-break:break-word">
+    <div id=3D"preview_text" style=3D"display:none;font-size:1px;color:#EAF=
+0F6;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;=
+" lang=3D"en">We=E2=80=99ll cover all of your options for collecting produc=
+t integration data</div>
+   =20
+<!--[if gte mso 9]>
+<v:background xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"t">
+    <v:fill type=3D"tile" size=3D"100%,100%" color=3D"#ffffff"/>
+</v:background>
+<![endif]-->
+    <div class=3D"hse-body-background" lang=3D"en" style=3D"background-colo=
+r:#eaf0f6" bgcolor=3D"#eaf0f6">
+      <table role=3D"presentation" class=3D"hse-body-wrapper-table" cellpad=
+ding=3D"0" cellspacing=3D"0" style=3D"border-spacing:0 !important; border-c=
+ollapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; margin:0; pad=
+ding:0; width:100% !important; min-width:320px !important; height:100% !imp=
+ortant" width=3D"100%" height=3D"100%">
+        <tbody><tr>
+          <td class=3D"hse-body-wrapper-td" valign=3D"top" style=3D"border-=
+collapse:collapse; mso-line-height-rule:exactly; font-family:Arial, sans-se=
+rif; font-size:15px; color:#000000; word-break:break-word; padding-top:20px=
+; padding-bottom:20px">
+            <div id=3D"hs_cos_wrapper_main" class=3D"hs_cos_wrapper hs_cos_=
+wrapper_widget hs_cos_wrapper_type_dnd_area" style=3D"color: inherit; font-=
+size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" d=
+ata-hs-cos-type=3D"dnd_area"> =20
+  <div id=3D"section-1" class=3D"hse-section hse-section-first" style=3D"pa=
+dding-left:10px; padding-right:10px">
+   =20
+   =20
+    <!--[if !((mso)|(IE))]><!-- -->
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; Margin-left:auto; Margin-right:auto; border-collapse:collapse; bo=
+rder-spacing:0; background-color:#ffffff" bgcolor=3D"#ffffff">
+    <!--<![endif]-->
+   =20
+    <!--[if (mso)|(IE)]>
+      <div class=3D"hse-column-container" style=3D"min-width:280px;max-widt=
+h:600px;width:100%;Margin-left:auto;Margin-right:auto;border-collapse:colla=
+pse;border-spacing:0;">
+      <table align=3D"center" style=3D"border-collapse:collapse;mso-table-l=
+space:0pt;mso-table-rspace:0pt;width:600px;" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#ffffff">
+      <tr style=3D"background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0pt;mso-table-rsp=
+ace:0pt;width:600px">
+<![endif]-->
+<div id=3D"column-1-0" class=3D"hse-column hse-size-12">
+  <div id=3D"hs_cos_wrapper_module_17140696903022" class=3D"hs_cos_wrapper =
+hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; =
+font-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widg=
+et" data-hs-cos-type=3D"module"><table class=3D"hse-image-wrapper" role=3D"=
+presentation" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=3D"b=
+order-spacing:0 !important; border-collapse:collapse; mso-table-lspace:0pt;=
+ mso-table-rspace:0pt">
+  <tbody>
+    <tr>
+      <td class=3D"hs_padded" align=3D"center" valign=3D"top" style=3D"bord=
+er-collapse:collapse; mso-line-height-rule:exactly; font-family:Arial, sans=
+-serif; color:#000000; word-break:break-word; text-align:center; padding:10=
+px 20px; font-size:0px">
+        <a href=3D"https://d2qVkb04.na1.hubspotlinks.com/Ctc/UB+113/d2qVkb0=
+4/MVxVK-vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ7j32pp2W8wLKSR6lZ3nnW5hsFSK8thV=
+37W7BD4fj99h5dZW7G_RTB3s749cW6kZDmt45T3pfW3G7qnH5dzBtdW121M8n18bF9GN3rJRCGx=
+FqmFW5XV2yz6ykhR6W2XNhpr8Gz9LHW3nl69C9643HdW9byWk2231H7CW6Bxjfw7q3KDNW4KQxG=
+s8J6T0cW4L_7D82NMGvxW64ChDr6Q-v7XW5wlCPk6ynd9PW3hSZ4_4fWQb3W722vL04Tk2dbW9l=
+FW9M93zK1lW3yZ69p33Zp8JW1SkmDH2PN68JW5hM9CH88j42wW2c7BHP72ZkyDW6vPmTx3s3BTJ=
+W5Y1QG55S9NmNW5-PlFL8pNnf4W2CWvwq6X9hNsW39pcMw1V50_5f8TX6F404" target=3D"_b=
+lank" style=3D"color:#00a4bd; mso-line-height-rule:exactly" data-hs-link-id=
+=3D"0">
+        <img alt=3D"AI eBook" src=3D"https://hs-20608300.f.hubspotemail.net=
+/hub/20608300/hubfs/Screenshot%202024-04-25%20at%202.28.45%20PM.png?width=
+=3D1120&amp;upscale=3Dtrue&amp;name=3DScreenshot%202024-04-25%20at%202.28.4=
+5%20PM.png" style=3D"outline:none; text-decoration:none; -ms-interpolation-=
+mode:bicubic; border:none; max-width:100%; font-size:16px" width=3D"560" al=
+ign=3D"middle" srcset=3D"https://hs-20608300.f.hubspotemail.net/hub/2060830=
+0/hubfs/Screenshot%202024-04-25%20at%202.28.45%20PM.png?upscale=3Dtrue&amp;=
+width=3D1120&amp;upscale=3Dtrue&amp;name=3DScreenshot%202024-04-25%20at%202=
+.28.45%20PM.png 560w, https://hs-20608300.f.hubspotemail.net/hub/20608300/h=
+ubfs/Screenshot%202024-04-25%20at%202.28.45%20PM.png?upscale=3Dtrue&amp;wid=
+th=3D2240&amp;upscale=3Dtrue&amp;name=3DScreenshot%202024-04-25%20at%202.28=
+.45%20PM.png 1120w" sizes=3D"(max-width: 560px) 100vw, 560px">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-ta=
+ble-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td class=3D"hs_padded" st=
+yle=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-family:=
+Arial, sans-serif; font-size:15px; color:#000000; word-break:break-word; pa=
+dding:18px 24px"><div id=3D"hs_cos_wrapper_module-1-0-0" class=3D"hs_cos_wr=
+apper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inh=
+erit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type=
+=3D"widget" data-hs-cos-type=3D"module"><div id=3D"hs_cos_wrapper_module-1-=
+0-0_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_ric=
+h_text" style=3D"color: inherit; font-size: inherit; line-height: inherit;"=
+ data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"rich_text"><p styl=
+e=3D"mso-line-height-rule:exactly; line-height:175%"><span style=3D"color: =
+#000000;">Hi Eric,</span></p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">Product integra=
+tion data can help companies build a wide range of cutting-edge AI features=
+. This can be anything from providing personalized recommendations on leads=
+ to powering an intranet solution=E2=80=99s search functionality.</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">But how, exactl=
+y, can you collect product integration data? And what are the benefits and =
+drawbacks of each option?</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%"><a href=3D"http=
+s://d2qVkb04.na1.hubspotlinks.com/Ctc/UB+113/d2qVkb04/MVxVK-vzf8wW29Nk_V4T5=
+SkyW72Qs8N5dV5VDN3mxJ7j32pp2W8wLKSR6lZ3nTW4bD8t97--RyKW1Rd9G35rrdVBW3GGPSw1=
+QY1R0W63hWGV1Ynq6mW694mzt7BygWyW2GYJTm3Hv3rRW2xk5xn5W1JGFW5FH35N3sM9q1W7MF4=
+R08vYs2hW1XWpc36JthClW60hk8C3wxQgGW70pR8R5Rld_xW42zM7b5fJMkzW94kxry4M3XYcW1=
+txXT58rtgfHW4XCqJS23N52XN8Dr5yJFbmrQW27dKJF2RFtvcW49ZHb46jLQ-pW2PQNf846gFrx=
+W2rDNM58L6MJmW3bQSJp3xQRNrN5sCxVP30_9YW6xd8zx2HPB41VGzCH618vx14W5rhVFK3Vh-7=
+rW92VxLf9bdR8rW2PzGWj3kx276f1cSPR804" rel=3D"noopener" style=3D"mso-line-he=
+ight-rule:exactly; color:#065ff7" data-hs-link-id=3D"1" target=3D"_blank">O=
+ur latest eBook</a> answers these questions and much more! You=E2=80=99ll l=
+earn:</p>
+<ul style=3D"mso-line-height-rule:exactly; line-height:175%">
+<li aria-level=3D"1" style=3D"mso-line-height-rule:exactly">Why product int=
+egration data is a uniquely valuable source of data for your large language=
+ models and, by extension, the AI features they power<br><br></li>
+<li aria-level=3D"1" style=3D"mso-line-height-rule:exactly">Real-world exam=
+ples of how companies use product integration data to fuel their AI feature=
+s<br><br></li>
+<li aria-level=3D"1" style=3D"mso-line-height-rule:exactly">The pros and co=
+ns of using native integrations, embedded iPaaS solutions, and unified API =
+platforms to feed product integration data to your large language models</l=
+i>
+</ul></div></div></td></tr></tbody></table>
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-ta=
+ble-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td class=3D"hs_padded" st=
+yle=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-family:=
+Arial, sans-serif; font-size:15px; color:#000000; word-break:break-word; pa=
+dding:10px 20px"><div id=3D"hs_cos_wrapper_module_16969682208164" class=3D"=
+hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"c=
+olor: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-gener=
+al-type=3D"widget" data-hs-cos-type=3D"module"><table align=3D"center" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D=
+"border-spacing:0 !important; mso-table-lspace:0pt; mso-table-rspace:0pt; b=
+order-collapse:separate!important">
+    <tbody><tr>
+        <!--[if mso]>
+      <td align=3D"center" valign=3D"middle" bgcolor=3D"#065ff7" style=3D"b=
+order-radius:8px;cursor:auto;background-color:#065ff7;padding:12px 18px">
+    <![endif]-->
+    <!--[if !mso]><!-- -->
+      <td align=3D"center" valign=3D"middle" bgcolor=3D"#065ff7" style=3D"b=
+order-collapse:collapse; mso-line-height-rule:exactly; font-family:Arial, s=
+ans-serif; font-size:15px; color:#000000; word-break:break-word; border-rad=
+ius:8px; cursor:auto; background-color:#065ff7">
+   <!--<![endif]-->
+        <a href=3D"https://d2qVkb04.na1.hubspotlinks.com/Ctc/UB+113/d2qVkb0=
+4/MVxVK-vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ7j32pp2W8wLKSR6lZ3pcW360_rN5z74=
+vbW7vMGkc4LL9jbW6HFSHp224mlGW6Xw9jq86C7fmW6CGJx23YRl1BW6SRg_p3dMm6ZW1K-ylQ2=
+XH3XYW7Z_V6K885_YvW1ZsLrD6QmwjkW1YyVJn6dZdN-W4b994R2lDkNkW17NNkB4L8JX-W2YgW=
+B87qllmVW6XY-nr3ZHyD9VBd51m1BtL5sW3J7x7_1-f3_-W7xdT1x20DJFNN2tx6VxLJwmZW95g=
+XGv3LHM1vW6CZ1SK8TTYrzW19qdwk7Xp6hQW126vyT8554jrW1kxsv_15Y31dW1NngLp3DnQ59W=
+4-HV-R6Jd1cfW9j22c01FMc2tW7NqMhg30kqwcW7YLl7Z56MrFcf249QnH04" target=3D"_bl=
+ank" style=3D"color:#00a4bd; mso-line-height-rule:exactly; font-size:16px; =
+font-family:Arial, sans-serif; Margin:0; text-transform:none; text-decorati=
+on:none; padding:12px 18px; display:block" data-hs-link-id=3D"2">
+          <strong style=3D"color:#ffffff;font-weight:normal;text-decoration=
+:none;font-style:normal;">Get our eBook</strong>
+        </a>
+      </td>
+    </tr>
+  </tbody></table></div></td></tr></tbody></table>
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-ta=
+ble-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td class=3D"hs_padded" st=
+yle=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-family:=
+Arial, sans-serif; font-size:15px; color:#000000; word-break:break-word; pa=
+dding:10px 20px"><div id=3D"hs_cos_wrapper_module_17113819252471" class=3D"=
+hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"c=
+olor: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-gener=
+al-type=3D"widget" data-hs-cos-type=3D"module"><div id=3D"hs_cos_wrapper_mo=
+dule_17113819252471_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_=
+wrapper_type_rich_text" style=3D"color: inherit; font-size: inherit; line-h=
+eight: inherit;" data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"ri=
+ch_text"><p style=3D"mso-line-height-rule:exactly; line-height:175%"><span =
+style=3D"color: #000000;">Discover how Merge can transform your product=E2=
+=80=99s AI features by </span><a href=3D"https://d2qVkb04.na1.hubspotlinks.=
+com/Ctc/UB+113/d2qVkb04/MVxVK-vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ6K3qn9gW7=
+lCdLW6lZ3m5W2pztWX7LMP8RW1FDSL17fsddDW3b6YK06hnlWsW2Yg07D3__C61W16nB033zjj0=
+BW7Xpw1L868rKQW35Qr1k2Qz592W7gskkh7VSrNDW413xxG92ZfrlW74S5YL6czhjkW2dtPvd78=
+F7tYW1b6tf985cyJNW1r93fJ4zh0WrN8tMtr7tcdkzW5wGrX01DGTdCW7Gjgsr6_4626W7pZd6G=
+4X9p4JW2Sh4ww8Q1B19W5Ck3vS6wRK2XW3tCYRB16w37mW29NcDV7hdBk0W1H5w842DC-7DW1H1=
+tSB8DvTCzW6P8Dws2mGfHgf42b4TR04" rel=3D"noopener" style=3D"mso-line-height-=
+rule:exactly; color:#065ff7" data-hs-link-id=3D"0" target=3D"_blank">schedu=
+ling time with one of our integration experts</a><span style=3D"color: #000=
+000;">.&nbsp;</span></p></div></div></td></tr></tbody></table>
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-ta=
+ble-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td class=3D"hs_padded" st=
+yle=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-family:=
+Arial, sans-serif; font-size:15px; color:#000000; word-break:break-word; pa=
+dding:18px 24px"><div id=3D"hs_cos_wrapper_module_16969681749363" class=3D"=
+hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"c=
+olor: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-gener=
+al-type=3D"widget" data-hs-cos-type=3D"module"><div id=3D"hs_cos_wrapper_mo=
+dule_16969681749363_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_=
+wrapper_type_rich_text" style=3D"color: inherit; font-size: inherit; line-h=
+eight: inherit;" data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"ri=
+ch_text"><div data-block=3D"true" data-editor=3D"3f57k" data-offset-key=3D"=
+abu82-0-0" style=3D"mso-line-height-rule:exactly; line-height:175%">
+<div data-offset-key=3D"abu82-0-0" style=3D"mso-line-height-rule:exactly; l=
+ine-height:175%">
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">Sincerely,&nbsp=
+;<br>The Merge Team&nbsp;</p>
+</div>
+</div></div></div></td></tr></tbody></table>
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-ta=
+ble-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td class=3D"hs_padded" st=
+yle=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-family:=
+Arial, sans-serif; font-size:15px; color:#000000; word-break:break-word; pa=
+dding:10px 20px"><div id=3D"hs_cos_wrapper_module-1-0-1" class=3D"hs_cos_wr=
+apper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inh=
+erit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type=
+=3D"widget" data-hs-cos-type=3D"module"><table role=3D"none" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" style=3D"border-spacing:0 !important; bo=
+rder-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; vertica=
+l-align:top" width=3D"100%">
+  <tbody><tr>
+    <td align=3D"center" style=3D"border-collapse:collapse; mso-line-height=
+-rule:exactly; font-family:Arial, sans-serif; color:#000000; font-size:0; w=
+ord-break:break-word">
+      <p style=3D"mso-line-height-rule:exactly; font-size:1px; border-top:1=
+px solid #CCCCCC; width:100%; margin:0 auto"></p>
+      <!--[if mso]>
+        <table role=3D"none" align=3D"center" border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"font-size:1px;border-top:1px solid #CCCCCC;wid=
+th:560px;">
+          <tr>
+            <td style=3D"height:0;line-height:0">&nbsp;</td>
+          </tr>
+        </table>
+      <![endif]-->
+    </td>
+  </tr>
+</tbody></table></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+ =20
+ =20
+  <div id=3D"section-2" class=3D"hse-section hse-section-last" style=3D"pad=
+ding-left:10px; padding-right:10px">
+   =20
+   =20
+    <!--[if !((mso)|(IE))]><!-- -->
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; Margin-left:auto; Margin-right:auto; border-collapse:collapse; bo=
+rder-spacing:0; background-color:#ffffff" bgcolor=3D"#ffffff">
+    <!--<![endif]-->
+   =20
+    <!--[if (mso)|(IE)]>
+      <div class=3D"hse-column-container" style=3D"min-width:280px;max-widt=
+h:600px;width:100%;Margin-left:auto;Margin-right:auto;border-collapse:colla=
+pse;border-spacing:0;">
+      <table align=3D"center" style=3D"border-collapse:collapse;mso-table-l=
+space:0pt;mso-table-rspace:0pt;width:600px;" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#ffffff">
+      <tr style=3D"background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0pt;mso-table-rsp=
+ace:0pt;width:600px">
+<![endif]-->
+<div id=3D"column-2-0" class=3D"hse-column hse-size-12">
+  <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-=
+table-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td style=3D"border-coll=
+apse:collapse; mso-line-height-rule:exactly; font-family:Arial, sans-serif;=
+ font-size:15px; color:#000000; word-break:break-word; padding:15px 0px 10p=
+x"><div id=3D"hs_cos_wrapper_module-2-0-0" class=3D"hs_cos_wrapper hs_cos_w=
+rapper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; font-siz=
+e: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" data=
+-hs-cos-type=3D"module"><table width=3D"100%" border=3D"0" align=3D"center"=
+ cellpadding=3D"0" cellspacing=3D"0" valign=3D"center" style=3D"border-spac=
+ing:0 !important; border-collapse:collapse; mso-table-lspace:0pt; mso-table=
+-rspace:0pt">
+<tbody>
+<tr>
+<td style=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-f=
+amily:Arial, sans-serif; font-size:15px; color:#000000; word-break:break-wo=
+rd; padding-left:24px"><a href=3D"https://d2qVkb04.na1.hubspotlinks.com/Ctc=
+/UB+113/d2qVkb04/MVxVK-vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ6K3qn9gW7lCdLW6l=
+Z3pLW2tXX_46BkFZZW2yWG882fRlLwVnC_Yl1R_Mz4W6-K9MC7_jlP0Vyrvjw5Ly4YtW81JptX4=
+V5SH7W1BBJwB7hV4p2W1HxVM02JVJmYW17gX9d16-GvWW9h_hvh5bzpp5W2g3zS-6qTtq8W97gV=
+P23j7X4lW2kGdm79lwW7ZN47cKSPKkD9RN2ZnT3RQkchtW6PQWt38nS6NYW5t9mF_3qPPlxW63_=
+dVG2K8GG_W627RbF2sJYQmW8Z7-_X3WQvmtW6jy7T-5XQqS0W5sFkf996YFPtW2RQRBW1pzKWsW=
+46hjdM8ndH26f4JwKJ204" style=3D"color:#00a4bd; mso-line-height-rule:exactly=
+" data-hs-link-id=3D"0" target=3D"_blank"><img alt=3D"Merge Logo" src=3D"ht=
+tps://merge-emails.s3.amazonaws.com/Email-Merge-Logo.png" style=3D"outline:=
+none; text-decoration:none; -ms-interpolation-mode:bicubic; border:none"></=
+a></td>
+<td style=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-f=
+amily:Arial, sans-serif; font-size:15px; color:#000000; word-break:break-wo=
+rd; float:right; vertical-align:bottom; height:22px; margin-top:5px; paddin=
+g-right:24px" valign=3D"bottom" height=3D"22">
+<a href=3D"https://d2qVkb04.na1.hubspotlinks.com/Ctc/UB+113/d2qVkb04/MVxVK-=
+vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ6K3qn9gW7lCdLW6lZ3lWW4QfH2Y2v5w01W75qKY=
+519zqXPMn_G1xdf6H0W73y3Zw3yTgG3W7TddcL7lR21QW5d4rYk3-M4qwW8tZCwB9fQ60kW6Yp0=
+n13R4VVGW8V7DCR7zys2ZW14nrTs6PbLQ8W1fkdlm8CYfPzW1Cdm0z3nkD_3W2Ny10N8h4HD6W2=
+nww8H6mMBYcW3KP8KC8KCvsdMmzY0kDM3LyW50Ql_f7Pdh0fMdPvZQgFjwjW4FxST84jJ-x-W1N=
+nPJ_4kpKf4Vfq0jX7CJ59vW16PnC196F7yVVwdxKg7mm98WN80TMMx5rc-sf1jKB4x04" style=
+=3D"color:#00a4bd; mso-line-height-rule:exactly" data-hs-link-id=3D"0" targ=
+et=3D"_blank"><img alt=3D"Medium Logo" style=3D"outline:none; text-decorati=
+on:none; -ms-interpolation-mode:bicubic; border:none; margin-left:5px" src=
+=3D"https://merge-emails.s3.amazonaws.com/Email-Medium-Logo.png"></a>
+<a href=3D"https://d2qVkb04.na1.hubspotlinks.com/Ctc/UB+113/d2qVkb04/MVxVK-=
+vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ6K3qn9gW7lCdLW6lZ3lgN3xrDDYjVTBDVDYDr12=
+KHJn_W3T21S41VbRylW2J9fD24bZKMdW8k2mmd5XPsNyVnQYwW3FWGFcW5bzBFD43rZxSV9ty1Z=
+4v--FbW5hhyTX3H6grbW8Mf9DM8Hy3dtW5DPxvw4Pr9fLW7_8F4R4smhPjN143vMwXvny4VgR2k=
+b7lBR1GW4ZDh_z7jF1rnVslCfH83zP_jW4Z156_580J6mW7gr-tG3syqLmVYG2MQ1nlMMXW7s6L=
+4B8dSQMqW7ss11K90BSy7W8nQh8q8xbcbNW8GKjhj7qVcxGV34fpc3HwgXwf4CF-xs04" style=
+=3D"color:#00a4bd; mso-line-height-rule:exactly" data-hs-link-id=3D"0" targ=
+et=3D"_blank"><img alt=3D"Twitter Logo" style=3D"outline:none; text-decorat=
+ion:none; -ms-interpolation-mode:bicubic; border:none; margin-left:5px" src=
+=3D"https://merge-emails.s3.amazonaws.com/Email-Twitter-Logo.png"></a>
+<a href=3D"https://d2qVkb04.na1.hubspotlinks.com/Ctc/UB+113/d2qVkb04/MVxVK-=
+vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ703qn9gW7Y8-PT6lZ3njVyXFCg5Btk5VW26n-L3=
+8CdWRvW7vVF_p7Q9JHCW8PCCHl53Vmq2W4tD4Lm2fwvMVW21TzGk76bY1TW81c9_64N926ZW6K3=
+-zs5n3JgdW1tKD8b91bsCBVvTvYg5fdC33W5Py6zB2BX9pNW6fk3lH76hl63MGZNH2tvnfvW2PQ=
+k_42MvLGSW70Ll6Z5sZyvBW7MjwMK12tzJ5W7FwHTZ479rPTW2ZnCNw1fNn2vW26GnsQ5rNQ0vV=
+qpL_x2qG1JhW60NQG01SQmlfW8dpb0M6GNbP9W61z6kh4zfHYsW59K9945byD0GVKJjkr6Mnc8v=
+W7JTGG338Vg0yf1rnxzd04" style=3D"color:#00a4bd; mso-line-height-rule:exactl=
+y" data-hs-link-id=3D"0" target=3D"_blank"><img alt=3D"Instagram Logo" styl=
+e=3D"outline:none; text-decoration:none; -ms-interpolation-mode:bicubic; bo=
+rder:none; margin-left:5px" src=3D"https://merge-emails.s3.amazonaws.com/Em=
+ail-Instagram-Logo.png"></a>
+<a href=3D"https://d2qVkb04.na1.hubspotlinks.com/Ctc/UB+113/d2qVkb04/MVxVK-=
+vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ703qn9gW7Y8-PT6lZ3mMW69dTRl2ywM2VN63Rsn=
+JKF4wFW7KsZ0B2HWkm8W5VgzRs6DQm3mW9bWqfK3KwBP7W6FZ9CR3Ly-7NW3Y418W8sJ0FxN43F=
+1rQm8MXZW3ChkQL1D2JwMW5s72CL7QtB9sN8hh6bRg6Z61W6K7MG31JTFH5N8rBHKptDnbLW8jP=
+6Fw5ZM51cW5CFDGf6GF7hcW76cXFC5-6YLVW3ZQSzN2Zp4kCW6CH4p-6b9b_NN2LR6KvlRFSjW5=
+jN5Vz6ZFGn2W61Yvj12N2S14W7x1LVv2b3HczW5GVW9z3-nQxdW4X5w3z90yM4mW5tZsP693vkZ=
+vW4tMgQz2Dz4KGdcdR0004" style=3D"color:#00a4bd; mso-line-height-rule:exactl=
+y" data-hs-link-id=3D"0" target=3D"_blank"><img alt=3D"LinkedIn Logo" style=
+=3D"outline:none; text-decoration:none; -ms-interpolation-mode:bicubic; bor=
+der:none; margin-left:5px" src=3D"https://merge-emails.s3.amazonaws.com/Ema=
+il-Linkedin-Logo.png"></a>
+</td>
+</tr>
+</tbody>
+</table></div></td></tr></tbody></table>
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-ta=
+ble-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td class=3D"hs_padded" st=
+yle=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-family:=
+Arial, sans-serif; font-size:15px; color:#000000; word-break:break-word; pa=
+dding:10px 7px 10px 3px"><div id=3D"hs_cos_wrapper_module-2-0-1" class=3D"h=
+s_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"co=
+lor: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-genera=
+l-type=3D"widget" data-hs-cos-type=3D"module"><table role=3D"presentation" =
+class=3D"hse-footer hse-secondary" width=3D"100%" cellpadding=3D"0" cellspa=
+cing=3D"0" style=3D"border-spacing:0 !important; border-collapse:collapse; =
+mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:Arial, sans-serif; =
+font-size:12px; line-height:135%; color:#23496d; margin-bottom:0; padding:0=
+">
+  <tbody>
+    <tr>
+      <td align=3D"center" valign=3D"top" style=3D"border-collapse:collapse=
+; mso-line-height-rule:exactly; font-family:Arial, sans-serif; font-size:15=
+px; color:#000000; word-break:break-word; text-align:center; margin-bottom:=
+0; line-height:135%; padding:10px 20px">
+          <p style=3D"mso-line-height-rule:exactly; font-size:12px; line-he=
+ight:125%; text-align:left; padding-left:0px" align=3D"left"><span style=3D=
+"color: #96a2b0;">Merge API<span style=3D"text-decoration: none;">, 353 Sac=
+ramento St., San Francisco, CA, 94111</span></span></p>
+<p style=3D"mso-line-height-rule:exactly; line-height:300%; font-size:12px;=
+ text-align:justify" align=3D"justify"><span style=3D"color: #96a2b0;"><a h=
+ref=3D"https://hs-20608300.s.hubspotemail.net/hs/preferences-center/en/dire=
+ct?data=3DW2nXS-N30h-BsW3y_d8P1Lw3qxW4kkFZr41TNzqW4ck2Jh2HKG53W4rjd-x1V1BC5=
+W1XcSnR1BwVbJW3j7F5k2RljfQW3X_zRX1X7js1W3BMyQG1_bZZ8W1NmPQ13BYqfBW1ZgCKm45m=
+lkmW47nKYY3b49TnW4fskmv2WDGZXW4pnd0n3_ZB9dW346nkB2nHCnTW3_WGHx4kcq5TW32qpCl=
+2-n020W1Ly8ww4ftDvSW2xKb6V3QSWkgW3JL2v53SRTLSW4fGBkR36lgf3W2-KjHj3j0Hm-W3NT=
+6s62HpFF7W1V3hTt3bd1PNW2xHyL9238z8SW1Xrscv2vLDvdW4fh9Wn3bkW13W3H5fRD3647MGW=
+1Vv7NG3QPxBnW1SrthC3NXT05W4pjQQ33LW1PLW49yK8y1LBC5DW36m41_3VNNjGW3BXcLz24Qd=
+SVW47KgLr4fGyzmW4mFBhJ2WKGX5W4psPCm2-LTpMW3_Rx8w3c-6s-W4rlm1Q1NDw8ZW2nSfTZ4=
+tl-6pW2FKqhw1Scr-_W43lLN747SH_5W3VzVQt38vT-WW3LHMYx3NMkX7W21bld12KCBywW4tCb=
+h93N_bdmW30K2Ps23qkdpf38b7x904&amp;utm_campaign=3D2024-Q2-Merge-powers-AI&a=
+mp;utm_source=3Dhs_email&amp;utm_medium=3Demail&amp;utm_content=3D305437431=
+&amp;_hsenc=3Dp2ANqtz--HbYa9hWAxrn58b7Ncg6mhcUz6TleokRW4Eo-RkN4hI_RGIPzY8yz=
+9WkLsYfpaztcaCh5el2s4V-8GgL04awiwm_a-Lhu6JiljiE3EhmvVkdQ_eOk&amp;_hsmi=3D30=
+5437431" style=3D"mso-line-height-rule:exactly; color:#96a2b0; text-decorat=
+ion:none; padding-left:0px" data-unsubscribe=3D"true" data-hs-link-id=3D"0"=
+ target=3D"_blank">Unsubscribe </a>=E2=80=A2 <a  href=3D"https://hs-2060830=
+0.s.hubspotemail.net/hs/preferences-center/en/page?data=3DW2nXS-N30h-BsW3y_=
+d8P1Lw3qxW4kkFZr41TNzqW4ck2Jh2HKG53W4rjd-x1V1BC5W1XcSnR1BwVbJW3j7F5k2RljfQW=
+3X_zRX1X7js1W3BMyQG1_bZZ8W1NmPQ13BYqfBW1ZgCKm45mlkmW47nKYY3b49TnW4fskmv2WDG=
+ZXW4pnd0n3_ZB9dW346nkB2nHCnTW3_WGHx4kcq5TW32qpCl2-n020W1Ly8ww4ftDvSW2xKb6V3=
+QSWkgW3JL2v53SRTLSW4fGBkR36lgf3W2-KjHj3j0Hm-W3NT6s62HpFF7W1V3hTt3bd1PNW2xHy=
+L9238z8SW1Xrscv2vLDvdW4fh9Wn3bkW13W3H5fRD3647MGW1Vv7NG3QPxBnW1SrthC3NXT05W4=
+pjQQ33LW1PLW49yK8y1LBC5DW36m41_3VNNjGW3BXcLz24QdSVW47KgLr4fGyzmW4mFBhJ2WKGX=
+5W4psPCm2-LTpMW3_Rx8w3c-6s-W4rlm1Q1NDw8ZW2nSfTZ4tl-6pW2FKqhw1Scr-_W43lLN747=
+SH_5W3VzVQt38vT-WW3LHMYx3NMkX7W21bld12KCBywW4tCbh93N_bdmW30K2Ps23qkdpf38b7x=
+904&amp;utm_campaign=3D2024-Q2-Merge-powers-AI&amp;utm_source=3Dhs_email&am=
+p;utm_medium=3Demail&amp;utm_content=3D305437431&amp;_hsenc=3Dp2ANqtz--HbYa=
+9hWAxrn58b7Ncg6mhcUz6TleokRW4Eo-RkN4hI_RGIPzY8yz9WkLsYfpaztcaCh5el2s4V-8GgL=
+04awiwm_a-Lhu6JiljiE3EhmvVkdQ_eOk&amp;_hsmi=3D305437431" style=3D"mso-line-=
+height-rule:exactly; color:#96a2b0; text-decoration:none" data-unsubscribe=
+=3D"true" data-hs-link-id=3D"0" target=3D"_blank">Manage Preferences&nbsp;<=
+/a><a href=3D"https://d2qVkb04.na1.hubspotlinks.com/Ctc/UB+113/d2qVkb04/MVx=
+VK-vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDN3mxJ703qn9gW7Y8-PT6lZ3l4W2qpdbg1sny0yW2D=
+CDvn4ms60DVf4SPy43yK46N7mcPySTZxswW3ymfsY1HC49qW6pb8sH2YkGmTW6thXYK5zZsbFW4=
+m5cGd5h_k5NW65_mdr86nRkYV4RFKQ6MCj21W1Zdf9d7tz4NdVFBz8659NMTkW92cffr1vZF2jW=
+6MVlQp5qtfQfW3NyCh_1GjSD4W2c3gF930_08jW73sSxV4zqnlXW4XGDrb49HNkGW7zhf7t8MRk=
+ZhW2k9Tww7JRn2tW4y_mDc161LBBVhpMhK4V37qRW1V7v3z2qdr8YW7y012n1R6csyW1kkTwS4v=
+9gb3W3QcXR77WGcKgf4DdFPR04" style=3D"mso-line-height-rule:exactly; padding-=
+right:0px; float:right; color:#96a2b0; text-decoration:none" data-hs-link-i=
+d=3D"0" target=3D"_blank">Privacy Policy</a></span></p>
+      </td>
+    </tr>
+  </tbody>
+</table></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  </div>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+ =20
+<img src=3D"https://d2qVkb04.na1.hubspotlinks.com/Cto/UB+113/d2qVkb04/MVxVK=
+-vzf8wW29Nk_V4T5SkyW72Qs8N5dV5VDW3mxHVx8fYBWT2T_1" alt=3D"" width=3D"1" hei=
+ght=3D"1" border=3D"0" style=3D"display:none!important;min-height:1px!impor=
+tant;width:1px!important;border-width:0!important;margin-top:0!important;ma=
+rgin-bottom:0!important;margin-right:0!important;margin-left:0!important;pa=
+dding-top:0!important;padding-bottom:0!important;padding-right:0!important;=
+padding-left:0!important"></body></html>
+------=_Part_2768495_351399472.1715263392094--
+

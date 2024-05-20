@@ -1,0 +1,596 @@
+Delivered-To: dan.fairbrother@huntresslabs.com
+Received: by 2002:a05:7108:c12:b0:385:df4b:f0c9 with SMTP id pl18csp655860gdb;
+        Wed, 8 May 2024 11:18:05 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGNlFiGipcIqKwuVPOsFSiZh57hve/Sb5GHgDzNTljl5F/ZgCs/BD2U2CLKBu8/gtVFRHLi
+X-Received: by 2002:a05:6214:3018:b0:6a0:cd60:cd3b with SMTP id 6a1803df08f44-6a1514bea35mr38203206d6.3.1715192285387;
+        Wed, 08 May 2024 11:18:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1715192285; cv=none;
+        d=google.com; s=arc-20160816;
+        b=XE+H3scPcuFqPQzhQe5RVxzk3oRWbaYmOeRADGEZ5DQDYwhGEtrbE9Ct89cd4AizoK
+         knZbi0MW/G6MKRjKHhIOsz71wEOSVe1aqprH/I6mChZ5vSpiV+ykSCzzLQeR5RGMbGNS
+         uKeMQeRhh6wmTiuVaQr4irMNaEaXZ2CpXk0ckV5e3TfrrfLtdclxqQNV8F/4/tiEQNvV
+         Yvb8qZZaRGFjLaREoVfk2Me29Kvq+6qbUtT7m/aNSe2cJfkzQHwD2oPFR7otlYgRh7KY
+         kS96WHWNGJxrg/Ul92DV30e3SOXaSUjjx8vBv5//zfqxiGBy0mREbM3cjzKSq45KdgHn
+         9qMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:date:mime-version:c-message-id:message-id
+         :subject:to:from:dkim-signature;
+        bh=J43NGJSZFb5q+lBA+MwBIiwnq2GtXrv6dFir5OSQugE=;
+        fh=BQW8pHNevr9VNpd8AnYkZTmhVW3PniQbyX1RvsB8DpM=;
+        b=vi6HuNOav1rLPPcS58aVAfXogY0QbCLde4yW/IioNERosrSLRivcZfuuSX8pMTsL2C
+         XOgGdfv8OTUisyQEf72HnRPHHjAAgRMBItfQn3xKwEByPRZj5Iz9iDnToJuurY3+BHHg
+         /XwxwdCGsTRUYhhEgRi8cQqrN2Ymz2yHquEo0ePj4tJnKe9WB3S4m3L4y9XumbgNIGQ8
+         Y7fcNp5OP1JS2jQ/dixxHcbVFwY0VypHetr/CrMV3SSMkGg414vUtapZ2Pls+P4YVnR4
+         VgNouKJkbye4ruoqn0ra3Hy6eBahfsLFoa2Yx1/hbyg1kr80zQzJOAL2hJgRp+tQGJcU
+         gZJQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@securelinkedin.com header.s=mail header.b=Jai26I78;
+       spf=pass (google.com: domain of invitations@securelinkedin.com designates 18.205.140.116 as permitted sender) smtp.mailfrom=invitations@securelinkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=securelinkedin.com
+Return-Path: <invitations@securelinkedin.com>
+Received: from mail.mycurricula.com (phish.mycurricula.com. [18.205.140.116])
+        by mx.google.com with ESMTPS id s15-20020a0562140caf00b0069b1f23404dsi14792067qvs.561.2024.05.08.11.18.05
+        for <dan.fairbrother@huntresslabs.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 May 2024 11:18:05 -0700 (PDT)
+Received-SPF: pass (google.com: domain of invitations@securelinkedin.com designates 18.205.140.116 as permitted sender) client-ip=18.205.140.116;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@securelinkedin.com header.s=mail header.b=Jai26I78;
+       spf=pass (google.com: domain of invitations@securelinkedin.com designates 18.205.140.116 as permitted sender) smtp.mailfrom=invitations@securelinkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=securelinkedin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=securelinkedin.com;
+	s=mail; t=1715192285;
+	bh=+B4OuPFoZF0BWLSZx7oQPxQIGQ07Exkk5a0REg1KuYY=;
+	h=From:To:Subject:Date:From;
+	b=Jai26I78bIfKNQ9Nu+/Izp8nHfuUU53k5/CbQ0MwXd2UL7cNWzrGwuhmOXERb2nY/
+	 IhPaEEPaRINvjkRmOO8iwIyI5bKrHmGbwTXSheTc2TxrNFLb6fiXc5j7zoLNvq5Bhs
+	 wAJNsl3d1G8GoZclEyO8kFrG8lI7GEFQtBVSlCss=
+Received: by mail.mycurricula.com (Postfix, from userid 1001)
+	id 0FECDBD4DB; Wed,  8 May 2024 18:18:05 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mail.mycurricula.com (Postfix) with SMTP id 0E5A7BD2ED
+	for <dan.fairbrother@huntresslabs.com>; Wed,  8 May 2024 18:18:05 +0000 (UTC)
+From: LinkedIn <invitations@securelinkedin.com>
+To: "dan.fairbrother@huntresslabs.com" <dan.fairbrother@huntresslabs.com>
+Subject: I'd like to connect
+Message-Id: <11888-test-1715192284@securelinkedin.com>
+C-Message-Id: 11888-test-1715192284
+X-PHISHTEST-Curricula: Phishing security test delivered by Curricula that
+ has been authorized by the receiving organization.
+MIME-Version: 1.0
+Date: Wed, 08 May 2024 18:18:05 +0000
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html lang=3D"en">
+
+<head>
+=09<meta content=3D"text=
+/html; charset=3Dutf-8" http-equiv=3D"Content-Type">
+=09<meta content=3D"=
+true" name=3D"HandheldFriendly">
+=09<meta content=3D"width=3Ddevice-width=
+; initial-scale=3D0.666667; maximum-scale=3D0.666667; user-scalable=3D0" na=
+me=3D"viewport">
+=09<meta content=3D"width=3Ddevice-width" name=3D"viewpo=
+rt">
+=09<title></title><!--[if mso]><style type=3D"text/css">body {font-f=
+amily: 'Helvetica Neue', Helvetica, Arial, sans-serif;}.phoenix-email-conta=
+iner {width: 512px !important;}</style><![endif]--><!--[if IE]><style type=
+=3D"text/css">.phoenix-email-container {width: 512px !important;}</style><!=
+[endif]-->
+=09<style type=3D"text/css">
+=09.accept {
+=09=09cursor:poi=
+nter;color:#FFFFFF;-webkit-text-size-adjust:100%;display:inline-block;text-=
+decoration:none;-ms-text-size-adjust:100%;
+=09}
+=09.view-profile {
+=
+=09=09cursor:pointer;color:#4C4C4C;-webkit-text-size-adjust:100%;display:in=
+line-block;text-decoration:none;-ms-text-size-adjust:100%;
+=09}
+=09.sim=
+ple-link {
+=09=09cursor:pointer;color:#6A6C6D;-webkit-text-size-adjust:10=
+0%;text-decoration:underline;display:inline-block;-ms-text-size-adjust:100%=
+;
+=09}
+=09@media only screen and (max-width:32em) { .phoenix-email-cont=
+ainer { width:100% !important; } } @media only screen and (max-width:20em) =
+{} @media only screen and (max-device-width:30em) {} @media screen and (dev=
+ice-width:30em) and (device-height:22.5em), screen and (device-width:22.5em=
+) and (device-height:30em), screen and (device-width:20em) and (device-heig=
+ht:15em) {} @media screen and (-webkit-min-device-pixel-ratio:0) {} @media =
+screen and (max-device-width:25.88em) and (max-device-height:48.5em) {}=20
+=
+=09</style>
+</head>
+
+<body style=3D"padding:0;margin:0 auto;-webkit-t=
+ext-size-adjust:100%;width:100% !important;-ms-text-size-adjust:100%;font-f=
+amily:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+
+=09<table align=
+=3D"center" bgcolor=3D"#EDF0F3" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"background-color:#EDF0F3;table-layout:fixed;-webkit-text-si=
+ze-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adju=
+st:100%;" width=3D"100%">
+=09=09<tbody>
+=09=09=09<tr>
+=09=09=09=09<td=
+ align=3D"center" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0=
+pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;">
+=09=09=09=09=09<cent=
+er style=3D"width:100%;">
+=09=09=09=09=09=09<table bgcolor=3D"#FFFFFF" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"phoenix-email-conta=
+iner" style=3D"background-color:#FFFFFF;margin:0 auto;max-width:512px;-webk=
+it-text-size-adjust:100%;mso-table-rspace:0pt;width:inherit;mso-table-lspac=
+e:0pt;-ms-text-size-adjust:100%;" width=3D"512">
+=09=09=09=09=09=09=09<tb=
+ody>
+=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09<td bgcolo=
+r=3D"#F6F8FA" style=3D"background-color:#F6F8FA;padding:5px 16px 13px;-webk=
+it-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text=
+-size-adjust:100%;border-bottom:1px solid #ECECEC;">
+=09=09=09=09=09=09=
+=09=09=09=09<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;width:100% !importan=
+t;mso-table-lspace:0pt;-ms-text-size-adjust:100%;min-width:100% !important;=
+" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=
+=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09<td a=
+lign=3D"left" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;m=
+so-table-lspace:0pt;-ms-text-size-adjust:100%;" valign=3D"middle"><a href=
+=3D"https://www.linkedin.com" style=3D"cursor:pointer;color:#008CC9;-webkit=
+-text-size-adjust:100%;display:inline-block;text-decoration:none;-ms-text-s=
+ize-adjust:100%;"><img alt=3D"LinkedIn" border=3D"0" height=3D"42" src=3D"h=
+ttps://s3.amazonaws.com/media.aws-cdn/linkedin/logo_1n.png" style=3D"outlin=
+e:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;text-decoration:none;">=
+</a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"right" styl=
+e=3D"padding:0 0 0 10px;padding-top:7px;-webkit-text-size-adjust:100%;mso-t=
+able-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;" valign=3D"=
+middle" width=3D"100%"><a href=3D"#" style=3D"cursor:pointer;margin:0;color=
+:#008CC9;-webkit-text-size-adjust:100%;display:inline-block;text-decoration=
+:none;-ms-text-size-adjust:100%;"><span style=3D"word-wrap:break-word;color=
+:#4C4C4C;word-break:break-word;font-weight:400;-ms-word-break:break-all;fon=
+t-size:14px;line-height:1.429;overflow-wrap:break-word;">jim@dundermifflin.=
+com</span></a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09<td style=3D"p=
+adding-top:7px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;padding-l=
+eft:10px;mso-table-lspace:0pt;-ms-text-size-adjust:100%;" valign=3D"middle"=
+ width=3D"40"></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09<td style=3D"-=
+webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-=
+text-size-adjust:100%;" width=3D"1">&nbsp;</td>
+=09=09=09=09=09=09=09=09=
+=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=
+=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09</td>
+=09=09=
+=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=
+=09=09=09<td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;ms=
+o-table-lspace:0pt;-ms-text-size-adjust:100%;">
+=09=09=09=09=09=09=09=09=
+=09=09<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"-web=
+kit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-tex=
+t-size-adjust:100%;" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09=09<tb=
+ody>
+=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=
+=09=09=09=09=09<td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:=
+0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;">
+=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09<table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tabl=
+e-lspace:0pt;-ms-text-size-adjust:100%;" width=3D"100%">
+=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<t=
+d style=3D"padding:24px 24px 36px 24px;-webkit-text-size-adjust:100%;mso-ta=
+ble-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;">
+=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<table border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" style=3D"-webkit-text-size-adjust:100%;mso-tab=
+le-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;" width=3D"100=
+%">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"left"=
+ colspan=3D"2" id=3D"qatest-hero-headline" style=3D"-webkit-text-size-adjus=
+t:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;=
+padding-bottom:12px;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09<p style=3D"margin:0;word-wrap:break-word;color:#4C4C4C;w=
+ord-break:break-word;font-weight:400;-ms-word-break:break-all;font-size:16p=
+x;line-height:1.5;overflow-wrap:break-word;">Hi Jim, I'd like to join your =
+LinkedIn network.</p>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<=
+tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td st=
+yle=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:=
+0pt;width:70px;-ms-text-size-adjust:100%;" valign=3D"top" width=3D"70">
+=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<table bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"-webkit-text-size-a=
+djust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:1=
+00%;" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09<td id=3D"qatest-hero-profilepic" style=
+=3D"padding:10px 24px 0 0;-webkit-text-size-adjust:100%;mso-table-rspace:0p=
+t;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"><a href=3D"#" style=3D"c=
+ursor:pointer;color:#008CC9;-webkit-text-size-adjust:100%;display:inline-bl=
+ock;text-decoration:none;-ms-text-size-adjust:100%;"><img alt=3D"" height=
+=3D"70" src=3D"https://s3.amazonaws.com/media.aws-cdn/general/profile/profi=
+le_male_11.jpg" style=3D"border-radius:50%;outline:none;-ms-interpolation-m=
+ode:bicubic;color:#FFFFFF;text-decoration:none;" width=3D"70"></a></td>
+=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</t=
+r>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<=
+/tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<=
+td style=3D"padding-top:5px;-webkit-text-size-adjust:100%;mso-table-rspace:=
+0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;">
+=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<table border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" style=3D"-webkit-text-size-adjust:100%;mso-tab=
+le-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;" width=3D"100=
+%">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09<td id=3D"qatest-hero-profileinfo" style=3D"-webkit-text-=
+size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-ad=
+just:100%;" valign=3D"top">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09<span style=3D"cursor:pointer;color:#008CC=
+9;-webkit-text-size-adjust:100%;display:inline-block;text-decoration:none;-=
+ms-text-size-adjust:100%;"><span style=3D"word-wrap:break-word;color:#26262=
+6;word-break:break-word;font-weight:700;-ms-word-break:break-all;font-size:=
+16px;line-height:1.5;overflow-wrap:break-word;">
+=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09    Peyton Harper
+=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09    </span></span>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09<p style=3D"margin:0;word-wrap:break-word;color:=
+#737373;word-break:break-word;font-weight:400;-ms-word-break:break-all;font=
+-size:14px;line-height:1.429;overflow-wrap:break-word;">
+=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09    Biologis=
+t
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09</p>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09<p style=3D"margin:0;color:#737373;font-weight:400;fon=
+t-size:14px;line-height:1.729;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09    Atlanta, GA
+=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</p>
+=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<p>=
+</p>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09<td align=3D"left" dir=3D"rtl" style=3D"-webk=
+it-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text=
+-size-adjust:100%;direction:rtl !important;text-align:left !important;">
+=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09<!--[if mso]><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" wid=
+th=3D"auto"><tr><td style=3D"padding:12px 0 0 0;"><![endif]--> <span id=3D"=
+qatest-cta-accept" style=3D"display:inline-block;margin-top:14px;"></span>=
+
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"-web=
+kit-text-size-adjust:100%;mso-table-rspace:0pt;display:inline-block;mso-tab=
+le-lspace:0pt;-ms-text-size-adjust:100%;">
+=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr=
+>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09<td align=3D"center" style=3D"-webkit-text-size-adjust:10=
+0%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;" va=
+lign=3D"middle">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09<a href=3D"#" style=3D"cursor:pointer;w=
+ord-wrap:normal;color:#008CC9;word-break:normal;white-space:nowrap;-webkit-=
+text-size-adjust:100%;display:block;text-decoration:none;-ms-text-size-adju=
+st:100%;overflow-wrap:normal;" target=3D"_blank"></a>
+=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<ta=
+ble border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"-webkit-text-=
+size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-ad=
+just:100%;" width=3D"auto">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09<td bgcolor=3D"#008CC9" style=3D"pad=
+ding:6px 16px;color:#FFFFFF;-webkit-text-size-adjust:100%;font-weight:500;f=
+ont-size:16px;-ms-text-size-adjust:100%;border-color:#008CC9;background-col=
+or:#008CC9;border-radius:2px;mso-table-rspace:0pt;mso-table-lspace:0pt;bord=
+er-width:1px;border-style:solid;"><a href=3D"https://securelinkedin.com/con=
+nect/263846548/invite?u=3Dtest" class=3D"accept test">Accept</a></td>
+=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</t=
+able>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tabl=
+e><!--[if mso]></td><td style=3D"padding-top:12px;"><![endif]--> <span id=
+=3D"qatest-cta-profile" style=3D"display:inline-block;margin-top:14px;margi=
+n-right:12px;"></span>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09<table border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;disp=
+lay:inline-block;mso-table-lspace:0pt;-ms-text-size-adjust:100%;">
+=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"-we=
+bkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-te=
+xt-size-adjust:100%;" valign=3D"middle">
+=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<a href=3D"#" s=
+tyle=3D"cursor:pointer;word-wrap:normal;color:#008CC9;word-break:normal;whi=
+te-space:nowrap;-webkit-text-size-adjust:100%;display:block;text-decoration=
+:none;-ms-text-size-adjust:100%;overflow-wrap:normal;" target=3D"_blank"></=
+a>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lsp=
+ace:0pt;-ms-text-size-adjust:100%;" width=3D"auto">
+=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tb=
+ody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td style=3D=
+"border-radius:2px;padding:6px 16px;color:#4C4C4C;-webkit-text-size-adjust:=
+100%;mso-table-rspace:0pt;font-weight:500;mso-table-lspace:0pt;font-size:16=
+px;-ms-text-size-adjust:100%;border-color:#737373;border-width:1px;border-s=
+tyle:solid;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<a href=3D"https://securelinke=
+din.com/connect/263846548/invite?u=3Dtest" class=3D"view-profile test">View=
+ profile</a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tbod=
+y>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09</tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09</table><!--[if mso]></td></tr></table><![endif]-->
+=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</t=
+d>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09</tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tbody=
+>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09</tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=
+=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=
+=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=
+=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=
+=09<td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tabl=
+e-lspace:0pt;-ms-text-size-adjust:100%;">
+=09=09=09=09=09=09=09=09=09=09<=
+table align=3D"center" bgcolor=3D"#EDF0F3" border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" style=3D"background-color:#EDF0F3;padding:0 24px;color:#6A=
+6C6D;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0p=
+t;-ms-text-size-adjust:100%;text-align:center;" width=3D"100%">
+=09=09=09=
+=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09<tr>=
+
+=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"pad=
+ding:16px 0 0 0;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tabl=
+e-lspace:0pt;-ms-text-size-adjust:100%;text-align:center;">
+=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09<table align=3D"center" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" style=3D"-webkit-text-size-adjust:100%;mso-tabl=
+e-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;" width=3D"100%=
+">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09<td align=3D"center" style=3D"padding:0 0 16px 0;-webkit-=
+text-size-adjust:100%;mso-table-rspace:0pt;vertical-align:middle;mso-table-=
+lspace:0pt;-ms-text-size-adjust:100%;text-align:center;" valign=3D"middle">=
+<a href=3D"https://securelinkedin.com/connect/263846548/invite?u=3Dtest" cl=
+ass=3D"simple-link test">Unsubscribe</a>&nbsp;&nbsp;|&nbsp;&nbsp; <a href=
+=3D"https://securelinkedin.com/connect/263846548/invite?u=3Dtest" class=3D"=
+simple-link test">Help</a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=
+=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=
+=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=
+=09=09<td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-t=
+able-lspace:0pt;-ms-text-size-adjust:100%;">
+=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0p=
+t;-ms-text-size-adjust:100%;" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"c=
+enter" style=3D"padding:0 0 12px 0;-webkit-text-size-adjust:100%;mso-table-=
+rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;text-align:center=
+;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"mar=
+gin:0;color:#6A6C6D;font-weight:400;font-size:12px;line-height:1.333;">You =
+are receiving Invitation emails.</p>
+=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr=
+>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"padding:0=
+ 0 12px 0;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspa=
+ce:0pt;-ms-text-size-adjust:100%;text-align:center;">
+=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"margin:0;word-wrap:break-wo=
+rd;color:#6A6C6D;word-break:break-word;font-weight:400;-ms-word-break:break=
+-all;font-size:12px;line-height:1.333;overflow-wrap:break-word;">This email=
+ was intended for jim@dundermifflin.com. <br/><a href=3D"https://securelink=
+edin.com/connect/263846548/invite?u=3Dtest" class=3D"simple-link test">Lear=
+n why we included this.</a></p>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>=
+
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"padding:0=
+ 0 8px 0;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspac=
+e:0pt;-ms-text-size-adjust:100%;text-align:center;"><a href=3D"https://www.=
+linkedin.com" style=3D"cursor:pointer;color:#6A6C6D;-webkit-text-size-adjus=
+t:100%;text-decoration:underline;display:inline-block;-ms-text-size-adjust:=
+100%;"><img alt=3D"LinkedIn" border=3D"0" height=3D"14" src=3D"https://s3.a=
+mazonaws.com/media.aws-cdn/linkedin/logo_phoenix_footer_darkgray_197x48_v1.=
+png" style=3D"outline:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;dis=
+play:block;text-decoration:none;" width=3D"58"></a></td>
+=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<t=
+d align=3D"center" style=3D"padding:0 0 12px 0;-webkit-text-size-adjust:100=
+%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;text-=
+align:center;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<p =
+style=3D"margin:0;color:#6A6C6D;font-weight:400;font-size:12px;line-height:=
+1.333;">2024 LinkedIn Corporation, 1000 West Maude Avenue, Sunnyvale, CA 94=
+085. LinkedIn and the LinkedIn logo are registered trademarks of LinkedIn.<=
+/p>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</ta=
+ble>
+=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=
+=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=
+=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09</td>
+=09=
+=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=
+=09=09</table>
+=09=09=09=09=09</center>
+=09=09=09=09</td>
+=09=09=09</=
+tr>
+=09=09</tbody>
+=09</table>
+
+=09
+=09=09
+</body>
+</html>

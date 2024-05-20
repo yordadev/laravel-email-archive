@@ -1,0 +1,1567 @@
+Delivered-To: eric.reynolds@huntress.com
+Received: by 2002:adf:e405:0:b0:34d:708c:a635 with SMTP id g5csp1201522wrm;
+        Mon, 6 May 2024 15:42:33 -0700 (PDT)
+X-Received: by 2002:a05:6a20:c704:b0:1af:8bc4:c7b6 with SMTP id hi4-20020a056a20c70400b001af8bc4c7b6mr11922878pzb.53.1715035353304;
+        Mon, 06 May 2024 15:42:33 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1715035353; cv=none;
+        d=google.com; s=arc-20160816;
+        b=NwWwbVxjsCJKLtRsC4bQWwXfRMM9rHA5pheSeGc2CrNVp9VSxUtEbFreZjP0/uCsnV
+         F94RGK3+oQ6e6lZPvnDGXJghu7UO21LrQUrx/mu7z6NuYnV+ujUJu9+Qw84Rs7Q+rLKd
+         qcyqHI8WtoegZ4PDbI0am7JGa5Xuv9vMR5vgxsNgmknfb7AvFzZOsFWLq7nK9nUnoOSK
+         U1X3h3nE22x2VVCN7QvTaQ5GczJBCyykTga+9FpKxxtbhAOItsWgFKzHrgCYCcyeYGa1
+         0Q4nGW9Z5cWgkeuGBks3O00cCQhlkbH94egFwuLDGyANBd4UylVqIK1HEq7eWuqyPQkI
+         z7ig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-unsubscribe-post:mime-version:subject
+         :message-id:to:reply-to:from:date:dkim-signature;
+        bh=nz+ym96BZ6q40N0yAoopOaTHNWQ1xl7wMAZj5NZ4zJ8=;
+        fh=iMC/qV2h/9eIUwW0n8hD3wnQ1IEu2gvCbuDvb1YnU0g=;
+        b=orBO8BUkTe5+1/oDklxWiAzgug7bnpGaDhM2LBIP2n9QcUnfhKIFGUEaGoiWHpNNbT
+         i5npOQijsXQTKNVGWVJ1rZJ7Ti+epYrx+YSScoA09cVlpC/REa+D+UCv+vzl6XQhB5bi
+         aOzQULwbqDtAw3rEU3O3FGKI9QssxNV25PP7wpenFqvHyQFMAIBpQzrBFMSWvSIzGZBj
+         hJNdJGnOqdAIgFYr+HUdQ5vfNeR4E+FnQWIWgHCIdP9a5vk0QN3k1eVNzm4ybAUEcaig
+         RSuk10T7dF+uPK9N2PJsrmQjtpexcZmnqWMwnoj4aohsKqA45sxtScEc0RrOO1g8zSkp
+         V/rg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=IfnkChz0;
+       spf=pass (google.com: domain of 808-gjw-314.0.1992808.0.0.674675.9.44097339@google.com designates 209.85.220.73 as permitted sender) smtp.mailfrom=808-GJW-314.0.1992808.0.0.674675.9.44097339@google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+Return-Path: <808-GJW-314.0.1992808.0.0.674675.9.44097339@google.com>
+Received: from mail-sor-f73.google.com (mail-sor-f73.google.com. [209.85.220.73])
+        by mx.google.com with SMTPS id fd25-20020a056a002e9900b006f3e2b914d5sor9132702pfb.5.2024.05.06.15.42.33
+        for <eric.reynolds@huntress.com>
+        (Google Transport Security);
+        Mon, 06 May 2024 15:42:33 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 808-gjw-314.0.1992808.0.0.674675.9.44097339@google.com designates 209.85.220.73 as permitted sender) client-ip=209.85.220.73;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=IfnkChz0;
+       spf=pass (google.com: domain of 808-gjw-314.0.1992808.0.0.674675.9.44097339@google.com designates 209.85.220.73 as permitted sender) smtp.mailfrom=808-GJW-314.0.1992808.0.0.674675.9.44097339@google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1715035353; x=1715640153; darn=huntress.com;
+        h=list-unsubscribe:list-unsubscribe-post:mime-version:subject
+         :message-id:to:reply-to:from:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nz+ym96BZ6q40N0yAoopOaTHNWQ1xl7wMAZj5NZ4zJ8=;
+        b=IfnkChz0ODiPEWWFifYBdH2ulTPG0h2l7LdbnwPzBnbJWyY61Bjng4FdHp3kiVTXQ8
+         6T7lOsHMWOBHpmwV7/lhf15i3EEU2q0TEruOpC3CJceZ/YTxOGeg4mAxt9haBciAJEih
+         gFInFBpXm4flAQIzIRPVz1aK1CO++S2h145ILCy+hSdhZkOnfBtJs0rDtXhbg7UWl215
+         gKn6Wgr8Mdku+5yBeXOCCjeVpOxBPxUChH3iWYJGouwUh/mq+26a7VEg/oq+SleQ2ggZ
+         N5bFM/Anxy31x1kxoLIMA/QuhLSOqpTxhecqWw/RXQ0bnOUNQz7ilkTUS0Wu85D4brx4
+         CpfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715035353; x=1715640153;
+        h=list-unsubscribe:list-unsubscribe-post:mime-version:subject
+         :message-id:to:reply-to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nz+ym96BZ6q40N0yAoopOaTHNWQ1xl7wMAZj5NZ4zJ8=;
+        b=ttL7rbYRi+u54H2WGSIPJLkWjnVZUyYmA6cjt2O23PvWDOqOHcPcfPzM5ktO2w05O2
+         AuU1k4AJhU6+EE751MRsSGZFgPzlB1mb3htyvd+JamwUhPp9IHwAofi/57L2sEa21dC+
+         ifIYe4VGKk4qQYYOgokdRbgFc1gWttxj3tR5Riah3Nj4EtEUHmuCMWsCRZQ8IZug7o7z
+         qwc7Vz207gIVahRtTlrXqJ0hhtFdQVFg2F6xyHRQvNwpy+d6HqXBDIjQF44tL1hPWDCU
+         b49NEVlptsgkETbYRrgdiQl23LbuvOIfmTYOxmNpnkkfoDrWm+JuvJ11CKjmU0RHYTl+
+         LYng==
+X-Gm-Message-State: AOJu0YzJtL/jV41ZyKV2eDM/qN6ZSpK/Ud2FdG8y0W+mOKE++6pdUfl0
+	ijhUl/Z7SnCS47Ynw2ew3wM5K1GwZXOcYzu09H0pQ/eQx4aVqCYFcd/D+knjlBP8I8l/auOYaFf
+	6aEGUbM7QMmY3xWSjvA==
+X-Google-Smtp-Source: AGHT+IHvJa0XF0LTDEtpat5oyv+5SWwxNLoVVOv/6GZ59blTxNkIDbA61eRzl8c0EiU5bUgK7NgP+C3fXAJtQwfYrcU=
+X-Received: by 2002:a05:6a20:1047:b0:1ad:47c1:7a53 with SMTP id gt7-20020a056a20104700b001ad47c17a53mr10594903pzc.54.1715035352945;
+        Mon, 06 May 2024 15:42:32 -0700 (PDT)
+Return-Path: <808-GJW-314.0.1992808.0.0.674675.9.44097339@google.com>
+Received: from oak.mktdns.com (oak.mktdns.com. [199.15.214.195])
+        by gmr-mx.google.com with ESMTPS id lp3-20020a056a003d4300b006f4750b3188si274483pfb.1.2024.05.06.15.42.32
+        for <eric.reynolds@huntress.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 06 May 2024 15:42:32 -0700 (PDT)
+X-MSFBL: KYHx5q8uYkDnfhPaUOTLCUNXEuJhDgTUtkVjmTsgYzA=|eyJiIjoiZHZwLTE5OS0
+	xNS0yMTQtMTk1IiwiciI6ImVyaWMucmV5bm9sZHNAaHVudHJlc3MuY29tIiwiZyI
+	6ImJnLXNqci0xOTQiLCJ1IjoiODA4LUdKVy0zMTQ6MDo0NDEyMjA6MzcyODY0OTo
+	xNTk1NzAwNDo2NzQ2NzU6OToxOTkyODA4OjQ0MDk3MzM5In0=
+Date: Mon, 6 May 2024 17:42:20 -0500 (CDT)
+From: Google Cloud <googlecloud@google.com>
+Reply-To: contactcloud@google.com
+To: eric.reynolds@huntress.com
+Message-ID: <1592698055.80307530.1715035340741@sjmktmail-batch1k.marketo.org>
+Subject: Eric, your generative AI journey starts here
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_80307529_995379373.1715035340736"
+X-Binding: bg-sjr-194
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Unsubscribe: <https://go.cloudplatformonline.com/u/ODA4LUdKVy0zMTQAAAGS7wsvuDjNmSbiL20x1x_V6GI59sDP6EIZLkwb5kpz8u3h6kIGYdt1bEusxBLBkimm9z9uT4Y=?emailAddress=ODA4LUdKVy0zMTQAAAGS7wsvuLfBMvi6t-Y4RA0l6aE_IQGcCgkhIEF3pqe8H0_qr5ykmVAZ7WZFrfeVl-3hzJ-JoveDqN5Xvw>, <mailto:MRVFE5TIFU2F65JYMNMUU2DDIJ2HS23RNZUDCMSJNZZEKT2XKRLEKSKJLJGEYR3SORRDIPI=.1992808.674675.9@unsub-sj.mktomail.com>
+X-MarketoID: 808-GJW-314:0:441220:3728649:15957004:674675:9:1992808:44097339
+X-PVIQ: mkto-808GJW314-000001-000001-992808
+X-Mailfrom: 808-GJW-314.0.1992808.0.0.674675.9.44097339@google.com
+X-MktArchive: false
+X-MSYS-API: {"options":{"open_tracking":false,"click_tracking":false}}
+
+------=_Part_80307529_995379373.1715035340736
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hey developers. Choose your gen AI adventure.
+
+How do you want to use gen AI? Let us know below, so we can share helpful r=
+esources and tools to get you started.
+
+-----------------------------------------------------------
+
+Hi Eric,
+
+Got generative AI on the mind? Feeling the pressure to keep up with its rap=
+id evolution? We hear you. Gen AI is evolving at breakneck speed =E2=80=94 =
+making it hard for developers to know where to start.
+
+To help you keep pace, we=E2=80=99re excited to share a range of helpful re=
+sources and tools with you.
+
+First, though, tell us what you=E2=80=99re interested in.
+
+This way, we can customize the content to meet your needs. Please select yo=
+ur preference below and hit =E2=80=98Submit=E2=80=99 =E2=80=94 then, keep a=
+n eye on your inbox for your first installment.
+
+Find insights easily with Search
+
+Want to make internal data more discoverable? Been asked to help customers =
+find what they=E2=80=99re looking for on your website? Dive into the rich p=
+ossibilities of gen AI-powered search and learn how to set up a fully custo=
+mized search engine in just a few clicks.
+
+Create virtual assistants with Conversational AI
+
+Yes, you can build virtual assistants, AI-powered agents, and chatbots in m=
+inutes =E2=80=94 with little or no coding required. Learn how gen AI is tra=
+nsforming conversational experiences with its deep understanding of user in=
+tent via natural language, and how you can get started.
+
+Build or tune your own foundational models
+
+Got a specific use case for gen AI in mind? There=E2=80=99s no need to star=
+t from scratch. Learn how to leverage pre-existing, pre-trained tools so yo=
+u can hit the ground running and deliver results much faster.
+
+Automate repetitive tasks in software development
+
+Gen AI is a game-changer in software development, automating tedious and re=
+petitive tasks like code reviews, testing, and debugging =E2=80=94 so you c=
+an focus on more meaningful and innovative work. Explore how impactful it c=
+ould be to your role.
+
+Submit > <https://go.cloudplatformonline.com/dc/UsXsQRagauUkekOXmouZ7g=3D=
+=3D/ODA4LUdKVy0zMTQAAAGS7wsvuEsTzMAWyonW_D1wZRcaPyke0HJLTi7otx0TpHhh-12LuoQ=
+1gYDZlTYgVItxjwKp7IQ=3D>
+
+See you in the cloud,=20
+The Google Cloud Team
+
+-----------------------------------------------------------
+
+=C2=A9 2024 Google LLC=20
+1600 Amphitheatre Parkway, Mountain View, CA 94043
+
+We sent you this email because you have indicated that you are willing to r=
+eceive periodic emails on news, product updates, and invitations to events =
+from the Google=C2=A0Cloud team. If you no longer wish to receive these ema=
+ils, click on the following link to unsubscribe <https://inthecloud.withgoo=
+gle.com/preference-center/unsub-global.html?mkt_unsubscribe=3D1&mkt_tok=3DO=
+DA4LUdKVy0zMTQAAAGS7wsvuHultKYyPUpiy_jJSfWVABr0dQpUXczPbKKdWsKJ65Qs7x7wOp2W=
+MH460a-2ZCnuayIZvP5fMVrxL_qBkG5fzHRDdnj9fEgmxgIESI5tU-ro0nE&Opt_In_Events__=
+c=3DYes&Opt_In_Newsletter__c=3DYes&Opt_In_Offers__c=3DYes&Opt_In_Products__=
+c=3DYes&Opt_In_Research__c=3DYes&preferenceCenterSubscription1=3DYes&prefer=
+enceCenterSubscription2=3DYes&preferenceCenterSubscription3=3DYes&preferenc=
+eCenterSubscription4=3DYes&lang=3DUS> or customize your communication prefe=
+rences <!--https://lp.cloudplatformonline.com/UnsubscribePage.html?mkt_unsu=
+bscribe=3D1&mkt_tok=3DODA4LUdKVy0zMTQAAAGS7wsvuHultKYyPUpiy_jJSfWVABr0dQpUX=
+czPbKKdWsKJ65Qs7x7wOp2WMH460a-2ZCnuayIZvP5fMVrxL_qBkG5fzHRDdnj9fEgmxgIESI5t=
+U-ro0nE--> <https://inthecloud.withgoogle.com/preference-center/main-global=
+.html?Opt_In_Events__c=3DYes&Opt_In_Newsletter__c=3DYes&Opt_In_Offers__c=3D=
+Yes&Opt_In_Products__c=3DYes&Opt_In_Research__c=3DYes&preferenceCenterSubsc=
+ription1=3DYes&preferenceCenterSubscription2=3DYes&preferenceCenterSubscrip=
+tion3=3DYes&preferenceCenterSubscription4=3DYes&lang=3DUS>.=20
+
+If you no longer want to receive emails about Gen AI journey, click here <h=
+ttps://go.cloudplatformonline.com/dc/fHMtyxBEiXs4PB504MVujYkD5YhEaNrJAhrp6P=
+e8GoFP1arjunOVD45CPO9EP0FYUV3SIVbdQLczrknM2bULWd8VwpA3zSsYqw56wV43qe0=3D/OD=
+A4LUdKVy0zMTQAAAGS7wsvuEsTzMAWyonW_D1wZRcaPyke0HJLTi7otx0TpHhh-12LuoQ1gYDZl=
+TYgVItxjwKp7IQ=3D>.
+
+Blog
+<https://go.cloudplatformonline.com/ODA4LUdKVy0zMTQAAAGS7wsvuEvQJn0uzRDkb3j=
+EV7Tp2zVOzfeqAcfEdOiboDCFqgpJ7ujj_ni44U2GIo5TwLTzhsU=3D>
+
+GitHub
+ <https://go.cloudplatformonline.com/ODA4LUdKVy0zMTQAAAGS7wsvuPdFStts2K3fcY=
+sWLrMP1yxR2WLhVV9GY3-PIsvsphOH9wwwu2BFZowFEY8gKKEP_As=3D>
+
+LinkedIn
+ <https://go.cloudplatformonline.com/ODA4LUdKVy0zMTQAAAGS7wsvuPnCDo4ml-0Caz=
+6C_beIotSUs1wOAEp81nBzwjpYJ-x-HGQFAtLM-tEksh38SEqbYCc=3D>
+
+Twitter
+ <https://go.cloudplatformonline.com/ODA4LUdKVy0zMTQAAAGS7wsvuEP6NmjHFMT9Gz=
+sOJ-HHyGdivq6Kd1--fR4q8hv3_cnJPp8hk4IzRKi-bbd5SeYC09s=3D>
+
+Facebook
+ <https://go.cloudplatformonline.com/ODA4LUdKVy0zMTQAAAGS7wsvuFrbFqaz4f3wlt=
+vutPFFI9-BXLmrVKeyqfnzoiDffFodaIsraHp-GmOIPRU-gE3IpNk=3D>
+
+------=_Part_80307529_995379373.1715035340736
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.=
+w3.org/TR/html4/loose.dtd">
+<html lang=3D"en" xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:sch=
+emas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office"=
+>
+<head>=20
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">=
+=20
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1"=
+>=20
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">=20
+<!-- New V4 Copied and Added Hero Modules @aivy 06/03/21 -->=20
+<!--[if gte mso 9]>
+<style>
+li { text-indent: -1em; }
+</style>
+<![endif]-->=20
+<!--[if gte mso 9]><xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml><![endif]-->=20
+<!--[if mso]>
+<style>
+span, td, table, div, p, h1, h2, h3, h4, h5, h6, a {
+font-family: Arial, sans-serif !important;
+}
+</style>
+<![endif]-->=20
+<!--[if gte mso 9]>
+<style>
+body,table,th,td,p,span {
+-ms-text-size:100%;
+mso-table-lspace: 0pt !important;
+mso-table-rspace: 0pt !important;
+margin: 0 auto !important;
+}
+table {
+padding: 0 !important;}
+</style>
+<![endif]-->=20
+<!-- EM TITLE --> =20
+<!-- HEADER --> =20
+<!-- HERO MODULE OPTIONS -->               =20
+<!-- FOR BACKGROUND IMAGE ON IMAGE BACKGROUND CENTERED TEXT BLOCK MODULE --=
+> =20
+<!-- INTRO PADDING DEPENDING ON HERO'S --> =20
+<!-- CTA Module Padding--> =20
+<!-- CTA & LINKS -->          =20
+<!-- CUSTOM CSS OPTION FOR DEVS --> =20
+<!-- CONFIRMATION MARKUP -->   =20
+<!-- COLOR ACCENTS -->    =20
+<!-- Font Weight -->   =20
+<!-- IMAGE CARDS -->   =20
+<!-- RTL -->   =20
+<!-- Two Columns Section CTA's -->  =20
+<!-- Footer -->  =20
+<!-- Tout --> =20
+<!-- Testimonial -->     =20
+<!-- Spacer -->  =20
+<title>Gen AI journey</title>=20
+<style type=3D"text/css">
+  @font-face {
+    font-family: 'Google Sans';
+    font-style: normal;
+    font-weight: 400;
+    mso-font-alt: Arial;
+    src: local('Google Sans Regular'), local('GoogleSans-Regular'), url('ht=
+tps://fonts.gstatic.com/s/googlesans/v6/4UaGrENHsxJlGDuGo1OIlL3Owps.ttf') f=
+ormat('truetype');
+  }
+  @font-face {
+    font-family: 'Google Sans';
+    font-style: normal;
+    font-weight: 500;
+    mso-font-alt: Arial;
+    src: local('Google Sans Medium'), local('GoogleSans-Medium'), url('http=
+s://fonts.gstatic.com/s/googlesans/v6/4UabrENHsxJlGDuGo1OIlLU94YtzCwM.ttf')=
+ format('truetype');
+  }
+  @font-face {
+    font-family: 'Google Sans';
+    font-style: normal;
+    font-weight: 700;
+    mso-font-alt: Arial;
+    src: local('Google Sans Bold'), local('GoogleSans-Bold'), url('https://=
+fonts.gstatic.com/s/googlesans/v6/4UabrENHsxJlGDuGo1OIlLV154tzCwM.ttf') for=
+mat('truetype');
+  }
+  @font-face {
+    font-family: 'Google Sans Text';
+    font-weight: 700;
+    mso-font-alt: Arial;
+    font-style: normal;
+    src: url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/goog=
+lesanstext-bold-webfont.woff2') format('woff2'),
+        url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/googl=
+esanstext-bold-webfont.woff') format('woff'),
+        url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/Googl=
+eSansText-Bold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Google Sans Text';
+    font-style: normal;
+    font-weight: 500;
+    mso-font-alt: Arial;
+    src: url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/goog=
+lesanstext-medium-webfont.woff2') format('woff2'),
+        url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/googl=
+esanstext-medium-webfont.woff') format('woff'),
+        url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/Googl=
+eSansText-Medium.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Google Sans Text';
+    font-style: normal;
+    font-weight: 400;
+    mso-font-alt: Arial;
+    src: url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/goog=
+lesanstext-regular-webfont.woff2') format('woff2'),
+        url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/googl=
+esanstext-regular-webfont.woff') format('woff'),
+        url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/Googl=
+eSansText-Regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Google Sans Display';
+    font-style: normal;
+    font-weight: 700;
+    mso-font-alt: Arial;
+    src: url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/goog=
+lesansdisplay-bold-webfont.woff2') format('woff2'),
+        url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/googl=
+esansdisplay-bold-webfont.woff') format('woff'),
+        url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/Googl=
+eSansDisplay-Bold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Google Sans Display';
+    src: url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/goog=
+lesansdisplay-regular-webfont.woff2') format('woff2'),
+        url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/googl=
+esansdisplay-regular-webfont.woff') format('woff'),
+        url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/Googl=
+eSansDisplay-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    mso-font-alt: Arial;
+  }
+  @font-face {
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: 500;
+    src: url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto=
+-sans-jp-v24-latin_japanese-500.woff');
+    src: local('Noto Sans Japanese Medium'), local('NotoSansJapanese-Medium=
+'),
+    url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto-sans=
+-jp-v24-latin_japanese-500.eot?#iefix') format('embedded-opentype'),
+    url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto-sans=
+-jp-v24-latin_japanese-500.woff2') format('woff2'),
+    url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto-sans=
+-jp-v24-latin_japanese-500.woff') format('woff'),
+    url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto-sans=
+-jp-v24-latin_japanese-500.ttf') format('truetype'),
+    url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto-sans=
+-jp-v24-latin_japanese-500.svg#NotoSansJP') format('svg');
+  }
+  @font-face {
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto=
+-sans-jp-v24-latin_japanese-regular.woff');
+    src: local('Noto Sans Japanese Regular'), local('NotoSansJapanese-Regul=
+ar'),
+    url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto-sans=
+-jp-v24-latin_japanese-regular.eot?#iefix') format('embedded-opentype'),
+    url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto-sans=
+-jp-v24-latin_japanese-regular.woff2') format('woff2'),
+    url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto-sans=
+-jp-v24-latin_japanese-regular.woff') format('woff'),
+    url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto-sans=
+-jp-v24-latin_japanese-regular.ttf') format('truetype'),
+    url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto-sans=
+-jp-v24-latin_japanese-regular.svg#NotoSansJP') format('svg');
+  }
+  @font-face {
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: 700;
+    src: url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto=
+-sans-jp-v24-latin_japanese-700.woff');
+    src: local('Noto Sans Japanese Bold'), local('NotoSansJapanese-Bold'),
+    url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto-sans=
+-jp-v24-latin_japanese-700.eot?#iefix') format('embedded-opentype'),
+    url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto-sans=
+-jp-v24-latin_japanese-700.woff2') format('woff2'),
+    url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto-sans=
+-jp-v24-latin_japanese-700.woff') format('woff'),
+    url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto-sans=
+-jp-v24-latin_japanese-700.ttf') format('truetype'),
+    url('https://lp.cloudplatformonline.com/rs/808-GJW-314/images/noto-sans=
+-jp-v24-latin_japanese-700.svg#NotoSansJP') format('svg');
+  }
+  /* CLIENT-SPECIFIC STYLES */
+  body, table, th, td { -webkit-text-size-adjust: 100%; -ms-text-size-adjus=
+t: 100%; color: #5F6368; font-family: sans-serif; font-weight: 400;}
+  table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing:=
+ 0; color: #5F6368; font-family: sans-serif;}
+  img { -ms-interpolation-mode: bicubic; }
+  /* RESET STYLES */
+  img { border: 0; outline: none; text-decoration: none;}
+  table { border-collapse: collapse !important; }
+  body,
+  html {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+  a {text-decoration: underline;}
+  /* iOS BLUE LINKS */
+  a[x-apple-data-detectors] {
+    color: inherit !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+    text-decoration: none !important;
+  }
+  /* Samsung blue links */
+  #MessageViewBody a {
+    color: inherit;
+    text-decoration: none;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  /* SAMSUNG CENTER FIX */
+  #MessageViewBody,
+  #MessageWebViewDiv {
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+  /* ANDROID CENTER FIX */
+  div[style*=3D"margin: 16px 0;"] { margin: 0 !important; }
+ =20
+  /* HERO HEADER VERTICAL ALIGNMENT FIX */
+  .h177 {
+    height: 177px;
+  }
+ =20
+  .h112 {
+    height: 112px;
+  }
+ =20
+  .h212 {
+    height:212px;
+  }
+ =20
+</style>=20
+<style type=3D"text/css">
+@media (prefers-color-scheme: dark) {
+    .lightBackground {
+      background-color: #dddddd !important;
+    }}
+a {
+    color: #1a73e8 !important;
+    text-decoration: underline;
+  }
+  a.whiteText {
+    color: #ffffff !important;
+  }
+  @media (prefers-color-scheme: dark) {
+    .lightImage {
+      color: #202124 !important;
+    }
+  }
+  @media (max-width: 600px) {
+    .container {
+      width: 95% !important;
+    }
+    .inner-container {
+      padding-left: 25px !important;
+      padding-right: 25px !important;
+    }
+    .inner-container-alt {
+      padding-left: 25px !important;
+      padding-right: 0 !important;
+    }
+    .inner-container.social-container {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+    img {
+      height: auto !important;
+      max-width: 100% !important;
+    }
+    img.logo {
+      width: 140px !important;
+    }
+    img.workspace-logo {
+      width: 127px !important;
+    }
+    img.partner-logo {
+      max-height: 30px !important;
+      width: auto !important;
+    }
+    .header {
+      padding: 24px 10px !important;
+    }
+    .workspace-header {
+      padding: 0 10px !important;
+    }
+    .h-logos {
+      width: 150px !important;
+    }
+    .h-logos2 {
+      width: 150px !important;
+    }
+    .showMobileHeaderCTA {
+      display: block !important;
+      width: 100% !important;
+    }
+    .width50 {
+      width: 50% !important;
+    }
+    h1.headline {
+      font-size: 24px !important;
+      line-height: 32px !important;
+    }
+    .headline-icon {
+      width: 50px !important;
+    }
+    .hom {
+      display: none !important;
+    }
+    .heroLocationText {
+      font-size: 16px !important;
+      line-height: 24px !important;
+    }
+    .heroLocationDateTime {
+      font-size: 20px !important;
+      line-height: 26px !important;
+    }
+    .heroFrameImg {
+      width: 95% !important;
+    }
+    .bgColorWhite {
+      background-color: #ffffff !important;
+    }
+    .bgColorGray {
+      background-color: #F1F3F4 !important;
+    }
+    .heroFullPadding {
+      padding-top: 113px !important;
+    }
+    .heroFullInnerPadding {
+      padding: 32px 16px 40px 16px !important;
+    }
+    .fullPhotoMobile {
+      height: 165px !important;
+      background-size:cover !important;
+      background-position: 100% 90% !important;
+    }
+    .mobileH1 {
+      display: block !important;
+      mso-hide: none !important;
+    }
+    .alignLeft {
+      direction: ltr !important;
+      text-align: left !important;
+    }
+    .mobile-height {
+      height: auto !important;
+    }
+    .mobile-map-img {
+      width: 100% !important;
+      display:block !important;
+      max-height:100% !important;
+      overflow:visible !important;
+    }
+    .mobile-pa-hero-img {
+      padding-bottom: 24px !important;
+      width: 100% !important;
+      display:block !important;
+      max-height:100% !important;
+      overflow:visible !important;
+    }
+    .mobile-map-img img{
+      width: 100% !important;
+    }
+    .width100 {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    .mobile-block {
+      display: block !important;
+    }
+    .pad-t24 {
+      padding-top: 24px !important;
+    }
+    .pad-r0 {
+      padding-right: 0 !important;
+    }
+    .pad-t0 {
+      padding-top: 0 !important;
+    }
+    .pad-b40 {
+      padding-bottom: 40px !important;
+    }
+    .pad-b16 {
+      padding-bottom: 16px !important;
+    }
+    .pad-b12 {
+      padding-bottom: 12px !important;
+    }
+    .pad-b24 {
+      padding-bottom: 24px !important;
+    }
+    .pad-b20 {
+      padding-bottom: 20px !important;
+    }
+    .pad-b32 {
+      padding-bottom: 32px !important;
+    }
+    .pad-t16 {
+      padding-top: 16px !important;
+    }
+    .pad-t24 {
+      padding-top: 24px !important;
+    }=20
+    .pad-l15 {
+      padding-left: 15px !important;
+    }
+    .pad-l10 {
+      padding-left: 10px !important;
+    }
+    .pad-l0 {
+      padding-left: 0 !important;
+    }
+    .pad-all0 {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    .pad-location {
+      padding-top: 20px !important;
+      padding-left: 0 !important;
+    }
+    .pad-img-features {
+      padding-top: 16px !important;
+      padding-bottom: 24px !important;
+    }
+    .pad-map-cal1 {
+      padding: 24px 25px 14px 25px !important;
+      width: auto !important;
+    }
+    .pad-map-cal2 {
+      padding: 0 25px 20px 25px !important;
+      width: auto !important;
+    }
+    .pad-map-cal3 {
+      padding: 20px 25px 20px 25px !important;
+      width: auto !important;
+    }
+    .line-height16 {
+      line-height: 16px !important;
+    }
+    .line-height24 {
+      line-height: 24px !important;
+    }=20
+    .time {
+      width: 100% !important;
+      display: block !important;
+      border-bottom: none !important;
+      padding-bottom: 0!important;
+    }
+    .info {
+      width: 100% !important;
+      display: block !important;
+      padding-top: 0 !important;
+    }
+    .column {
+      max-width: 50% !important;
+      width: 49% !important;
+    }
+    .contents {
+      width: 90% !important;
+    }
+    .three-column img {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    .p-column {
+      max-width: 50% !important;
+      width: 49% !important;
+      padding-bottom: 20px !important;
+    }
+    .partner-column img {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    .prefooter-parent {
+      padding-bottom: 22px !important;
+    }
+    .no-float {
+      float: none !important;
+    }
+      /* HEADER VERTICAL ALIGNMENT FIX */
+    .h177 {
+      height: auto;
+    }
+    .h112 {
+      height: auto;
+    }
+
+    .h212 {
+      height: auto;
+    }   =20
+   =20
+  }
+  @media screen and (max-width: 380px) {
+    img.partner-logo {
+      max-height: 20px !important;
+      width: auto !important;
+    }
+  }
+  @media screen and (max-width: 350px) {
+    .column {
+      max-width: 100% !important;
+      width: 100% !important;
+      text-align: center !important;
+    }
+    .contents {
+      width: 100% !important;
+    }
+    .three-column img {
+      width: 80% !important;
+      max-width: 80% !important;
+      margin: 0 auto !important;
+    }
+  }
+  img.no-arrow + div{
+    display: none !important;
+  }
+ =20
+</style>=20
+</head>=20
+<body style=3D"width: 100%; margin:0; padding:0 !important; background-colo=
+r: #f8f9fa;" bgcolor=3D"#f8f9fa"><style type=3D"text/css">div#emailPreHeade=
+r{ display: none !important; }</style><div id=3D"emailPreHeader" style=3D"m=
+so-hide:all; visibility:hidden; opacity:0; color:transparent; mso-line-heig=
+ht-rule:exactly; line-height:0; font-size:0px; overflow:hidden; border-widt=
+h:0; display:none !important;">From gen AI search to software development, =
+we=E2=80=99ve got you covered</div>=20
+<center style=3D"width: 100%; table-layout: fixed;">=20
+<div style=3D"background-color:#f8f9fa; width: 100%; max-width: 600px; marg=
+in: 0 auto;" bgcolor=3D"#f8f9fa">=20
+<!--[if mso]>
+<table role=3D"presentation" width=3D"600" cellspacing=3D"0" cellpadding=3D=
+"0" border=3D"0" align=3D"center" style=3D"background-color:#f8f9fa;" bgcol=
+or=3D"#f8f9fa">
+<tr>
+<td>
+<![endif]-->=20
+<table role=3D"presentation" width=3D"600" class=3D"container" cellspacing=
+=3D"0" cellpadding=3D"0" border=3D"0" align=3D"center" style=3D"max-width:6=
+00px; width:600px; word-break: break-word; Margin: 0 auto;" bgcolor=3D"#FFF=
+FFF">=20
+<tbody>
+<tr>=20
+<td class=3D"mktoContainer" id=3D"moduleContainer" align=3D"center" valign=
+=3D"top" bgcolor=3D"#ffffff" style=3D"background-color: #ffffff;">
+<table role=3D"presentation" class=3D"mktoModule" id=3D"headerCloudLogoModu=
+lea6e4b651-7803-4134-a13e-c8f16f6bd21c" width=3D"600" cellspacing=3D"0" cel=
+lpadding=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; widt=
+h:100%; background: #f8f9fa;">=20
+<tbody>=20
+<tr>=20
+<td valign=3D"top" style=3D"padding:24px 24px 24px 30px;" class=3D"header m=
+ktoText" id=3D"header-logo1fb107b4-cfee-4e57-8017-f96b88af210b">=20
+<table role=3D"presentation" width=3D"600" cellspacing=3D"0" cellpadding=3D=
+"0" border=3D"0" align=3D"left" style=3D"max-width:600px; width:100%;">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" valign=3D"middle" class=3D"h-logos pad-l15" width=3D"300" a=
+lign=3D"left" style=3D"font-family: 'Google Sans','Noto Sans JP',Arial,sans=
+-serif; font-size: 14px; vertical-align: middle; width: 300px; text-align: =
+left; padding-left: 20px;"> <img src=3D"https://lp.cloudplatformonline.com/=
+rs/808-GJW-314/images/google-cloud-2021-em.png" alt=3D"Google Cloud" class=
+=3D"logo no-arrow" height=3D"32" style=3D"max-height: 32px; display: block;=
+"> </td>=20
+</tr>=20
+</tbody>=20
+</table></td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"heroNoFrameModulec2=
+27fb13-b0ce-448d-99fc-9eb6d86e75bf" align=3D"center" width=3D"600" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"max-width:600px; width:=
+100%;">=20
+<tbody>=20
+<tr>=20
+<td valign=3D"top" class=3D"inner-container" style=3D"padding: 32px 50px 20=
+px 50px;">=20
+<table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"=
+0" width=3D"100%">=20
+<tbody>=20
+<tr>=20
+<td style=3D"width: 100%;">=20
+<!--[if (gte mso 9)|(IE)]>
+               =20
+<table dir=3D"rtl" width=3D"235" align=3D"right" cellpadding=3D"0" cellspac=
+ing=3D"0" border=3D"0">
+<tr>
+<td dir=3D"ltr"><![endif]-->=20
+<table role=3D"presentation" class=3D"width100" width=3D"235" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" align=3D"right" dir=3D"rtl">=20
+<tbody>=20
+<tr>=20
+<td class=3D"pad-b24" align=3D"right" valign=3D"top">=20
+<div class=3D"mktoImg" id=3D"heroNoFrameImage7a14fd01-84f5-454b-bcb5-e751bd=
+44dc55">=20
+<img src=3D"https://lp.cloudplatformonline.com/rs/808-GJW-314/images/welcom=
+e-email-header-light%402x.png?version=3D0" class=3D"width100" width=3D"235"=
+ alt=3D"" border=3D"0" style=3D"display:block; width:100%; max-width:235px;=
+">=20
+</div> </td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+<!--[if gte mso 9]></td>
+<td valign=3D"top" dir=3D"ltr"><![endif]-->=20
+<table role=3D"presentation" class=3D"width100" width=3D"265" style=3D"widt=
+h:265px;" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"left" d=
+ir=3D"ltr">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" align=3D"left" valign=3D"middle" class=3D"pad-r0 h177" styl=
+e=3D"padding-right: 19px;" height=3D"177"> <h1 class=3D"mktoText headline" =
+id=3D"heroNoFrameTitle71af0b61-fe59-4abe-971f-b339bd4b64b3" style=3D"font-f=
+amily:'Google Sans Display','Google Sans','Noto Sans JP',Arial,sans-serif; =
+font-size:32px; line-height:40px; color: #202124; font-weight: bold; margin=
+: 0; padding: 0; text-align: left;">Hey developers. Choose your <span style=
+=3D"color: #34A853;">gen AI adventure</span>.</h1> </td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+<!--[if gte mso 9]></td>
+</tr>
+</table>
+<![endif]--> </td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+<!-- END OF HERO IMAGE AND HEADLINE -->=20
+<!-- SUBHEADER AND EVENT INFO -->=20
+<table role=3D"presentation" width=3D"100%" cellspacing=3D"0" cellpadding=
+=3D"0" border=3D"0" align=3D"left" style=3D"width:100%;">=20
+<tbody>=20
+<tr style=3D"mso-hide: none;">=20
+<td dir=3D"ltr" valign=3D"top" style=3D"padding: 24px 0 0; width: 100%;mso-=
+hide: none;"> <p class=3D"mktoText" id=3D"heroNoFrameSubheadlinea9d5939f-74=
+85-48bb-ad6b-273b747d2988" style=3D"font-family: 'Google Sans','Noto Sans J=
+P',Arial,sans-serif; font-size: 16px; line-height: 24px; color: #5F6368; te=
+xt-align: left; margin: 0; padding: 0;mso-hide: none;">How do you want to u=
+se gen AI? Let us know below, so we can share helpful resources and tools t=
+o get you started.</p> </td>=20
+</tr>=20
+<tr style=3D"display: none;mso-hide:all;max-height:0px;overflow:hidden;">=
+=20
+<td dir=3D"ltr" style=3D"display: none;mso-hide:all;max-height:0px;overflow=
+:hidden;">=20
+<table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" border=3D"=
+0" style=3D"display: none;mso-hide:all;max-height:0px;overflow:hidden;">=20
+<tbody>=20
+<tr style=3D"display: none;mso-hide:all;max-height:0px;overflow:hidden;">=
+=20
+<th dir=3D"ltr" class=3D"width100 mobile-block" valign=3D"top" style=3D"pad=
+ding: 24px 0 0; padding-right: 24px; text-align: left; font-weight: normal;=
+ display: none !important; mso-hide:all;"> <p class=3D"date mktoText" id=3D=
+"heroNoFrameDate816ee99c-bd3b-41d1-a791-e4960ee7b4eb" style=3D"color:#34A85=
+3; font-family: 'Google Sans','Noto Sans JP',Arial,sans-serif; font-weight:=
+ 400; font-size: 18px; line-height: 21px; margin: 0; padding: 0; display: n=
+one !important; mso-hide:all;"></p> </th>=20
+<th dir=3D"ltr" class=3D"width100 mobile-block" valign=3D"top" style=3D"pad=
+ding: 24px 0 0; text-align: left; font-weight: normal; display: none !impor=
+tant; mso-hide:all;"> <p class=3D"time mktoText" id=3D"heroNoFrameTime8a679=
+c3f-0ffa-49ea-8424-44efac74f97f" style=3D"color: #5F6368; font-family: 'Goo=
+gle Sans','Noto Sans JP',Arial,sans-serif; font-weight: 400; font-size: 18p=
+x; line-height: 21px; margin: 0; padding: 0; display: none !important; mso-=
+hide:all;"></p> </th>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+<tr style=3D"display: none !important; mso-hide:all;">=20
+<td dir=3D"ltr" valign=3D"top" style=3D"padding: 24px 0 0;display: none !im=
+portant; mso-hide:all;">=20
+<table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" border=3D"=
+0" style=3D"display: none !important; mso-hide:all;">=20
+<tbody>=20
+<tr style=3D"display: none !important; mso-hide:all;">=20
+<td dir=3D"ltr" valign=3D"top" style=3D"font-family: 'Google Sans','Noto Sa=
+ns JP',Arial,sans-serif; height: 21px; padding-right: 16px;text-align: left=
+;display: none !important; mso-hide:all;"> <img src=3D"https://lp.cloudplat=
+formonline.com/rs/808-GJW-314/images/cs4-icon-location-email.png" alt=3D"" =
+height=3D"21" style=3D"height: 21px !important;"> </td>=20
+<td dir=3D"ltr" class=3D"mktoText heroLocationText" id=3D"heroNoFrameLocati=
+onb54bbaf8-27db-4365-9df1-57b875b1efed" valign=3D"top" style=3D"color: #5F6=
+368; font-family: 'Google Sans','Noto Sans JP',Arial,sans-serif; font-weigh=
+t: 400; font-size: 14px; line-height: 21px; text-align: left;display: none =
+!important; mso-hide:all;"></td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+<tr style=3D"display: none !important; mso-hide:all;">=20
+<td dir=3D"ltr" valign=3D"top" style=3D"width: 100%;padding: 24px 0 0; disp=
+lay: none !important; mso-hide:all;">=20
+<table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"=
+0" align=3D"left" style=3D"display: none !important; mso-hide:all;">=20
+<tbody>=20
+<tr style=3D"display: none !important; mso-hide:all;">=20
+<th class=3D"mobile-block width100 pad-b24" style=3D"font-weight: normal; t=
+ext-align: left; display: none !important; mso-hide:all;">=20
+<table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"=
+0" style=3D"display: none !important; mso-hide:all;">=20
+<tbody>=20
+<tr style=3D"display: none !important; mso-hide:all;">=20
+<td class=3D"mktoText" id=3D"heroNoFrameCTA1e99ccdf-170c-49d2-a6cf-fc3b2076=
+fffc" dir=3D"ltr" bgcolor=3D"#1a73e8" style=3D"border-radius: 4px; display:=
+ none !important; mso-hide:all;"><a class=3D"whiteText" href=3D
+"https://go.cloudplatformonline.com/ODA4LUdKVy0zMTQAAAGS7wsvuMmaSF4_zIOY0zJ=
+LiIcCnnEQQtVIx6XWweFpRX2jtqsmVjCqAm4yKjZunLzELQcHeZE=3D" target=3D"_blank" =
+style=3D"font-family: 'Google Sans','Noto Sans JP',Arial,sans-serif; color:=
+ #ffffff; text-decoration: none; font-size: 14px; letter-spacing: 1px; font=
+-weight: bold; -webkit-border-radius: 4px; border-radius: 4px; border: 1px =
+solid #1a73e8; margin: 0; padding: 14px 16px 14px 16px; display: inline-blo=
+ck;"
+>Get started</a></td>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+<th class=3D"mobile-block width100 pad-l0 mktoText" id=3D"heroNoFrameOptOut=
+77c77666-6832-4bb8-87ac-4a3eed0601c9" style=3D"font-weight: normal; text-al=
+ign: left; padding-left: 24px; display: none !important; mso-hide:all;" val=
+ign=3D"middle"></th>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"salutationModuleb15=
+5ec10-7a91-4ab0-8eba-a74155adfaa7" width=3D"600" cellspacing=3D"0" cellpadd=
+ing=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100=
+%;">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" valign=3D"top" style=3D"padding:16px 50px 4px 50px;" class=
+=3D"inner-container"> <p class=3D"mktoText" id=3D"greeting1bd33bc7-1eb2-447=
+6-a207-d3b323fedc8a" style=3D"font-family: 'Google Sans Text','Noto Sans JP=
+',Arial,sans-serif; font-size: 14px; line-height: 24px; color: #5F6368; tex=
+t-align: left; margin: 0; padding: 0; font-weight: bold;">Hi Eric,</p> </td=
+>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"bodyCopyModulee3f60=
+4d5-6c87-4f1d-b48d-5563e7720a14" width=3D"600" cellspacing=3D"0" cellpaddin=
+g=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%;=
+">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" valign=3D"top" style=3D"padding:8px 50px 8px 50px;" class=
+=3D"inner-container"> <p class=3D"mktoText" id=3D"bodyCopye53be3b7-4fa9-493=
+6-bced-ed358daa93e5" style=3D"font-family: 'Google Sans Text','Noto Sans JP=
+',Arial,sans-serif; font-size: 14px; line-height: 24px; color: #5F6368; mar=
+gin: 0; padding: 0; text-align: left;">Got generative AI on the mind? Feeli=
+ng the pressure to keep up with its rapid evolution? We hear you. Gen AI is=
+ evolving at breakneck speed =E2=80=94 making it hard for developers to kno=
+w where to start.</p> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"bodyCopyModule4f162=
+a94-35dc-4b40-bd22-b216f8c11f0b" width=3D"600" cellspacing=3D"0" cellpaddin=
+g=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%;=
+">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" valign=3D"top" style=3D"padding:8px 50px 8px 50px;" class=
+=3D"inner-container"> <p class=3D"mktoText" id=3D"bodyCopya189667f-1e85-443=
+2-9f18-ee063390e042" style=3D"font-family: 'Google Sans Text','Noto Sans JP=
+',Arial,sans-serif; font-size: 14px; line-height: 24px; color: #5F6368; mar=
+gin: 0; padding: 0; text-align: left;">To help you keep pace, we=E2=80=99re=
+ excited to share a range of helpful resources and tools with you.</p> </td=
+>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"bodyCopyModule58d01=
+682-3034-4a60-b42b-e1395162990e" width=3D"600" cellspacing=3D"0" cellpaddin=
+g=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%;=
+">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" valign=3D"top" style=3D"padding:8px 50px 8px 50px;" class=
+=3D"inner-container"> <p class=3D"mktoText" id=3D"bodyCopyeb630e8f-26a6-470=
+6-87ac-a19009dd828d" style=3D"font-family: 'Google Sans Text','Noto Sans JP=
+',Arial,sans-serif; font-size: 14px; line-height: 24px; color: #5F6368; mar=
+gin: 0; padding: 0; text-align: left;"><strong>First, though, tell us what =
+you=E2=80=99re interested in.</strong></p> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"bodyCopyModulef8248=
+648-eafe-4d6e-8e45-fc0f89661267" width=3D"600" cellspacing=3D"0" cellpaddin=
+g=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%;=
+">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" valign=3D"top" style=3D"padding:8px 50px 8px 50px;" class=
+=3D"inner-container"> <p class=3D"mktoText" id=3D"bodyCopyf5139345-681a-4aa=
+3-934e-3da43518d4ee" style=3D"font-family: 'Google Sans Text','Noto Sans JP=
+',Arial,sans-serif; font-size: 14px; line-height: 24px; color: #5F6368; mar=
+gin: 0; padding: 0; text-align: left;">This way, we can customize the conte=
+nt to meet your needs. Please select your preference below and hit =E2=80=
+=98Submit=E2=80=99 =E2=80=94 then, keep an eye on your inbox for your first=
+ installment.</p> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"linkIconModule5d929=
+286-f8db-4175-ae3b-c7fcc2398e0f" width=3D"600" cellspacing=3D"0" cellpaddin=
+g=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%;=
+">=20
+<tbody>=20
+<tr>=20
+<td valign=3D"top" style=3D"padding:16px 50px 16px 50px;" class=3D"inner-co=
+ntainer">=20
+<table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" border=3D"=
+0" align=3D"left">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" class=3D"valign-top pad-t2" width=3D"16" style=3D"font-fami=
+ly: 'Google Sans','Noto Sans JP',Arial,sans-serif; font-size: 14px; line-he=
+ight: 21px; width: 16px; vertical-align: middle;" valign=3D"middle"> <img c=
+lass=3D"mktoImg" id=3D"linkIconModuleImg6d42fb28-5ea1-42ed-9f32-65da6d0b251=
+5" src=3D"https://lp.cloudplatformonline.com/rs/808-GJW-314/images/search-w=
+elcome-email%402x.png?version=3D0" width=3D"16" style=3D"display: block; wi=
+dth: 30px;" mktolockimgsize=3D"true"> </td>=20
+<td dir=3D"ltr" style=3D"padding-left: 35px; font-family: 'Google Sans','No=
+to Sans JP',Arial,sans-serif; font-size: 14px; line-height: 21px; font-weig=
+ht: 500; letter-spacing: 0.75px; color: #1A73E8; verical-align: middle;" va=
+lign=3D"middle" class=3D"mktoText pad-l10" id=3D"linkIconModuleLinkf91064fd=
+-2b8b-407f-85c5-6758d82cf8cd"></td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"bodyCopyModule7cdce=
+169-85fe-4057-9678-73addc6f10df" width=3D"600" cellspacing=3D"0" cellpaddin=
+g=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%;=
+">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" valign=3D"top" style=3D"padding:8px 50px 8px 50px;" class=
+=3D"inner-container"> <p class=3D"mktoText" id=3D"bodyCopyb490d96e-d2fe-42e=
+8-a03f-3d86a2715a89" style=3D"font-family: 'Google Sans Text','Noto Sans JP=
+',Arial,sans-serif; font-size: 14px; line-height: 24px; color: #5F6368; mar=
+gin: 0; padding: 0; text-align: left;"><strong>Find insights easily with Se=
+arch</strong></p> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"bodyCopyModule9cde8=
+61b-ce9a-4716-ae6f-2771af88277c" width=3D"600" cellspacing=3D"0" cellpaddin=
+g=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%;=
+">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" valign=3D"top" style=3D"padding:8px 50px 8px 50px;" class=
+=3D"inner-container"> <p class=3D"mktoText" id=3D"bodyCopy21b40982-bd80-475=
+6-8a1c-82624fe043b7" style=3D"font-family: 'Google Sans Text','Noto Sans JP=
+',Arial,sans-serif; font-size: 14px; line-height: 24px; color: #5F6368; mar=
+gin: 0; padding: 0; text-align: left;">Want to make internal data more disc=
+overable? Been asked to help customers find what they=E2=80=99re looking fo=
+r on your website? Dive into the rich possibilities of gen AI-powered searc=
+h and learn how to set up a fully customized search engine in just a few cl=
+icks.</p> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"linkIconModule0131f=
+6a3-ca70-4bf3-ac7c-741a8643f4b8" width=3D"600" cellspacing=3D"0" cellpaddin=
+g=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%;=
+">=20
+<tbody>=20
+<tr>=20
+<td valign=3D"top" style=3D"padding:16px 50px 16px 50px;" class=3D"inner-co=
+ntainer">=20
+<table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" border=3D"=
+0" align=3D"left">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" class=3D"valign-top pad-t2" width=3D"16" style=3D"font-fami=
+ly: 'Google Sans','Noto Sans JP',Arial,sans-serif; font-size: 14px; line-he=
+ight: 21px; width: 16px; vertical-align: middle;" valign=3D"middle"> <img c=
+lass=3D"mktoImg" id=3D"linkIconModuleImg22a57162-9131-4d52-99cb-8d98e7f81c0=
+f" src=3D"https://lp.cloudplatformonline.com/rs/808-GJW-314/images/virtual-=
+assistant-welcome-email%402x.png?version=3D0" width=3D"16" style=3D"display=
+: block; width: 30px;" mktolockimgsize=3D"true"> </td>=20
+<td dir=3D"ltr" style=3D"padding-left: 35px; font-family: 'Google Sans','No=
+to Sans JP',Arial,sans-serif; font-size: 14px; line-height: 21px; font-weig=
+ht: 500; letter-spacing: 0.75px; color: #1A73E8; verical-align: middle;" va=
+lign=3D"middle" class=3D"mktoText pad-l10" id=3D"linkIconModuleLink82cc638b=
+-0121-4505-8c6c-ecd46173c41a"></td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"bodyCopyModulefea56=
+207-49c5-4b7c-836c-b32b916fa335" width=3D"600" cellspacing=3D"0" cellpaddin=
+g=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%;=
+">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" valign=3D"top" style=3D"padding:8px 50px 8px 50px;" class=
+=3D"inner-container"> <p class=3D"mktoText" id=3D"bodyCopy17a63799-9e48-425=
+a-a5d7-82869598e435" style=3D"font-family: 'Google Sans Text','Noto Sans JP=
+',Arial,sans-serif; font-size: 14px; line-height: 24px; color: #5F6368; mar=
+gin: 0; padding: 0; text-align: left;"><strong>Create virtual assistants wi=
+th Conversational AI</strong></p> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"bodyCopyModuleee395=
+714-64a0-425f-b5c3-92845733c11d" width=3D"600" cellspacing=3D"0" cellpaddin=
+g=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%;=
+">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" valign=3D"top" style=3D"padding:8px 50px 8px 50px;" class=
+=3D"inner-container"> <p class=3D"mktoText" id=3D"bodyCopy9958b9f2-c7c9-4bb=
+6-86fe-f47ffabce31d" style=3D"font-family: 'Google Sans Text','Noto Sans JP=
+',Arial,sans-serif; font-size: 14px; line-height: 24px; color: #5F6368; mar=
+gin: 0; padding: 0; text-align: left;">Yes, you can build virtual assistant=
+s, AI-powered agents, and chatbots in minutes =E2=80=94 with little or no c=
+oding required. Learn how gen AI is transforming conversational experiences=
+ with its deep understanding of user intent via natural language, and how y=
+ou can get started.</p> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"linkIconModulecea0e=
+bf6-4080-497d-a19e-b923dcfbca10" width=3D"600" cellspacing=3D"0" cellpaddin=
+g=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%;=
+">=20
+<tbody>=20
+<tr>=20
+<td valign=3D"top" style=3D"padding:16px 50px 16px 50px;" class=3D"inner-co=
+ntainer">=20
+<table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" border=3D"=
+0" align=3D"left">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" class=3D"valign-top pad-t2" width=3D"16" style=3D"font-fami=
+ly: 'Google Sans','Noto Sans JP',Arial,sans-serif; font-size: 14px; line-he=
+ight: 21px; width: 16px; vertical-align: middle;" valign=3D"middle"> <img c=
+lass=3D"mktoImg" id=3D"linkIconModuleImgecd67978-70f7-4b32-b8fc-9e76a2cd5c7=
+5" src=3D"https://lp.cloudplatformonline.com/rs/808-GJW-314/images/foundati=
+on-models-welcome-email%402x.png?version=3D0" width=3D"16" style=3D"display=
+: block; width: 30px;" mktolockimgsize=3D"true"> </td>=20
+<td dir=3D"ltr" style=3D"padding-left: 35px; font-family: 'Google Sans','No=
+to Sans JP',Arial,sans-serif; font-size: 14px; line-height: 21px; font-weig=
+ht: 500; letter-spacing: 0.75px; color: #1A73E8; verical-align: middle;" va=
+lign=3D"middle" class=3D"mktoText pad-l10" id=3D"linkIconModuleLinkdc90e3f1=
+-ec71-443b-96cc-af4602af05c4"></td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"bodyCopyModuledcce1=
+8bd-55c9-4f50-bf52-71a7d350f95b" width=3D"600" cellspacing=3D"0" cellpaddin=
+g=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%;=
+">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" valign=3D"top" style=3D"padding:8px 50px 8px 50px;" class=
+=3D"inner-container"> <p class=3D"mktoText" id=3D"bodyCopye03bf498-9926-433=
+1-af9a-4c056a98e14d" style=3D"font-family: 'Google Sans Text','Noto Sans JP=
+',Arial,sans-serif; font-size: 14px; line-height: 24px; color: #5F6368; mar=
+gin: 0; padding: 0; text-align: left;"><strong>Build or tune your own found=
+ational models</strong></p> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"bodyCopyModule7a418=
+f27-9161-4d07-ae9d-1cbeef1e08a0" width=3D"600" cellspacing=3D"0" cellpaddin=
+g=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%;=
+">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" valign=3D"top" style=3D"padding:8px 50px 8px 50px;" class=
+=3D"inner-container"> <p class=3D"mktoText" id=3D"bodyCopyf5e1a8f7-3a9c-43b=
+2-992f-8d3db9b49c72" style=3D"font-family: 'Google Sans Text','Noto Sans JP=
+',Arial,sans-serif; font-size: 14px; line-height: 24px; color: #5F6368; mar=
+gin: 0; padding: 0; text-align: left;">Got a specific use case for gen AI i=
+n mind? There=E2=80=99s no need to start from scratch. Learn how to leverag=
+e pre-existing, pre-trained tools so you can hit the ground running and del=
+iver results much faster.</p> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"linkIconModulefed3b=
+3a6-1caf-479f-9f05-07003cc07655" width=3D"600" cellspacing=3D"0" cellpaddin=
+g=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%;=
+">=20
+<tbody>=20
+<tr>=20
+<td valign=3D"top" style=3D"padding:16px 50px 16px 50px;" class=3D"inner-co=
+ntainer">=20
+<table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" border=3D"=
+0" align=3D"left">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" class=3D"valign-top pad-t2" width=3D"16" style=3D"font-fami=
+ly: 'Google Sans','Noto Sans JP',Arial,sans-serif; font-size: 14px; line-he=
+ight: 21px; width: 16px; vertical-align: middle;" valign=3D"middle"> <img c=
+lass=3D"mktoImg" id=3D"linkIconModuleImgcad7b64c-269f-4ad9-857c-437a1cfae82=
+1" src=3D"https://lp.cloudplatformonline.com/rs/808-GJW-314/images/code-wel=
+come-email%402x.png?version=3D0" width=3D"16" style=3D"display: block; widt=
+h: 30px;" mktolockimgsize=3D"true"> </td>=20
+<td dir=3D"ltr" style=3D"padding-left: 35px; font-family: 'Google Sans','No=
+to Sans JP',Arial,sans-serif; font-size: 14px; line-height: 21px; font-weig=
+ht: 500; letter-spacing: 0.75px; color: #1A73E8; verical-align: middle;" va=
+lign=3D"middle" class=3D"mktoText pad-l10" id=3D"linkIconModuleLink4feaa6d0=
+-6f23-45b4-8c9f-2360994ff0f0"></td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"bodyCopyModule575cd=
+967-3a9a-467c-b86c-b2f45d5a8e6f" width=3D"600" cellspacing=3D"0" cellpaddin=
+g=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%;=
+">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" valign=3D"top" style=3D"padding:8px 50px 8px 50px;" class=
+=3D"inner-container"> <p class=3D"mktoText" id=3D"bodyCopy5abd42bc-26e8-4d7=
+d-8c49-8b62265cd156" style=3D"font-family: 'Google Sans Text','Noto Sans JP=
+',Arial,sans-serif; font-size: 14px; line-height: 24px; color: #5F6368; mar=
+gin: 0; padding: 0; text-align: left;"><strong>Automate repetitive tasks in=
+ software development</strong></p> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"bodyCopyModule426f3=
+86a-006f-41e4-96a4-05b9fdbfef2e" width=3D"600" cellspacing=3D"0" cellpaddin=
+g=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%;=
+">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" valign=3D"top" style=3D"padding:8px 50px 8px 50px;" class=
+=3D"inner-container"> <p class=3D"mktoText" id=3D"bodyCopy991a334d-89ca-44f=
+b-ab32-28b704607729" style=3D"font-family: 'Google Sans Text','Noto Sans JP=
+',Arial,sans-serif; font-size: 14px; line-height: 24px; color: #5F6368; mar=
+gin: 0; padding: 0; text-align: left;">Gen AI is a game-changer in software=
+ development, automating tedious and repetitive tasks like code reviews, te=
+sting, and debugging =E2=80=94 so you can focus on more meaningful and inno=
+vative work. Explore how impactful it could be to your role.</p> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"ctaModulef1da3261-5=
+624-461d-aeff-49d946c1bb92" width=3D"600" cellspacing=3D"0" cellpadding=3D"=
+0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%;">=20
+<tbody>=20
+<tr>=20
+<td valign=3D"top" style=3D"padding:16px 50px 16px 50px;" class=3D"inner-co=
+ntainer">=20
+<table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"=
+0" align=3D"left">=20
+<tbody>=20
+<tr>=20
+<td class=3D"mktoText" id=3D"ctaModuleContent2cde31ca-60be-4044-91df-cd6dfe=
+3a84e4" dir=3D"ltr" bgcolor=3D"#1a73e8" style=3D"border-radius: 3px;">=20
+<!-- NOTE: If using dynamic content replace the 2 variables with your link =
+and text --> <a role=3D"button" class=3D"whiteText" href=3D
+"https://go.cloudplatformonline.com/dc/fHMtyxBEiXs4PB504MVujYkD5YhEaNrJAhrp=
+6Pe8GoFP1arjunOVD45CPO9EP0FYELuMN8oW7BhwbcHkNf6p8Vk8BD1wUwYswOWoDTy2JqoAikB=
+KVGd-JmCmPh2aNAgAoqFgbK0vQyMGMHpGcOcoh1bVqCazRADy_JTtb5YVJxAGUsoxr2rydjSxFl=
+So1WFshMOgahCsqGg5M5x-KeWfVbH6SvA2u_zVW56PqtX2Vc4Ql6LHeJdU5mIinq31Hku9zwBJ8=
+joPfMbQzAf2D2VNFVGW3ewWinRZw99J4lpnQuyOsr-sgkdUhjydPG2pngLeEpOILmRcmYBnneO7=
+fMDi3w=3D=3D/ODA4LUdKVy0zMTQAAAGS7wsvuEsTzMAWyonW_D1wZRcaPyke0HJLTi7otx0TpH=
+hh-12LuoQ1gYDZlTYgVItxjwKp7IQ=3D" target=3D"_blank" style=3D"font-family: '=
+Google Sans','Noto Sans JP',Arial,sans-serif; color: #ffffff; text-decorati=
+on: none; font-size: 14px; letter-spacing: 1px; font-weight: 500; -webkit-b=
+order-radius: 3px; border-radius: 3px; border: 1px solid #1a73e8; padding: =
+14px 16px 14px 16px; display: inline-block;"
+>Submit &gt;</a></td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"signOffModule" widt=
+h=3D"600" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"center"=
+ style=3D"max-width:600px; width:100%;">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" valign=3D"top" style=3D"padding:8px 50px 30px 50px;" class=
+=3D"inner-container">=20
+<div class=3D"mktoText" id=3D"signOffContent" style=3D"font-family: 'Google=
+ Sans','Noto Sans JP',Arial,sans-serif; font-size: 14px; line-height: 24px;=
+ color: #5F6368; margin: 0; padding: 0; text-align: left;">
+<img src=3D"https://lp.cloudplatformonline.com/rs/808-GJW-314/images/favico=
+n-96x96.png?version=3D0" style=3D"display: block; width: 40px;">See you in =
+the cloud,=20
+<br>=20
+<strong>The Google Cloud Team</strong>
+</div> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"googleColorsBar46e5=
+15b2-1309-48a0-9411-7f35195a79d9" width=3D"600" cellspacing=3D"0" cellpaddi=
+ng=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%=
+;">=20
+<tbody>=20
+<tr>=20
+<td> <img class=3D"width100" src=3D"https://lp.cloudplatformonline.com/rs/8=
+08-GJW-314/images/email-progress-bar.png" alt=3D"" width=3D"600" style=3D"m=
+ax-width: 100%; width: 600px; display: block;"> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table role=3D"presentation" class=3D"mktoModule" id=3D"footerModulee6d9968=
+5-2add-440a-be32-7a951583d1b3" width=3D"600" cellspacing=3D"0" cellpadding=
+=3D"0" border=3D"0" align=3D"center" style=3D"max-width:600px; width:100%; =
+background: #f8f9fa;">=20
+<tbody>=20
+<tr>=20
+<td valign=3D"top" style=3D"padding: 40px 50px 0 50px;" class=3D"inner-cont=
+ainer">=20
+<table role=3D"presentation" width=3D"600" cellspacing=3D"0" cellpadding=3D=
+"0" border=3D"0" style=3D"max-width:600px; width:100%;">=20
+<tbody>=20
+<tr>=20
+<td>=20
+<table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" border=3D"=
+0" style=3D"width: 100%;">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" align=3D"left" style=3D"padding-bottom: 16px;">=20
+<table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" border=3D"=
+0" width=3D"100%" style=3D"width: 100%;">=20
+<tbody>=20
+<tr>=20
+<td dir=3D"ltr" align=3D"left" valign=3D"middle" style=3D"vertical-align: m=
+iddle;"> <img class=3D"no-arrow mktoImg no-arrow mktoImg" id=3D"footerLogoe=
+04fdc5c-fa00-4d28-b35a-90b716f50814" src=3D"https://lp.cloudplatformonline.=
+com/rs/808-GJW-314/images/google-cloud-a11y.png" alt=3D"Google Cloud" width=
+=3D"140" style=3D"width: 140px; display: block; margin: 0; border:=20
+none;" mktolockimgsize=3D"false"> </td>=20
+<td dir=3D"ltr" align=3D"right" valign=3D"middle" style=3D"vertical-align: =
+middle; display: none !important; mso-hide:all;"> <img class=3D"no-arrow mk=
+toImg no-arrow mktoImg" id=3D"footerIconsc6a14d90-062d-4e81-9715-488221a966=
+8a" src=3D"https://lp.cloudplatformonline.com/rs/808-GJW-314/images/hh-img2=
+.png" width=3D"137" style=3D"width: 137px; display: block; margin: 0; borde=
+r: none; display: none !important; mso-hide:all;" mktolockimgsize=3D"false"=
+> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+<tr>=20
+<td dir=3D"ltr" style=3D"font-family: 'Google Sans Text','Noto Sans JP',Ari=
+al,sans-serif; font-size: 12px; font-weight: 400; line-height: 18px; color:=
+ #5F6368; margin: 0; padding: 0; text-align: left; padding-bottom: 18px;">=
+=20
+<div class=3D"mktoText" id=3D"footer-copyright-address646e5920-15ac-471e-99=
+fa-6aa01f9d8d22">
+ =C2=A9 2024 Google LLC=20
+<br> 1600 Amphitheatre Parkway, Mountain View, CA 94043=20
+</div>=20
+<div>=20
+<br>=20
+</div>=20
+<div class=3D"mktoText" id=3D"footer-copy4239e655-7d13-4f76-8479-4fb47427ff=
+b2">
+ We sent you this email because you have indicated that you are willing to =
+receive periodic emails on news, product updates, and invitations to events=
+ from the Google&nbsp;Cloud team. If you no longer wish to receive these em=
+ails, click on the following link to=20
+<a href=3D
+"https://inthecloud.withgoogle.com/preference-center/unsub-global.html?mkt_=
+unsubscribe=3D1&amp;mkt_tok=3DODA4LUdKVy0zMTQAAAGS7wsvuHultKYyPUpiy_jJSfWVA=
+Br0dQpUXczPbKKdWsKJ65Qs7x7wOp2WMH460a-2ZCnuayIZvP5fMVrxL_qBkG5fzHRDdnj9fEgm=
+xgIESI5tU-ro0nE&amp;Opt_In_Events__c=3DYes&amp;Opt_In_Newsletter__c=3DYes&a=
+mp;Opt_In_Offers__c=3DYes&amp;Opt_In_Products__c=3DYes&amp;Opt_In_Research_=
+_c=3DYes&amp;preferenceCenterSubscription1=3DYes&amp;preferenceCenterSubscr=
+iption2=3DYes&amp;preferenceCenterSubscription3=3DYes&amp;preferenceCenterS=
+ubscription4=3DYes&amp;lang=3DUS" class=3D"mktNoTrack" target=3D"_blank" st=
+yle=3D"text-decoration: underline; color: #1967d2;"
+>unsubscribe</a> or=20
+<a href=3D
+"https://inthecloud.withgoogle.com/preference-center/main-global.html?Opt_I=
+n_Events__c=3DYes&amp;Opt_In_Newsletter__c=3DYes&amp;Opt_In_Offers__c=3DYes=
+&amp;Opt_In_Products__c=3DYes&amp;Opt_In_Research__c=3DYes&amp;preferenceCe=
+nterSubscription1=3DYes&amp;preferenceCenterSubscription2=3DYes&amp;prefere=
+nceCenterSubscription3=3DYes&amp;preferenceCenterSubscription4=3DYes&amp;la=
+ng=3DUS" class=3D"mktNoTrack" target=3D"_blank" style=3D"text-decoration: u=
+nderline; color: #1967d2;"
+>customize your communication preferences</a>.=20
+<!--https://lp.cloudplatformonline.com/UnsubscribePage.html?mkt_unsubscribe=
+=3D1&mkt_tok=3DODA4LUdKVy0zMTQAAAGS7wsvuHultKYyPUpiy_jJSfWVABr0dQpUXczPbKKd=
+WsKJ65Qs7x7wOp2WMH460a-2ZCnuayIZvP5fMVrxL_qBkG5fzHRDdnj9fEgmxgIESI5tU-ro0nE=
+-->=20
+<br>=20
+<br>If you no longer want to receive emails about Gen AI journey, click=20
+<a href=3D
+"https://go.cloudplatformonline.com/dc/fHMtyxBEiXs4PB504MVujYkD5YhEaNrJAhrp=
+6Pe8GoFP1arjunOVD45CPO9EP0FYUV3SIVbdQLczrknM2bULWd8VwpA3zSsYqw56wV43qe0=3D/=
+ODA4LUdKVy0zMTQAAAGS7wsvuEsTzMAWyonW_D1wZRcaPyke0HJLTi7otx0TpHhh-12LuoQ1gYD=
+ZlTYgVItxjwKp7IQ=3D" target=3D"_blank" style=3D"text-decoration: underline;=
+ color: #1967d2 !important;"
+>here</a>.=20
+</div> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+<tr>=20
+<td valign=3D"top" style=3D"padding:0 50px 40px 35px;" class=3D"inner-conta=
+iner social-container">=20
+<table role=3D"presentation" width=3D"600" cellspacing=3D"0" cellpadding=3D=
+"0" border=3D"0" style=3D"max-width:600px; width:100%;">=20
+<tbody>=20
+<tr>=20
+<td>=20
+<table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" border=3D"=
+0" style=3D"width: 100%;">=20
+<tbody>=20
+<tr>=20
+<td align=3D"left">=20
+<div class=3D"mktoText" id=3D"footerlinkse0646cf4-5845-479c-92c0-85b4b8c35d=
+c7">=20
+<table role=3D"presentation" class=3D"footer-icon-table" cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" style=3D"width: auto;">=20
+<tbody>=20
+<tr>=20
+<td width=3D"48" style=3D"width: 48px; font-family: 'Roboto', Arial, sans-s=
+erif;"><a href=3D
+"https://go.cloudplatformonline.com/ODA4LUdKVy0zMTQAAAGS7wsvuEvQJn0uzRDkb3j=
+EV7Tp2zVOzfeqAcfEdOiboDCFqgpJ7ujj_ni44U2GIo5TwLTzhsU=3D"
+><img src=3D"https://lp.cloudplatformonline.com/rs/808-GJW-314/images/blog-=
+a11y.png" alt=3D"Blog" border=3D"0" height=3D"48" style=3D"height: 48px;" c=
+onstrain=3D"true" imagepreview=3D"false"></a></td>=20
+<td width=3D"48" style=3D"width: 48px; padding-left: 10px; font-family: 'Ro=
+boto', Arial, sans-serif;"><a href=3D
+"https://go.cloudplatformonline.com/ODA4LUdKVy0zMTQAAAGS7wsvuPdFStts2K3fcYs=
+WLrMP1yxR2WLhVV9GY3-PIsvsphOH9wwwu2BFZowFEY8gKKEP_As=3D"
+><img src=3D"https://lp.cloudplatformonline.com/rs/808-GJW-314/images/githu=
+b-a11y.png" alt=3D"GitHub" border=3D"0" height=3D"48" style=3D"height: 48px=
+;" constrain=3D"true" imagepreview=3D"false"></a></td>=20
+<td width=3D"48" style=3D"width: 48px; padding-left: 10px; font-family: 'Ro=
+boto', Arial, sans-serif;"><a href=3D
+"https://go.cloudplatformonline.com/ODA4LUdKVy0zMTQAAAGS7wsvuPnCDo4ml-0Caz6=
+C_beIotSUs1wOAEp81nBzwjpYJ-x-HGQFAtLM-tEksh38SEqbYCc=3D"
+><img src=3D"https://lp.cloudplatformonline.com/rs/808-GJW-314/images/linke=
+din-a11y.png" alt=3D"LinkedIn" border=3D"0" height=3D"48" style=3D"height: =
+48px;"></a></td>=20
+<td width=3D"48" style=3D"width: 48px; padding-left: 10px; font-family: 'Ro=
+boto', Arial, sans-serif;"><a href=3D
+"https://go.cloudplatformonline.com/ODA4LUdKVy0zMTQAAAGS7wsvuEP6NmjHFMT9Gzs=
+OJ-HHyGdivq6Kd1--fR4q8hv3_cnJPp8hk4IzRKi-bbd5SeYC09s=3D"
+><img src=3D"https://lp.cloudplatformonline.com/rs/808-GJW-314/images/logo_=
+twitter_x.png?version=3D2" alt=3D"Twitter" border=3D"0" height=3D"48" style=
+=3D"height: 48px;"></a></td>=20
+<td width=3D"48" style=3D"width: 48px; padding-left: 10px; font-family: 'Ro=
+boto', Arial, sans-serif;"><a href=3D
+"https://go.cloudplatformonline.com/ODA4LUdKVy0zMTQAAAGS7wsvuFrbFqaz4f3wltv=
+utPFFI9-BXLmrVKeyqfnzoiDffFodaIsraHp-GmOIPRU-gE3IpNk=3D"
+><img src=3D"https://lp.cloudplatformonline.com/rs/808-GJW-314/images/faceb=
+ook-a11y.png" alt=3D"Facebook" border=3D"0" height=3D"48" style=3D"height: =
+48px;"></a></td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+</div> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table></td>=20
+</tr>=20
+</tbody>
+</table>=20
+<!--[if mso]>
+</td>
+</tr>
+</table>
+<![endif]-->=20
+</div>=20
+</center>  =20
+<a href=3D
+"https://go.cloudplatformonline.com/ODA4LUdKVy0zMTQAAAGS7wsvuOieO_dcvoRMgL5=
+d7kZk2i-1rejHUKSczhpjCe7ZgEK1WmGuI47147kZXesKhOzvIr4=3D"
+></a>
+<img src=3D"https://go.cloudplatformonline.com/trk?t=3D1&mid=3DODA4LUdKVy0z=
+MTQAAAGS7wsvuCASlkWWqfzjIf9irlnpWq2ln-TMsXAZCFyVcoxYXGcARpIV1xvW8cWmqRO9SWS=
+3WAZd4Ebi8FoKNv1JmQj2nzRo-DZ8S-5AQGqHXGaw8Uj8UTWWcgPU2FQWyfeoL-mU6zFBF6gVKh=
+7arB4ZiCQMMTs_dV7H-2o" width=3D"1" height=3D"1" style=3D"display:none !impo=
+rtant;" alt=3D"" />
+</body>
+</html>
+------=_Part_80307529_995379373.1715035340736--
